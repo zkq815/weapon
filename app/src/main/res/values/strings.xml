@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">alldemo</string>
+    <!-- 网页 -->
+    <string name="refresh">刷新</string>
+
+    <!-- empty view -->
+    <string name="loading_view_no_network">无网络链接，请检查网络设置</string>
+    <string name="loading_view_loading_fail">加载失败</string>
+    <string name="loading_view_network_error">网络异常，点击重新加载</string>
+    <string name="loading_view_image">desc_loading view image</string>
+    <!-- 空字符串 -->
+    <string name="empty">""</string>
+
+    <string name="loading_view_text">正在加载</string>
+    <string name="near_shop_no_shop">该城市暂无门店信息</string>
+    <string name="near_shop_no_permission">无定位权限，请开启定位权限</string>
+</resources>

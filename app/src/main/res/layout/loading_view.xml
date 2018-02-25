@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/loading_view_image"
+        android:layout_width="@dimen/empty_img_size"
+        android:layout_height="@dimen/empty_img_size"
+        android:layout_gravity="center_horizontal|bottom"
+        android:visibility="visible"
+        android:layout_marginBottom="274dp"
+        android:background="@mipmap/loading_view_no_network"
+        android:contentDescription="@string/loading_view_image" />
+
+    <TextView
+        android:id="@+id/loading_view_info"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="258dp"
+        android:text="@string/loading_view_no_network"
+        android:textColor="@color/empty_info_text_color"
+        android:textSize="@dimen/empty_info_text_size" />
+
+    <RelativeLayout
+        android:id="@+id/loading_view_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <com.zkq.alldemo.costomview.LoadingView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="33dp"
+            android:text="@string/loading_view_text" />
+    </RelativeLayout>
+
+</merge>
