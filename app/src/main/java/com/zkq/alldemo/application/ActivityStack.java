@@ -1,13 +1,12 @@
-package com.zkq.alldemo.util;
+package com.zkq.alldemo.application;
 
 import android.app.Activity;
 import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-
-import com.zkq.alldemo.BuildConfig;
 import com.zkq.alldemo.base.BaseActivity;
+import com.zkq.weapon.BuildConfig;
 import com.zkq.weapon.util.ZKQLog;
 
 import java.lang.ref.WeakReference;

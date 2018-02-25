@@ -1,6 +1,6 @@
-package com.zkq.alldemo.util;
+package com.zkq.weapon.util;
 
-import com.zkq.alldemo.BuildConfig;
+import com.zkq.weapon.BuildConfig;
 
 import java.io.File;
 import java.io.FileInputStream;

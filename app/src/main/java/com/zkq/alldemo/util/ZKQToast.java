@@ -7,7 +7,7 @@ import android.support.annotation.StringRes;
 import android.view.Gravity;
 import android.widget.Toast;
 
-import com.zkq.alldemo.MApplication.MyApplication;
+import com.zkq.alldemo.application.MyApplication;
 import com.zkq.alldemo.R;
 
 

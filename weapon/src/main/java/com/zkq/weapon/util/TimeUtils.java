@@ -1,13 +1,7 @@
-package com.zkq.alldemo.util;
+package com.zkq.weapon.util;
 
-import android.os.Environment;
 import android.text.TextUtils;
 
-import com.zkq.alldemo.BuildConfig;
-import com.zkq.alldemo.common.BuildInfo;
-
-import java.io.File;
-import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

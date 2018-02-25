@@ -8,7 +8,6 @@ import android.net.http.SslError;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -33,9 +32,9 @@ import com.zkq.alldemo.BuildConfig;
 import com.zkq.alldemo.R;
 import com.zkq.alldemo.common.AppBaseInfo;
 import com.zkq.alldemo.common.AppConstantsUrl;
-import com.zkq.alldemo.costomview.LoadingView;
-import com.zkq.alldemo.util.ZKQLog;
 import com.zkq.alldemo.util.ZKQToast;
+import com.zkq.alldemo.costomview.LoadingView;
+import com.zkq.weapon.util.ZKQLog;
 
 import java.lang.ref.WeakReference;
 

@@ -1,4 +1,4 @@
-package com.zkq.alldemo.util;
+package com.zkq.weapon.util;
 
 import android.text.TextUtils;
 

@@ -1,4 +1,4 @@
-package com.zkq.alldemo.MApplication;
+package com.zkq.alldemo.application;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -14,7 +14,6 @@ import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.zkq.alldemo.BuildConfig;
 import com.zkq.alldemo.network.SimpleOkHttpStack;
-import com.zkq.alldemo.util.ActivityStack;
 import com.zkq.alldemo.util.ImgUtil;
 
 import okhttp3.OkHttpClient;

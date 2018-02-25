@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.zkq.alldemo.MApplication.MyApplication;
+import com.zkq.alldemo.application.MyApplication;
 
 
 /**

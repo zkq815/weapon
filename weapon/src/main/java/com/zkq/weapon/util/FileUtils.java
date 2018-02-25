@@ -1,11 +1,9 @@
-package com.zkq.alldemo.util;
+package com.zkq.weapon.util;
 
 import android.os.Environment;
 
 
-import com.zkq.alldemo.BuildConfig;
-import com.zkq.alldemo.common.BuildInfo;
-import com.zkq.weapon.util.ZKQLog;
+import com.zkq.weapon.BuildConfig;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -45,14 +43,6 @@ public class FileUtils {
         return ret;
     }
 
-    public static File getDownloadDir() {
-        final File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), BuildInfo.APPLICATION_ID);
-
-        checkDir(dir);
-
-        return dir;
-    }
-
     public static File getDownloadDir(String dirName) {
         final File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), dirName);
 
@@ -61,16 +51,16 @@ public class FileUtils {
         return dir;
     }
 
-    public static File getPatchDir() {
-        final File dir = new File(getDownloadDir(), PATCH);
+    public static File getPatchDir(String dirName) {
+        final File dir = new File(getDownloadDir(dirName), PATCH);
 
         checkDir(dir);
 
         return dir;
     }
 
-    public static File getTinkerPatchDir() {
-        final File dir = new File(getPatchDir(), TINKER);
+    public static File getTinkerPatchDir(String dirName) {
+        final File dir = new File(getPatchDir(dirName), TINKER);
 
         checkDir(dir);
 

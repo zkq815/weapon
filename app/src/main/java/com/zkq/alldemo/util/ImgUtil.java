@@ -31,8 +31,10 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 import com.zkq.alldemo.BuildConfig;
-import com.zkq.alldemo.MApplication.MyApplication;
+import com.zkq.alldemo.application.MyApplication;
 import com.zkq.alldemo.R;
+import com.zkq.weapon.util.ThreadPool;
+import com.zkq.weapon.util.ZKQLog;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

@@ -1,4 +1,4 @@
-package com.zkq.alldemo.util;
+package com.zkq.weapon.util;
 
 import android.Manifest.permission;
 import android.app.Activity;
@@ -278,7 +278,7 @@ public final class MobileNetworkUtils {
 					System.out.println(i + "===状态===" + networkInfo[i].getState());
 					System.out.println(i + "===类型===" + networkInfo[i].getTypeName());
 					// 判断当前网络状态是否为连接状态
-					if (networkInfo[i].getState() == NetworkInfo.State.CONNECTED) {
+					if (networkInfo[i].getState() == State.CONNECTED) {
 						return true;
 					}
 				}

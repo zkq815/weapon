@@ -29,8 +29,6 @@ public class MainActivity extends BaseActivity {
         rv.setAdapter(new MainAdapter(this));
     }
 
-
-
     class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         Context context;
         LayoutInflater layoutInflater;

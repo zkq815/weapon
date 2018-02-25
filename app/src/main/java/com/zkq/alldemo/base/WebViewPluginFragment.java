@@ -12,7 +12,7 @@ import android.view.View;
 
 import com.zkq.alldemo.common.Constants;
 import com.zkq.alldemo.costomview.LoadingView;
-import com.zkq.alldemo.util.MobileNetworkUtils;
+import com.zkq.weapon.util.MobileNetworkUtils;
 
 import java.io.UnsupportedEncodingException;
 

@@ -1,16 +1,14 @@
-package com.zkq.alldemo.util;
+package com.zkq.weapon.util;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
+//import android.support.annotation.NonNull;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.UnderlineSpan;
-
-import com.zkq.alldemo.MApplication.MyApplication;
 
 import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
@@ -92,10 +90,6 @@ public class StringUtil {
 
     public static boolean isNotBlank(String str) {
         return !isBlank(str);
-    }
-
-    public static String getResourceString(int strId) {
-        return MyApplication.getInstance().getResources().getString(strId);
     }
 
     public static String trim(final String src, final char c) {
@@ -221,7 +215,7 @@ public class StringUtil {
      * @param label   用户可见标签
      * @param content 实际剪贴的文本内容
      */
-    public static void copyToClipboard(@NonNull final Context context, final String label, final String content) {
+    public static void copyToClipboard(final Context context, final String label, final String content) {
         final ClipboardManager manager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         final ClipData data = ClipData.newPlainText(label, content);
         manager.setPrimaryClip(data);

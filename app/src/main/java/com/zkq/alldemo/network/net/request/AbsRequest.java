@@ -3,9 +3,9 @@ package com.zkq.alldemo.network.net.request;
 import android.content.Context;
 
 import com.zkq.alldemo.BuildConfig;
-import com.zkq.alldemo.MApplication.MyApplication;
+import com.zkq.alldemo.application.MyApplication;
 import com.zkq.alldemo.util.AndrUtils;
-import com.zkq.alldemo.util.MobileNetworkUtils;
+import com.zkq.weapon.util.MobileNetworkUtils;
 
 import java.util.HashMap;
 import java.util.Map;

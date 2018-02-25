@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import com.zkq.alldemo.R;
 import com.zkq.alldemo.common.Constants;
 import com.zkq.alldemo.common.H5CallParam;
-import com.zkq.alldemo.util.StringUtil;
+import com.zkq.weapon.util.StringUtil;
 
 public class WebViewPluginActivity extends BaseActionBarActivity {
 
