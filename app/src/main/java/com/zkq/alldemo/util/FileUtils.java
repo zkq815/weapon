@@ -5,7 +5,6 @@ import android.os.Environment;
 
 import com.zkq.alldemo.BuildConfig;
 import com.zkq.alldemo.common.BuildInfo;
-import com.zkq.weapon.util.ZKQLog;
 
 import java.io.File;
 import java.math.BigDecimal;

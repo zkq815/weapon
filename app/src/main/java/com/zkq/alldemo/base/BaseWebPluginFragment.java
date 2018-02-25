@@ -32,9 +32,9 @@ import com.zkq.alldemo.BuildConfig;
 import com.zkq.alldemo.R;
 import com.zkq.alldemo.common.AppBaseInfo;
 import com.zkq.alldemo.common.AppConstantsUrl;
+import com.zkq.alldemo.util.ZKQLog;
 import com.zkq.alldemo.util.ZKQToast;
 import com.zkq.alldemo.costomview.LoadingView;
-import com.zkq.weapon.util.ZKQLog;
 
 import java.lang.ref.WeakReference;
 

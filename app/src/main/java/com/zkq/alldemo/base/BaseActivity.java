@@ -22,9 +22,9 @@ import android.view.WindowManager;
 
 import com.zkq.alldemo.BuildConfig;
 import com.zkq.alldemo.R;
+import com.zkq.alldemo.util.ZKQLog;
 import com.zkq.weapon.util.MobileNetworkUtils;
 import com.zkq.weapon.util.RomJustUtil;
-import com.zkq.weapon.util.ZKQLog;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;

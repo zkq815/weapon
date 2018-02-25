@@ -6,8 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.zkq.alldemo.base.BaseActivity;
-import com.zkq.weapon.BuildConfig;
-import com.zkq.weapon.util.ZKQLog;
+import com.zkq.alldemo.BuildConfig;
+import com.zkq.alldemo.util.ZKQLog;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

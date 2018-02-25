@@ -1,8 +1,8 @@
-package com.zkq.weapon.util;
+package com.zkq.alldemo.util;
 
 import android.util.Log;
 
-import com.zkq.weapon.BuildConfig;
+import com.zkq.alldemo.BuildConfig;
 
 
 public class ZKQLog {

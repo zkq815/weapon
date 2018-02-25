@@ -1,6 +1,7 @@
-package com.zkq.weapon.util;
+package com.zkq.alldemo.util;
 
-import com.zkq.weapon.BuildConfig;
+import com.zkq.alldemo.BuildConfig;
+import com.zkq.alldemo.util.ZKQLog;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.RejectedExecutionHandler;

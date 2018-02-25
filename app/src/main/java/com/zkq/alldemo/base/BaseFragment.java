@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import com.zkq.alldemo.BuildConfig;
 import com.zkq.alldemo.application.MyApplication;
-import com.zkq.weapon.util.ZKQLog;
+import com.zkq.alldemo.util.ZKQLog;
 
 
 /**
