@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -48,12 +49,11 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (LeakCanary.isInAnalyzerProcess(application)) {
-            // LeakCanary会创建单独的进程用于内存堆分析，这里不应该调用我们的初始化代码，直接返回即可
-            return;
-        }
+//        if (LeakCanary.isInAnalyzerProcess(application)) {
+//            // LeakCanary会创建单独的进程用于内存堆分析，这里不应该调用我们的初始化代码，直接返回即可
+//            return;
+//        }
         sRefWatcher = LeakCanary.install(application);
-
         instance = this;
 
         application.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
@@ -105,13 +105,22 @@ public class MyApplication extends Application {
         return application;
     }
 
+    public static Application getInstance() {
+        return instance.getApplication();
+    }
+
     protected OkHttpClient getOkHttpClient() {
         return new OkHttpClient();
     }
 
     public static RequestQueue getRequestQueue() {
-        if (instance.mRequestQueue == null) {
-            instance.mRequestQueue = Volley.newRequestQueue(instance.getApplication(), new SimpleOkHttpStack(instance.getOkHttpClient()));
+//        if(getApp()){
+//
+//        }
+        if(null != instance){
+            if (null == instance.mRequestQueue ) {
+                instance.mRequestQueue = Volley.newRequestQueue(instance.getApplication(), new SimpleOkHttpStack(instance.getOkHttpClient()));
+            }
         }
         return instance.mRequestQueue;
     }
@@ -127,7 +136,6 @@ public class MyApplication extends Application {
         if (instance != null) {
             return instance.application;
         }
-
         return null;
     }
 
@@ -137,8 +145,4 @@ public class MyApplication extends Application {
         }
     }
 
-
-    public static Application getInstance() {
-        return instance.getApplication();
-    }
 }

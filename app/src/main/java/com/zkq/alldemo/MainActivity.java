@@ -3,6 +3,7 @@ package com.zkq.alldemo;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,10 +12,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.zkq.alldemo.base.BaseActivity;
+import com.zkq.alldemo.network.WeakRefDataListener;
+import com.zkq.alldemo.network.exception.NetworkException;
+import com.zkq.alldemo.network.netdemo.BaseBean;
+import com.zkq.alldemo.network.netdemo.TestNetHelper;
 
 
 public class MainActivity extends BaseActivity {
-    String[] info = {"CatchException"};
+    String[] info = {"CatchExceptionActivity"};
     private RecyclerView rv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +48,9 @@ public class MainActivity extends BaseActivity {
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-            ItemHolder itemHolder = null;
+        public void onBindViewHolder(RecyclerView.ViewHolder holder, int index) {
+            final int position = index;
+            ItemHolder itemHolder ;
             if(holder instanceof ItemHolder){
                 itemHolder = (ItemHolder) holder;
                 itemHolder.tvAcivityName.setText(info[position]);
@@ -75,5 +81,42 @@ public class MainActivity extends BaseActivity {
             tvAcivityName = (TextView) view.findViewById(R.id.tv_activity);
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+    private void testNetRequest(){
+        TestNetHelper testNetHelper = new TestNetHelper();
+        testNetHelper.post("http://app.store.res.meizu.com/mzstore/home/get/v2", new NetWortDataListener(new BaseBean()));
+    }
+
+    /**
+     * 请求监听回调
+     * 第一个参数为Presenter
+     * 第二个参数为返回的数据对象
+     * */
+    private static class NetWortDataListener extends WeakRefDataListener<BaseBean,BaseBean>{
+        NetWortDataListener(BaseBean arg1){
+            super(arg1);
+        }
+
+        @Override
+        protected void onSuccess(@NonNull BaseBean baseBean, @NonNull BaseBean data) {
+
+        }
+
+        @Override
+        public void onError(@NonNull BaseBean baseBean, @NonNull NetworkException error) {
+
+        }
+    }
+
 
 }
