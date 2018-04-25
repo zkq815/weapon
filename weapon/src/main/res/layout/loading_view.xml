@@ -13,7 +13,7 @@
         android:layout_gravity="center_horizontal|bottom"
         android:visibility="visible"
         android:layout_marginBottom="274dp"
-        android:background="@mipmap/loading_view_no_network"
+        android:background="@drawable/loading_view_no_network"
         android:contentDescription="@string/loading_view_image" />
 
     <TextView

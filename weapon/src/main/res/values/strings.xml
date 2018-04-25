@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">alldemo</string>
     <!-- 网页 -->
     <string name="refresh">刷新</string>
 

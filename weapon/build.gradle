@@ -31,5 +31,5 @@ dependencies {
 //    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
 //    implementation "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
 //    implementation "com.android.support:cardview-v7:$rootProject.ext.supportLibraryVersion"
-//    implementation 'com.android.support:support-annotations:25.4.0'
+    implementation 'com.android.support:support-annotations:25.4.0'
 }

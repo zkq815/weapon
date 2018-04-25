@@ -185,7 +185,4 @@ public class ZKQLog {
         if (isLog)
             Log.d(tag, content);
     }
-
-
-
 }

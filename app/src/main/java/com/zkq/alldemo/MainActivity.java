@@ -21,6 +21,7 @@ import com.zkq.alldemo.network.netdemo.TestNetHelper;
 public class MainActivity extends BaseActivity {
     String[] info = {"CatchExceptionActivity"};
     private RecyclerView rv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,38 +29,38 @@ public class MainActivity extends BaseActivity {
         init();
     }
 
-    private void init(){
+    private void init() {
         rv = (RecyclerView) findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(new MainAdapter(this));
     }
 
-    class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+    class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         Context context;
         LayoutInflater layoutInflater;
-        MainAdapter(Context context){
+
+        MainAdapter(Context context) {
             this.context = context;
             this.layoutInflater = LayoutInflater.from(this.context);
         }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new ItemHolder(layoutInflater.inflate(R.layout.main_item_viewholder,parent,false));
+            return new ItemHolder(layoutInflater.inflate(R.layout.main_item_viewholder, parent, false));
         }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int index) {
             final int position = index;
-            ItemHolder itemHolder ;
-            if(holder instanceof ItemHolder){
+            ItemHolder itemHolder;
+            if (holder instanceof ItemHolder) {
                 itemHolder = (ItemHolder) holder;
                 itemHolder.tvAcivityName.setText(info[position]);
                 itemHolder.tvAcivityName.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         try {
-                            startActivity(new Intent(MainActivity.this,Class.forName(info[position])));
+                            startActivity(new Intent(MainActivity.this, Class.forName(info[position])));
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }
@@ -74,25 +75,17 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    class ItemHolder extends RecyclerView.ViewHolder{
+    class ItemHolder extends RecyclerView.ViewHolder {
         TextView tvAcivityName;
-        ItemHolder(View view){
+
+        ItemHolder(View view) {
             super(view);
             tvAcivityName = (TextView) view.findViewById(R.id.tv_activity);
         }
     }
 
 
-
-
-
-
-
-
-
-
-
-    private void testNetRequest(){
+    private void testNetRequest() {
         TestNetHelper testNetHelper = new TestNetHelper();
         testNetHelper.post("http://app.store.res.meizu.com/mzstore/home/get/v2", new NetWortDataListener(new BaseBean()));
     }
@@ -101,9 +94,9 @@ public class MainActivity extends BaseActivity {
      * 请求监听回调
      * 第一个参数为Presenter
      * 第二个参数为返回的数据对象
-     * */
-    private static class NetWortDataListener extends WeakRefDataListener<BaseBean,BaseBean>{
-        NetWortDataListener(BaseBean arg1){
+     */
+    private static class NetWortDataListener extends WeakRefDataListener<BaseBean, BaseBean> {
+        NetWortDataListener(BaseBean arg1) {
             super(arg1);
         }
 

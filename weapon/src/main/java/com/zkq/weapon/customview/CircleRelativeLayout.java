@@ -1,4 +1,4 @@
-package com.zkq.alldemo.costomview;
+package com.zkq.weapon.customview;
 
 import android.content.Context;
 import android.graphics.Canvas;
