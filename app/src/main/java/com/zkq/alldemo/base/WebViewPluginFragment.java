@@ -2,7 +2,6 @@ package com.zkq.alldemo.base;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,7 +10,7 @@ import android.view.View;
 
 
 import com.zkq.alldemo.common.Constants;
-import com.zkq.alldemo.costomview.LoadingView;
+import com.zkq.weapon.customview.LoadingView;
 import com.zkq.weapon.util.MobileNetworkUtils;
 
 import java.io.UnsupportedEncodingException;

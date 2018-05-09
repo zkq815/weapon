@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ToolBar">
+        <attr name="mytitle" format="string"/>
+        <attr name="mytitleTextSize" format="dimension"/>
+        <attr name="mytitleTextColor" format="color"/>
+        <attr name="leftTextColor" format="color" />
+        <attr name="leftBackground" format="reference|color"/>
+        <attr name="leftText" format="string"/>
+        <attr name="rightTextColor" format="color" />
+        <attr name="rightBackground" format="reference|color"/>
+        <attr name="rightText" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="MyProgress">
+        <attr name="title_string" format="string"/>
+        <attr name="title_color" format="color"/>
+        <attr name="title_size" format="dimension"/>
+        <attr name="circle_color" format="color"/>
+        <attr name="ring_like_color" format="color"/>
+        <attr name="first_color" format="color"/>
+        <attr name="second_color" format="color"/>
+        <attr name="third_color" format="color"/>
+        <attr name="fourth_color" format="color"/>
+        <attr name="fifth_color" format="color"/>
+        <attr name="sixth_color" format="color"/>
+        <attr name="seventh_color" format="color"/>
+    </declare-styleable>
+</resources>

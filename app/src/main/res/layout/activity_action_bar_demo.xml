@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:zkq="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.zkq.alldemo.fortest.actionbar.ActionBarDemoActivity">
+
+        <com.zkq.alldemo.fortest.actionbar.MyTextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_marginTop="200dp"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:text="weweewrwerqwerqerwqewrqerwqewrqwerwerwer" />
+
+        <com.zkq.alldemo.fortest.actionbar.MyBlingTextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_marginTop="100dp"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:text="1234564564654654654654564654654654"/>
+
+        <com.zkq.alldemo.fortest.actionbar.MyToolBar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            zkq:mytitleTextSize="16sp"
+            zkq:mytitle="我的天啊"
+            zkq:mytitleTextColor="#ff4727"
+            zkq:leftTextColor="#ff1574"
+            zkq:leftText="返回"
+            zkq:leftBackground="#ff6270"
+            zkq:rightText="右侧"
+            zkq:rightBackground="#ff7000"
+            zkq:rightTextColor="#ff9019"/>
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
+
+

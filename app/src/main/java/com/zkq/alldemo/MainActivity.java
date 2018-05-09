@@ -2,6 +2,7 @@ package com.zkq.alldemo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,25 +13,34 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.zkq.alldemo.base.BaseActivity;
+import com.zkq.alldemo.costomview.FlowLayout;
+import com.zkq.alldemo.databinding.ActivityMainBinding;
 import com.zkq.alldemo.network.WeakRefDataListener;
 import com.zkq.alldemo.network.exception.NetworkException;
 import com.zkq.alldemo.network.netdemo.BaseBean;
 import com.zkq.alldemo.network.netdemo.TestNetHelper;
-
+import com.zkq.alldemo.util.ZKQLog;
 
 public class MainActivity extends BaseActivity {
-    String[] info = {"CatchExceptionActivity"};
+    private ActivityMainBinding mBinding;
+    private String path = "com.zkq.alldemo.fortest";
+    String[] info = {".colorprogresswithspeed.ColorProgressActivity",
+            ".okhttp.OKHttpActivity",
+            ".dialog.DialogTestActivity",
+            ".flowlayout.FlowLayoutActivity",
+            ".actionbar.MyToolbarActivity",
+    ".scaleanimation.ScaleAnimationActivity"};
     private RecyclerView rv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         init();
     }
 
     private void init() {
-        rv = (RecyclerView) findViewById(R.id.rv);
+        rv = mBinding.rv;
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(new MainAdapter(this));
     }
@@ -55,12 +65,13 @@ public class MainActivity extends BaseActivity {
             ItemHolder itemHolder;
             if (holder instanceof ItemHolder) {
                 itemHolder = (ItemHolder) holder;
-                itemHolder.tvAcivityName.setText(info[position]);
+                int length = info[position].split("\\.").length;
+                itemHolder.tvAcivityName.setText(info[position].split("\\.")[length-1]);
                 itemHolder.tvAcivityName.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
-                            startActivity(new Intent(MainActivity.this, Class.forName(info[position])));
+                            startActivity(new Intent(MainActivity.this, Class.forName(path+info[position])));
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }

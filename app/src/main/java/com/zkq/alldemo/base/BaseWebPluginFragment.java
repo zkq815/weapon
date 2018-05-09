@@ -34,7 +34,7 @@ import com.zkq.alldemo.common.AppBaseInfo;
 import com.zkq.alldemo.common.AppConstantsUrl;
 import com.zkq.alldemo.util.ZKQLog;
 import com.zkq.alldemo.util.ZKQToast;
-import com.zkq.alldemo.costomview.LoadingView;
+import com.zkq.weapon.customview.LoadingView;
 
 import java.lang.ref.WeakReference;
 
