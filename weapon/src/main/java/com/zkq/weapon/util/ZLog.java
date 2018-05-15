@@ -1,17 +1,23 @@
-package com.zkq.alldemo.util;
+package com.zkq.weapon.util;
 
 import android.util.Log;
 
-import com.zkq.alldemo.BuildConfig;
+import com.zkq.weapon.BuildConfig;
 
+/**
+ * Created by zkq
+ * on 2018/5/15.
+ */
 
-public class ZKQLog {
+public class ZLog {
+
     /**
      * 统一的标签
      */
     private final static String TAG = "ZKQDemo";
 
-    private static final boolean isLog = BuildConfig.LOG_DEBUG;
+//    private static final boolean isLog = BuildConfig.LOG_DEBUG;
+    private static final boolean isLog = true;
 
     public static void d(Object tag, Object msg) {
         if (isLog)

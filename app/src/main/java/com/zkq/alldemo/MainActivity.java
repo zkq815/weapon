@@ -3,10 +3,12 @@ package com.zkq.alldemo;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.drawable.shapes.Shape;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,9 @@ import com.zkq.alldemo.network.netdemo.BaseBean;
 import com.zkq.alldemo.network.netdemo.TestNetHelper;
 import com.zkq.alldemo.util.ZKQLog;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MainActivity extends BaseActivity {
     private ActivityMainBinding mBinding;
     private String path = "com.zkq.alldemo.fortest";
@@ -29,7 +34,8 @@ public class MainActivity extends BaseActivity {
             ".dialog.DialogTestActivity",
             ".flowlayout.FlowLayoutActivity",
             ".actionbar.MyToolbarActivity",
-    ".scaleanimation.ScaleAnimationActivity"};
+    ".scaleanimation.ScaleAnimationActivity",
+            ".scrollclash.ScrollClashActivity"};
     private RecyclerView rv;
 
     @Override
@@ -44,6 +50,12 @@ public class MainActivity extends BaseActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(new MainAdapter(this));
     }
+    //lambda语法测试
+    private void test(){
+        List<Shape> shapes = null;
+        Runnable run = ()->{Log.e("","");};
+    }
+
 
     class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         Context context;

@@ -16,11 +16,22 @@ public class FlowLayoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_flow_layout);
 
-        for (int i = 0; i < 18; i++) {
+        for (int i = 0; i < 30; i++) {
             TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.main_item_viewholder,mBinding.flowlayout,false);
             textView.setText("eh"+i);
+            textView.setBackgroundColor(getResources().getColor(R.color.red_alpha_0));
             textView.setId(i);
             mBinding.flowlayout.addView(textView,i);
+        }
+
+
+        for (int i = 0; i < 30; i++) {
+            TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.main_item_viewholder,mBinding.weaponfl,false);
+            textView.setText("eh"+i);
+            textView.setBackgroundColor(getResources().getColor(R.color.red_alpha_0));
+            textView.setId(i);
+            mBinding.weaponfl.addView(textView,i);
+
         }
     }
 }

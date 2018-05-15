@@ -12,7 +12,14 @@
         tools:context="com.zkq.alldemo.fortest.flowlayout.FlowLayoutActivity">
 
         <com.zkq.alldemo.costomview.FlowLayout
+            android:visibility="gone"
             android:id="@+id/flowlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.zkq.weapon.customview.FlowLayout
+            android:id="@+id/weaponfl"
+            android:padding="50dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

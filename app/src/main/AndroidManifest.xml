@@ -48,8 +48,10 @@
         <activity
             android:name=".fortest.actionbar.MyToolbarActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".fortest.scaleanimation.ScaleAnimationActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".fortest.scaleanimation.ScaleAnimationActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".fortest.scrollclash.ScrollClashActivity"></activity>
     </application>
 
 </manifest>

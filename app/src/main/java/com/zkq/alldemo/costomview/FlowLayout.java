@@ -4,6 +4,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.zkq.alldemo.util.ZKQLog;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,15 +36,18 @@ public class FlowLayout extends ViewGroup {
         //设置宽度和宽度的测量模式
         int sizeWidth = MeasureSpec.getSize(widthMeasureSpec);
         int modeWidth = MeasureSpec.getMode(widthMeasureSpec);
+        ZKQLog.E("sizeWidth == "+sizeWidth);
         //设置高度和高度的测量模式
         int sizeHeight = MeasureSpec.getSize(heightMeasureSpec);
         int modeHeight = MeasureSpec.getMode(heightMeasureSpec);
         //wrap_content 时的测量
         int width = 0;
         int height = 0;
+        int widthMax = 0;
         //记录每一行的宽和高
         int lineWidth = 0;
         int lineHeight = 0;
+        int lines = 0;
         //获得内部元素的个数
         int sunCount = getChildCount();
         for (int i = 0; i < sunCount; i++) {
@@ -53,32 +59,38 @@ public class FlowLayout extends ViewGroup {
             int childWidth = view.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
             int childHeight = view.getMeasuredHeight() + lp.topMargin + lp.bottomMargin;
 
+            ZKQLog.E("childWidth == "+childWidth);
             //判断是否要换行
             if (lineWidth + childWidth > sizeWidth - getPaddingRight() - getPaddingLeft()) {//去掉padding
                 //宽度取行宽与子view宽度较大的一个
                 width = Math.max(width, lineWidth);
+                widthMax = Math.max(widthMax,lineWidth);
                 //下一行的行宽为子view的宽度
                 lineWidth = childWidth;
                 //高度累加
                 height += lineHeight;
                 lineHeight = childHeight;
+                lines++;
             }
             //累加行宽
             lineWidth += childWidth;
+            widthMax = Math.max(widthMax,lineWidth);
             //行高取最大一个
             lineHeight = Math.max(lineHeight, childHeight);
             //最后一个子view特殊处理
             if (i == sunCount - 1) {
                 width = Math.max(lineWidth, childWidth);
                 height += lineHeight;
+                lines++;
             }
         }
+        ZKQLog.E("行数=="+lines);
         //根据不同的测量模式，使用不同的宽高
         // wrap_parent -> MeasureSpec.AT_MOST
         // match_parent -> MeasureSpec.EXACTLY
-        // 具体值 -> MeasureSpec.EXACTLY
+        // 具体值 -> MeasureSpec.UNSPECIFIED
         //UNSPECIFIED：不指定其大小测量模式，View想多大就多大，通常情况下在自定义View时才会使用
-        setMeasuredDimension(modeWidth == MeasureSpec.EXACTLY ? sizeWidth : width + getPaddingLeft() + getPaddingLeft(),
+        setMeasuredDimension(modeWidth == MeasureSpec.EXACTLY ? sizeWidth : widthMax + getPaddingLeft() + getPaddingLeft(),
                 modeHeight == MeasureSpec.EXACTLY ? sizeHeight : height + getPaddingTop() + getPaddingBottom());
     }
 
