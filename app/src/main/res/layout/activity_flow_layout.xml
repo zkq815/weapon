@@ -73,7 +73,6 @@
                 android:text="6"/>
             <TextView
                 android:padding="10dp"
-                android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"

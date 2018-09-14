@@ -34,8 +34,9 @@ public class MainActivity extends BaseActivity {
             ".dialog.DialogTestActivity",
             ".flowlayout.FlowLayoutActivity",
             ".actionbar.MyToolbarActivity",
-    ".scaleanimation.ScaleAnimationActivity",
-            ".scrollclash.ScrollClashActivity"};
+            ".scaleanimation.ScaleAnimationActivity",
+            ".scrollclash.ScrollClashActivity",
+            ".rxjava_retrofit.RxjavaActivity"};
     private RecyclerView rv;
 
     @Override
@@ -53,7 +54,7 @@ public class MainActivity extends BaseActivity {
     //lambda语法测试
     private void test(){
         List<Shape> shapes = null;
-        Runnable run = ()->{Log.e("","");};
+        Runnable run = ()->Log.e("","");
     }
 
 

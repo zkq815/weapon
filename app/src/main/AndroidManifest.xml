@@ -51,7 +51,10 @@
         <activity
             android:name=".fortest.scaleanimation.ScaleAnimationActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".fortest.scrollclash.ScrollClashActivity"></activity>
+        <activity android:name=".fortest.scrollclash.ScrollClashActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fortest.rxjava_retrofit.RxjavaActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

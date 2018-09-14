@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.zkq.alldemo.R;
 import com.zkq.alldemo.databinding.ActivityOkhttpBinding;
+import com.zkq.alldemo.util.ZKQLog;
 
 import java.io.IOException;
 
@@ -44,6 +45,7 @@ public class OKHttpActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 //                            tvResult.setText("result:\n"+temp);
+                            ZKQLog.e("result:\n"+temp);
                     }
                 });
             }
