@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/alldemo.iml" filepath="$PROJECT_DIR$/alldemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/weapon/weapon.iml" filepath="$PROJECT_DIR$/weapon/weapon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/weapon.iml" filepath="$PROJECT_DIR$/weapon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/weapon/weapon-weapon.iml" filepath="$PROJECT_DIR$/weapon/weapon-weapon.iml" />
     </modules>
   </component>
 </project>
