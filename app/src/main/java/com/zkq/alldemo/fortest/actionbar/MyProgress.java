@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.android.volley.toolbox.Volley;
 import com.zkq.alldemo.R;
 
 /**
@@ -41,7 +40,6 @@ public class MyProgress extends View {
         color4 = ta.getColor(R.styleable.MyProgress_fifth_color,0);
         color5 = ta.getColor(R.styleable.MyProgress_sixth_color,0);
         color6 = ta.getColor(R.styleable.MyProgress_seventh_color,0);
-        Volley.newRequestQueue(getContext());
         ta.recycle();
     }
 }

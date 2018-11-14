@@ -1,7 +1,7 @@
 package com.zkq.alldemo.netframe.httpservice;
 
-import com.zkq.alldemo.netframe.responsebean.BaseResponseBodyBean;
-import com.zkq.alldemo.netframe.responsebean.BeanDemo;
+import com.zkq.weapon.networkframe.response.BaseResponseBodyBean;
+import com.zkq.weapon.networkframe.response.BeanDemo;
 
 import io.reactivex.Observable;
 import retrofit2.Call;

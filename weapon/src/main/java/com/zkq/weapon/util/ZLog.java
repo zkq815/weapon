@@ -20,13 +20,15 @@ public class ZLog {
     private static final boolean isLog = true;
 
     public static void d(Object tag, Object msg) {
-        if (isLog)
+        if (isLog){
             Log.d(tag.toString(), msg.toString());
+        }
     }
 
     public static void d(Object msg) {
-        if (isLog)
+        if (isLog){
             Log.d(getClassName(), msg.toString());
+        }
     }
 
     public static void v(Object tag, Object msg) {
@@ -35,38 +37,45 @@ public class ZLog {
     }
 
     public static void v(Object msg) {
-        if (isLog)
+        if (isLog){
             Log.v(getClassName(), msg.toString());
+        }
     }
 
     public static void i(Object tag, Object msg) {
-        if (isLog)
+        if (isLog){
             Log.i(tag.toString(), msg.toString());
+        }
     }
 
     public static void i(Object msg) {
-        if (isLog)
+        if (isLog){
             Log.i(getClassName(), msg.toString());
+        }
     }
 
     public static void w(Object tag, Object msg) {
-        if (isLog)
+        if (isLog){
             Log.w(tag.toString(), msg.toString());
+        }
     }
 
     public static void w(Object msg) {
-        if (isLog)
+        if (isLog){
             Log.w(getClassName(), msg.toString());
+        }
     }
 
     public static void e(Object tag, Object msg) {
-        if (isLog)
+        if (isLog){
             Log.e(tag.toString(), msg.toString());
+        }
     }
 
     public static void e(Object msg) {
-        if (isLog)
+        if (isLog){
             Log.e(getClassName(), msg.toString());
+        }
     }
 
     public static void t(Object msg, Throwable t) {
@@ -98,11 +107,13 @@ public class ZLog {
      * @param content 日志内容
      */
     public static void w(String tag, String content) {
-        if (content == null)
+        if (content == null){
             content = "null";
+        }
 
-        if (isLog)
+        if (isLog){
             Log.w(tag, content);
+        }
     }
 
     /**
@@ -112,11 +123,13 @@ public class ZLog {
      * @param content 日志内容
      */
     public static void e(String tag, String content) {
-        if (content == null)
+        if (content == null){
             content = "null";
+        }
 
-        if (isLog)
+        if (isLog){
             Log.e(tag, content);
+        }
     }
 
     /**
@@ -125,11 +138,14 @@ public class ZLog {
      * @param content 日志内容
      */
     public static void E(String content) {
-        if (content == null)
+        if (content == null){
             content = "null";
+        }
+
         String tag = "zkq";
-        if (isLog)
+        if (isLog){
             Log.e(tag, content);
+        }
     }
 
     /**
@@ -184,11 +200,13 @@ public class ZLog {
      * @param content 日志内容
      */
     public static void i(String tag, String content) {
-        if (content == null)
+        if (content == null){
             content = "null";
+        }
 
-        if (isLog)
+        if (isLog){
             Log.i(tag, content);
+        }
     }
 
     /**
@@ -198,10 +216,12 @@ public class ZLog {
      * @param content 日志内容
      */
     public static void d(String tag, String content) {
-        if (content == null)
+        if (content == null){
             content = "null";
+        }
 
-        if (isLog)
+        if (isLog){
             Log.d(tag, content);
+        }
     }
 }

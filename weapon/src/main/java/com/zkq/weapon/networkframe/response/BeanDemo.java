@@ -1,4 +1,4 @@
-package com.zkq.alldemo.netframe.responsebean;
+package com.zkq.weapon.networkframe.response;
 
 /**
  * Created by zkq
@@ -6,4 +6,5 @@ package com.zkq.alldemo.netframe.responsebean;
  */
 
 public class BeanDemo {
+
 }

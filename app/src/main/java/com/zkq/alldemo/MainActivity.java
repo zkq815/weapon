@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.drawable.shapes.Shape;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,15 +14,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.zkq.alldemo.base.BaseActivity;
-import com.zkq.alldemo.costomview.FlowLayout;
 import com.zkq.alldemo.databinding.ActivityMainBinding;
-import com.zkq.alldemo.network.WeakRefDataListener;
-import com.zkq.alldemo.network.exception.NetworkException;
-import com.zkq.alldemo.network.netdemo.BaseBean;
-import com.zkq.alldemo.network.netdemo.TestNetHelper;
-import com.zkq.alldemo.util.ZKQLog;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
@@ -51,12 +43,6 @@ public class MainActivity extends BaseActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(new MainAdapter(this));
     }
-    //lambda语法测试
-    private void test(){
-        List<Shape> shapes = null;
-        Runnable run = ()->Log.e("","");
-    }
-
 
     class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         Context context;
@@ -107,33 +93,5 @@ public class MainActivity extends BaseActivity {
             tvAcivityName = (TextView) view.findViewById(R.id.tv_activity);
         }
     }
-
-
-    private void testNetRequest() {
-        TestNetHelper testNetHelper = new TestNetHelper();
-        testNetHelper.post("http://app.store.res.meizu.com/mzstore/home/get/v2", new NetWortDataListener(new BaseBean()));
-    }
-
-    /**
-     * 请求监听回调
-     * 第一个参数为Presenter
-     * 第二个参数为返回的数据对象
-     */
-    private static class NetWortDataListener extends WeakRefDataListener<BaseBean, BaseBean> {
-        NetWortDataListener(BaseBean arg1) {
-            super(arg1);
-        }
-
-        @Override
-        protected void onSuccess(@NonNull BaseBean baseBean, @NonNull BaseBean data) {
-
-        }
-
-        @Override
-        public void onError(@NonNull BaseBean baseBean, @NonNull NetworkException error) {
-
-        }
-    }
-
 
 }

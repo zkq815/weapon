@@ -4,7 +4,10 @@ import android.content.Context;
 import android.util.TypedValue;
 
 /**
- * Created by huxiaoyuan on 16/3/21.
+ * @author:zkq
+ * create:2018/11/14 10:09 AM
+ * email:zkq815@126.com
+ * desc: 
  */
 public class PxUtil {
     public static int dp2px(final float dp, Context context) {

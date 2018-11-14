@@ -50,19 +50,19 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     // network
-    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
-    implementation "com.squareup.okhttp3:okhttp-urlconnection:$rootProject.okhttpVersion"
-    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
-    implementation 'com.android.volley:volley:1.1.0'
-
+//    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+//    implementation "com.squareup.okhttp3:okhttp-urlconnection:$rootProject.okhttpVersion"
+//    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
+//    implementation 'com.android.volley:volley:1.1.0'
+//
     // retrofit
-    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
-
+//    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+//    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+//    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
+//
     // rxjava
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
-    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+//    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
+//    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
 
     // image
     implementation 'com.squareup.picasso:picasso:2.5.2'

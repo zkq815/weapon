@@ -223,7 +223,7 @@ public class ActivityStack {
             return;
         }
 
-        if (BuildConfig.DEBUG)
+          if (BuildConfig.DEBUG)
             e.printStackTrace();
     }
 

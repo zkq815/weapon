@@ -7,14 +7,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.zkq.alldemo.BuildConfig;
-import com.zkq.alldemo.network.SimpleOkHttpStack;
 import com.zkq.alldemo.util.ImgUtil;
 
 import okhttp3.OkHttpClient;
@@ -29,8 +25,6 @@ public class MyApplication extends Application {
     private static MyApplication instance;
     @NonNull
     private final Application application;
-    protected RequestQueue mRequestQueue;
-    protected RequestQueue mLogRequestQueue;
     private static RefWatcher sRefWatcher;
     private static final int KILL_MSG = 211;
     private static final int KILL_MSG_WAIT_TIME = 5 * 55 * 1000;
@@ -113,24 +107,6 @@ public class MyApplication extends Application {
         return new OkHttpClient();
     }
 
-    public static RequestQueue getRequestQueue() {
-//        if(getApp()){
-//
-//        }
-        if(null != instance){
-            if (null == instance.mRequestQueue ) {
-                instance.mRequestQueue = Volley.newRequestQueue(instance.getApplication(), new SimpleOkHttpStack(instance.getOkHttpClient()));
-            }
-        }
-        return instance.mRequestQueue;
-    }
-
-    public static RequestQueue getLogRequestQueue() {
-        if (instance.mLogRequestQueue == null) {
-            instance.mLogRequestQueue = Volley.newRequestQueue(instance.getApplication(), new SimpleOkHttpStack(instance.getOkHttpClient()));
-        }
-        return instance.mLogRequestQueue;
-    }
 
     public static Application getApp() {
         if (instance != null) {

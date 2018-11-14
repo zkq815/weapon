@@ -1,7 +1,10 @@
 package com.zkq.alldemo.fortest.rxjava_retrofit;
 
+import com.zkq.weapon.networkframe.response.BaseResponse;
+
 import java.util.HashMap;
 
+import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -23,7 +26,15 @@ public interface RetrofitRequest {
     @GET("exempt/list")
     Call<ResponseBody> getList(@QueryMap HashMap<String,String> map);
 
+    //get请求测试
+    @GET("exempt/list")
+    Observable<ResponseBody> rxgetList(@Query("sortDirection") String sortDirection);
+
     //post请求测试
     @POST("mzstore/home/get/v2")
     Call<ResponseBody> getMain();
+
+    //post请求测试
+    @POST("mzstore/home/get/v2")
+    Observable<BaseResponse> rxgetMain();
 }

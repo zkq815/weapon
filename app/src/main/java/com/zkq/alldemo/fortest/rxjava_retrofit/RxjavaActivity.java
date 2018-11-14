@@ -4,13 +4,15 @@ import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-
 import com.zkq.alldemo.R;
 import com.zkq.alldemo.databinding.ActivityRxjavaBinding;
 import com.zkq.alldemo.netframe.httpservice.ApiMethod;
-import com.zkq.alldemo.netframe.net.RetrofitUtil;
-import com.zkq.alldemo.netframe.responsebean.BaseResponseBodyBean;
 import com.zkq.alldemo.util.ZKQLog;
+import com.zkq.weapon.networkframe.netbase.ResponseTransformer;
+import com.zkq.weapon.networkframe.netbase.RetrofitUtil;
+import com.zkq.weapon.networkframe.response.BaseResponse;
+import com.zkq.weapon.networkframe.response.BaseResponseBodyBean;
+import com.zkq.weapon.util.ZLog;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,7 +20,6 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -51,7 +52,7 @@ public class RxjavaActivity extends AppCompatActivity {
         mBinding.btnRxGetTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rxGet();
+                rxgetList();
             }
         });
 
@@ -106,14 +107,14 @@ public class RxjavaActivity extends AppCompatActivity {
 
     //get请求
     private void rxGet(){
-        Retrofit retrofit = new Retrofit.Builder()
-                                .baseUrl("http://lists.meizu.com/")//exempt/list
-                                .build();
-        RetrofitRequest retrofitRequest = retrofit.create(RetrofitRequest.class);
+
+        RetrofitRequest retrofitRequest = RetrofitUtil.getInstance().createApi(RetrofitRequest.class);
+
         Call<ResponseBody> call = retrofitRequest.getList("1");
         call.enqueue(new Callback<ResponseBody>() {
+
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
                 try{
                     ZKQLog.e("ZKQ","list请求结果==="+response.body().string());
 
@@ -131,15 +132,8 @@ public class RxjavaActivity extends AppCompatActivity {
 
     //post请求
     private void rxPost(){
-        final OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.connectTimeout(5, TimeUnit.SECONDS);
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://app.store.res.meizu.com/")//mzstore/home/get/v2
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(builder.build())
-                .build();
-        RetrofitRequest retrofitRequest = retrofit.create(RetrofitRequest.class);
+
+        RetrofitRequest retrofitRequest = RetrofitUtil.getInstance().createApi(RetrofitRequest.class);
         Call<ResponseBody> call = retrofitRequest.getMain();
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -158,6 +152,36 @@ public class RxjavaActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void rxgetList(){
+        RetrofitUtil.getInstance().createApi(RetrofitRequest.class).rxgetMain()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext(baseResponse ->
+                        ZLog.e("doOnNext请求成功-----"+"response=="+baseResponse.getMsg())
+                    )
+                .subscribe(new Observer<BaseResponse>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(BaseResponse responseBody) {
+                        ZLog.e("subscribe请求成功-----"+"response=="+responseBody.getMsg());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        ZLog.e("onError请求失败");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        ZLog.e("onComplete请求完成");
+                    }
+                });
     }
 
     private void postLazzy(){

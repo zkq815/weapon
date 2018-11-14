@@ -50,12 +50,15 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Map;
 
+import javax.annotation.concurrent.ThreadSafe;
+
 /**
  * 图片加载工具
  *
  * @author yc
  * @since 17/1/9
  */
+@ThreadSafe
 public class ImgUtil {
     private static final String ZKQLOG = "ZKQLog";
     private static final String TAG = ImgUtil.class.getCanonicalName();
@@ -65,15 +68,10 @@ public class ImgUtil {
 
     public static Picasso getPicasso() {
         if (null == sPicasso) {
-            synchronized (ImgUtil.class) {
-                if (null == sPicasso) {
-                    final Context context = MyApplication.getInstance();
-                    sPicasso = new Picasso.Builder(context).downloader(new OkHttp3Downloader(context)).build();
-//                    sPicasso.setIndicatorsEnabled(true);
-                }
-            }
+            final Context context = MyApplication.getInstance();
+            sPicasso = new Picasso.Builder(context).downloader(new OkHttp3Downloader(context)).build();
+//            sPicasso.setIndicatorsEnabled(true);
         }
-
         return sPicasso;
     }
 
@@ -183,8 +181,8 @@ public class ImgUtil {
         Bitmap topBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_refresh);
 
         File myCaptureFile = new File(Environment.getExternalStorageDirectory().toString() + "/hiyun", System.currentTimeMillis() + "temp.jpg");
-        BufferedOutputStream bos;
-        ByteArrayOutputStream baos;
+        BufferedOutputStream bos = null;
+        ByteArrayOutputStream baos = null;
         try {
             baos = new ByteArrayOutputStream();
             bos = new BufferedOutputStream(new FileOutputStream(myCaptureFile));
@@ -229,6 +227,13 @@ public class ImgUtil {
             bos.close();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try{
+                bos.close();
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
         String bitmapPath = "";
         if (Environment.getExternalStorageState().equalsIgnoreCase(Environment.MEDIA_MOUNTED)) {
@@ -285,7 +290,7 @@ public class ImgUtil {
 
     /**
      * 水印添加
-     * */
+     */
     private static Bitmap watermarkBitmap(Bitmap bottomBitmap, Bitmap topBitmap, String title) {
         if (bottomBitmap == null) {
             return null;
@@ -344,6 +349,8 @@ public class ImgUtil {
                     break;
                 case ExifInterface.ORIENTATION_ROTATE_270:
                     degree = 270;
+                    break;
+                default:
                     break;
             }
         } catch (IOException e) {
@@ -409,7 +416,7 @@ public class ImgUtil {
      * 优点：加载速度快，电商首页动态配置目前没发现卡顿、屏幕跳跃等问题，也没有发生OOM
      * 缺点：缓存图片较大
      */
-    public static void picassoLoadPic(Context context,String imageUrl,ImageView imageView) {
+    public static void picassoLoadPic(Context context, String imageUrl, ImageView imageView) {
         Picasso.with(context)
                 .load(imageUrl)
 //                .resize(dp2px(250),dp2px(250))
@@ -448,7 +455,7 @@ public class ImgUtil {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
 
 //                Toast.makeText(activity, "保存成功，存储路径为：" + bitmapPath, Toast.LENGTH_SHORT).show();
-                ZKQLog.e("ZKQLog","存放图片==="+bitmapPath);
+                ZKQLog.e("ZKQLog", "存放图片===" + bitmapPath);
 
                 //刷新手机图库(没用)
 //                MediaScannerConnection.scanFile(activity, new String[]{bitmapPath}, null, null);
@@ -557,7 +564,7 @@ public class ImgUtil {
                 if (!file.exists()) {
                     file.mkdir();
                 }
-                Log.e("",year + " " + month + " " + day + " " + hour + " " + minute + " " + sec);
+                Log.e("", year + " " + month + " " + day + " " + hour + " " + minute + " " + sec);
                 String bitmapPath = path + year + month + day + hour + minute + sec + ".png";
                 File saveBitmap = new File(bitmapPath);
 
@@ -723,7 +730,7 @@ public class ImgUtil {
 
     /**
      * 保存图片到系统相册
-     * */
+     */
     public static void saveImageToGallery(Context context, Bitmap bmp) {
         // 首先保存图片
         File appDir = new File(Environment.getExternalStorageDirectory(), "haiyn");
@@ -751,8 +758,8 @@ public class ImgUtil {
         }
         // 最后通知图库更新
 //        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + path)));
-        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,	Uri.fromFile(new File(file.getPath()))));
-        Toast.makeText(context,"图片保存成功",Toast.LENGTH_LONG).show();
+        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(file.getPath()))));
+        Toast.makeText(context, "图片保存成功", Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -851,8 +858,9 @@ public class ImgUtil {
 
         while (true) {
             localCanvas.drawBitmap(bitmap, new Rect(0, 0, i, j), new Rect(0, 0, 80, 80), null);
-            if (paramBoolean)
+            if (paramBoolean){
                 bitmap.recycle();
+            }
             ByteArrayOutputStream localByteArrayOutputStream = new ByteArrayOutputStream();
             localBitmap.compress(Bitmap.CompressFormat.JPEG, 100, localByteArrayOutputStream);
             localBitmap.recycle();
@@ -907,8 +915,8 @@ public class ImgUtil {
 
     /**
      * 图片上传至阿里云
-     * */
-    public static void asyncPutObjectFromLocalFile(Context context, final String uploadFilePath, final Bitmap bitmap,final Handler handler) {
+     */
+    public static void asyncPutObjectFromLocalFile(Context context, final String uploadFilePath, final Bitmap bitmap, final Handler handler) {
 //        final HashMap <String,Object> map = new HashMap<String,Object>();
 //        Time time = new Time("GMT+8");
 //        time.setToNow();
@@ -1039,6 +1047,12 @@ public class ImgUtil {
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        }finally {
+            try {
+                in.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 

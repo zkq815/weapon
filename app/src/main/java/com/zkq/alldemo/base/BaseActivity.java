@@ -36,8 +36,8 @@ import java.util.List;
 /**
  * 所有activity基类
  *
- * @author huxiaoyuan
- * @since 16/3/18
+ * @author zkq
+ * @since 18/11/14
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
