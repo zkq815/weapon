@@ -3,6 +3,7 @@ package com.zkq.weapon.networkframe.netbase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.zkq.weapon.BuildConfig;
+import com.zkq.weapon.networkframe.constants.RequestUrlConstants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,8 +22,10 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * @author:zkq time:2018/11/14:10:27
+ * @author zkq
+ * create:2018/11/16 10:40 AM
  * email:zkq815@126.com
+ * desc: Retrofit工具封装 Rxjava
  */
 @ThreadSafe
 public class RetrofitUtil {
@@ -76,8 +79,10 @@ public class RetrofitUtil {
         }
 
         return new OkHttpClient.Builder()
-                .addInterceptor(new HeadInterceptor())//添加头部拦截器 head
-                .addInterceptor(logging)//log
+                //添加头部拦截器 head
+                .addInterceptor(new HeadInterceptor())
+                //log
+                .addInterceptor(logging)
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .hostnameVerifier((hostname, session) -> true)

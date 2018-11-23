@@ -3,18 +3,16 @@ package com.zkq.alldemo;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.drawable.shapes.Shape;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.zkq.alldemo.base.BaseActivity;
 import com.zkq.alldemo.databinding.ActivityMainBinding;
+import com.zkq.weapon.base.BaseActivity;
 
 import java.util.List;
 

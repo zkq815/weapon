@@ -36,9 +36,4 @@ ext {
     // App dependencies
     supportLibraryVersion = '23.4.0'
     junitVersion = '4.12'
-
-    okhttpVersion = '3.10.0'
-    retrofitVersion = '2.4.0'
-    rxjavaVersion = '2.1.13'
-    rxandroidVersion = '2.0.2'
 }

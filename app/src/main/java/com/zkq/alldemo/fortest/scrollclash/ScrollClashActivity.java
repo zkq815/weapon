@@ -9,10 +9,11 @@ import android.widget.ListView;
 
 import com.zkq.alldemo.R;
 import com.zkq.alldemo.databinding.ActivityScrollClashBinding;
+import com.zkq.weapon.base.BaseActivity;
 
 import java.util.ArrayList;
 
-public class ScrollClashActivity extends AppCompatActivity {
+public class ScrollClashActivity extends BaseActivity {
     private ActivityScrollClashBinding mBinding;
     private ListView mLV;
     private View mHead;

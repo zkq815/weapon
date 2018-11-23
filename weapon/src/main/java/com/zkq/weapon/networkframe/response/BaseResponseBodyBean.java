@@ -6,10 +6,11 @@ import okhttp3.ResponseBody;
 import okio.BufferedSource;
 
 /**
- * Created by zkq
- * on 2018/8/24.
+ * @author zkq
+ * create:2018/11/16 10:43 AM
+ * email:zkq815@126.com
+ * desc:
  */
-
 public class BaseResponseBodyBean extends ResponseBody {
 
     @Nullable

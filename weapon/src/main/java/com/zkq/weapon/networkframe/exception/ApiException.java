@@ -1,10 +1,10 @@
 package com.zkq.weapon.networkframe.exception;
 
 /**
- * @author:zkq
+ * @author zkq
  * create:2018/11/14 9:06 PM
  * email:zkq815@126.com
- * desc:
+ * desc: API异常
  */
 public class ApiException extends Exception {
     private int code;

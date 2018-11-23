@@ -22,7 +22,7 @@ android {
         release {
             minifyEnabled true
             buildConfigField "boolean", "LOG_DEBUG", "false"//是否输出LOG信息
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -34,46 +34,19 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-}
 
+}
 
 dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile "junit:junit:$rootProject.ext.junitVersion"
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    //    //support
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
-    implementation "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
-    implementation "com.android.support:cardview-v7:$rootProject.ext.supportLibraryVersion"
-    //    implementation 'com.android.support:support-annotations:25.4.0'
-    implementation 'com.google.code.gson:gson:2.8.1'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    // network
-//    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
-//    implementation "com.squareup.okhttp3:okhttp-urlconnection:$rootProject.okhttpVersion"
-//    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
-//    implementation 'com.android.volley:volley:1.1.0'
-//
-    // retrofit
-//    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
-//    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
-//    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
-//
-    // rxjava
-//    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
-//    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+//    testCompile "junit:junit:$rootProject.ext.junitVersion"
+//    implementation fileTree(include: ['*.jar'], dir: 'libs')
+      //support
+//    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+//    implementation "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
+//    implementation "com.android.support:cardview-v7:$rootProject.ext.supportLibraryVersion"
+//    implementation 'com.android.support:support-annotations:25.4.0'
+//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    // image
-    implementation 'com.squareup.picasso:picasso:2.5.2'
-    implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
-    //gif
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.1.16'
-    //内存泄露检测工具使用
-    debugCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
-    //阿里支付
-    implementation files('libs/alipaySdk-20160809.jar')
     implementation project(':weapon')
 }

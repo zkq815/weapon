@@ -1,17 +1,16 @@
 package com.zkq.alldemo.fortest.scaleanimation;
 
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
-import android.widget.ImageView;
 
 import com.zkq.alldemo.R;
 import com.zkq.alldemo.databinding.ActivityScaleAnimationBinding;
+import com.zkq.weapon.base.BaseActivity;
 
-public class ScaleAnimationActivity extends AppCompatActivity {
+public class ScaleAnimationActivity extends BaseActivity {
     private ActivityScaleAnimationBinding mBinding;
     private ScaleAnimation sato0 = new ScaleAnimation(1,0,1,1,
             Animation.RELATIVE_TO_PARENT,0.5f,Animation.RELATIVE_TO_PARENT,0.5f);

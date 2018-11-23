@@ -1,15 +1,15 @@
 package com.zkq.alldemo.fortest.colorprogresswithspeed;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import com.zkq.alldemo.R;
-import com.zkq.alldemo.costomview.colorprogresswithspeed.ColorArcProgressBar;
-import com.zkq.alldemo.costomview.colorprogresswithspeed.ColorProgressWithSpeed;
+import com.zkq.weapon.base.BaseActivity;
+import com.zkq.weapon.customview.ColorArcProgressBar;
+import com.zkq.weapon.customview.ColorProgressWithSpeed;
 
-public class ColorProgressActivity extends AppCompatActivity {
+public class ColorProgressActivity extends BaseActivity {
 
     private ColorArcProgressBar progressBar,progressBar2,progressBar3,progressBar4;
     private ColorProgressWithSpeed myColorProgress;

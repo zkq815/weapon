@@ -10,9 +10,10 @@ import java.net.UnknownHostException;
 import java.text.ParseException;
 
 /**
- * @author:zkq
- * time:2018/11/14:20:56
+ * @author zkq
+ * create:2018/11/16 10:39 AM
  * email:zkq815@126.com
+ * desc: 自定义异常
  */
 public class CustomException {
     /**

@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         tools:context="com.zkq.alldemo.fortest.flowlayout.FlowLayoutActivity">
 
-        <com.zkq.alldemo.costomview.FlowLayout
+        <com.zkq.weapon.customview.FlowLayout
             android:visibility="gone"
             android:id="@+id/flowlayout"
             android:layout_width="wrap_content"

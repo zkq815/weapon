@@ -6,7 +6,7 @@ import android.util.DisplayMetrics;
 
 import com.zkq.alldemo.BuildConfig;
 import com.zkq.alldemo.application.MyApplication;
-import com.zkq.alldemo.util.ZKQLog;
+import com.zkq.weapon.market.util.ZLog;
 
 import java.lang.reflect.Method;
 
@@ -55,7 +55,7 @@ public class AppBaseInfo {
             isMzPlatform = true;
         } catch (Exception e) {
             if (BuildConfig.LOG_DEBUG) {
-                ZKQLog.t("init", e);
+                ZLog.t("init", e);
             }
         }
 

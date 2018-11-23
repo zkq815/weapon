@@ -1,5 +1,7 @@
 package com.zkq.weapon.networkframe.netbase;
 
+import com.zkq.weapon.networkframe.constants.RequestUrlConstants;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -7,9 +9,10 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Created by zkq
- * on 2018/8/27.
- * 网络请求头部拦截
+ * @author zkq
+ * create:2018/11/16 10:39 AM
+ * email:zkq815@126.com
+ * desc: 网络请求头部拦截
  */
 
 public class HeadInterceptor implements Interceptor {
@@ -25,22 +28,15 @@ public class HeadInterceptor implements Interceptor {
 
         Request request = chain.request();
 
-        if(request.url().toString().contains("http://111.231.63.163/interface.php")){
+        if (request.url().toString().contains(RequestUrlConstants.BASE_URL)) {
             Request tempRequest = request.newBuilder()
-                    .method(request.method(),request.body())
+                    .method(request.method(), request.body())
                     .build();
             return chain.proceed(tempRequest);
-        }else if(request.url().toString().contains("public")){
+        } else {
             Request tempRequest = request.newBuilder()
-                    .method(request.method(),request.body())
-                    .addHeader(PLATFORM_TYPE,"android")
-                    .build();
-            return chain.proceed(tempRequest);
-        }else{
-            Request tempRequest = request.newBuilder()
-                    .method(request.method(),request.body())
-                    .addHeader(PLATFORM_TYPE,"android")
-//                    .addHeader("token")
+                    .method(request.method(), request.body())
+                    .addHeader(PLATFORM_TYPE, "android")
                     .build();
             return chain.proceed(tempRequest);
         }

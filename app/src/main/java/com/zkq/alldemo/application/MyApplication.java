@@ -8,10 +8,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 import com.zkq.alldemo.BuildConfig;
-import com.zkq.alldemo.util.ImgUtil;
+import com.zkq.weapon.application.BaseApplication;
+//import com.zkq.weapon.market.util.ImgUtil;
 
 import okhttp3.OkHttpClient;
 
@@ -20,18 +19,18 @@ import okhttp3.OkHttpClient;
  * on 2018/2/24.
  */
 
-public class MyApplication extends Application {
+public class MyApplication extends BaseApplication {
     @SuppressLint("StaticFieldLeak")
     private static MyApplication instance;
     @NonNull
     private final Application application;
-    private static RefWatcher sRefWatcher;
+
     private static final int KILL_MSG = 211;
     private static final int KILL_MSG_WAIT_TIME = 5 * 55 * 1000;
     private Handler sKillerHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            ImgUtil.destroy();
+//            ImgUtil.destroy();
         }
     };
 
@@ -43,13 +42,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-//        if (LeakCanary.isInAnalyzerProcess(application)) {
-//            // LeakCanary会创建单独的进程用于内存堆分析，这里不应该调用我们的初始化代码，直接返回即可
-//            return;
-//        }
-        sRefWatcher = LeakCanary.install(application);
         instance = this;
-
         application.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
@@ -113,12 +106,6 @@ public class MyApplication extends Application {
             return instance.application;
         }
         return null;
-    }
-
-    public static void watch(final Object watchedReference) {
-        if (null != sRefWatcher) {
-            sRefWatcher.watch(watchedReference);
-        }
     }
 
 }

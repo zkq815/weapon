@@ -1,14 +1,15 @@
 package com.zkq.alldemo.fortest.okhttp;
 
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import com.zkq.alldemo.R;
 import com.zkq.alldemo.databinding.ActivityOkhttpBinding;
-import com.zkq.alldemo.util.ZKQLog;
+import com.zkq.weapon.base.BaseActivity;
+import com.zkq.weapon.base.BaseActivity;
+import com.zkq.weapon.market.util.ZLog;
 
 import java.io.IOException;
 
@@ -16,7 +17,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class OKHttpActivity extends AppCompatActivity {
+public class OKHttpActivity extends BaseActivity {
     private ActivityOkhttpBinding mBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class OKHttpActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 //                            tvResult.setText("result:\n"+temp);
-                            ZKQLog.e("result:\n"+temp);
+                            ZLog.e("result:\n"+temp);
                     }
                 });
             }

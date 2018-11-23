@@ -1,15 +1,21 @@
 package com.zkq.alldemo.fortest.flowlayout;
 
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import com.zkq.alldemo.R;
 import com.zkq.alldemo.databinding.ActivityFlowLayoutBinding;
+import com.zkq.weapon.base.BaseActivity;
 
-public class FlowLayoutActivity extends AppCompatActivity {
+/**
+ * @author zkq
+ * create:2018/11/16 10:04 AM
+ * email:zkq815@126.com
+ * desc:
+ */
+public class FlowLayoutActivity extends BaseActivity {
     private ActivityFlowLayoutBinding mBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

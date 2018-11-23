@@ -17,29 +17,57 @@ import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 /**
- * @author  zkq
- * on 2018/8/24.
- * desc:retrofit 不同参数使用说明
+ * @author zkq
+ * create:2018/11/16 10:41 AM
+ * email:zkq815@126.com
+ * desc: retrofit 不同参数使用说明
  * https://www.jianshu.com/p/bf884248cb37
  */
-
 public interface ApiMethod {
+    /**
+     * call 非RX
+     * @return 回调
+     * */
     @POST("/home/get/v2")
     Call<BaseResponseBodyBean> getMainRetrofit();
 
-    @POST("/home/get/v2")
+    /**
+     * RX get 无参请求
+     * @return 回调
+     * */
+    @GET("/home/get/v2")
     Observable<BaseResponse> getMainRx();
 
+    /**
+     * RX get请求 一个参数
+     * @param paramValue 参数
+     * @return 回调
+     * */
     @GET("path")
     Observable<BaseResponse> getOneParmas(@Query("param") String paramValue);
 
+    /**
+     * RX get请求 多个参数
+     * @param paramValueOne 参数1
+     * @param paramValueTwo 参数2
+     * @return 回调
+     * */
     @GET("path")
     Observable<BaseResponse> getMoreParmas(@Query("param_one") String paramValueOne
             , @Query("param_two") String paramValueTwo);
 
+    /**
+     * RX get请求 多个参数
+     * @param paramsMap 参数集合
+     * @return 回调
+     * */
     @GET("path")
-    Observable<BaseResponse> getMoreParams(@QueryMap Map<String,String> paramsMap);
+    Observable<BaseResponse> getMoreParams(@QueryMap Map<String, String> paramsMap);
 
+    /**
+     * RX get请求 添加请求url内容
+     * @return 回调
+     * */
     @GET("path/{id}")
     Observable<BaseResponse> getAddOneParmas(@Path("id") int paramValue);
 
@@ -63,7 +91,7 @@ public interface ApiMethod {
             , @Field("param_two") String param_two);
 
     @POST("path")
-    Observable<BaseResponse> postRxMoreParams(@FieldMap Map<String,String> paramsMap);
+    Observable<BaseResponse> postRxMoreParams(@FieldMap Map<String, String> paramsMap);
 
     @POST("path/{id}")
     Observable<BaseResponse> postRxMoreParams(@Path("id") String id

@@ -13,8 +13,9 @@ import android.widget.LinearLayout;
 
 import com.zkq.alldemo.R;
 import com.zkq.alldemo.databinding.ActivityDialogTestBinding;
+import com.zkq.weapon.base.BaseActivity;
 
-public class DialogTestActivity extends AppCompatActivity implements View.OnClickListener{
+public class DialogTestActivity extends BaseActivity implements View.OnClickListener{
     private ActivityDialogTestBinding mBinding;
     Dialog dialog = null;
     @Override

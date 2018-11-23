@@ -1,5 +1,6 @@
 package com.zkq.alldemo.fortest.rxjava_retrofit;
 
+import com.zkq.weapon.networkframe.response.BaseBean;
 import com.zkq.weapon.networkframe.response.BaseResponse;
 
 import java.util.HashMap;
@@ -32,9 +33,9 @@ public interface RetrofitRequest {
 
     //post请求测试
     @POST("mzstore/home/get/v2")
-    Call<ResponseBody> getMain();
+    Call<ResponseBody> postMain();
 
     //post请求测试
     @POST("mzstore/home/get/v2")
-    Observable<BaseResponse> rxgetMain();
+    Observable<BaseResponse> rxPostMain();
 }

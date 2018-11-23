@@ -1,20 +1,16 @@
 package com.zkq.alldemo.fortest.rxjava_retrofit;
 
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+
 import com.zkq.alldemo.R;
 import com.zkq.alldemo.databinding.ActivityRxjavaBinding;
-import com.zkq.alldemo.netframe.httpservice.ApiMethod;
-import com.zkq.alldemo.util.ZKQLog;
-import com.zkq.weapon.networkframe.netbase.ResponseTransformer;
+import com.zkq.weapon.base.BaseActivity;
+import com.zkq.weapon.market.util.ZLog;
 import com.zkq.weapon.networkframe.netbase.RetrofitUtil;
 import com.zkq.weapon.networkframe.response.BaseResponse;
-import com.zkq.weapon.networkframe.response.BaseResponseBodyBean;
-import com.zkq.weapon.util.ZLog;
-
-import java.util.concurrent.TimeUnit;
+import com.zkq.weapon.networkframe.response.ResponseTransformer;
+import com.zkq.weapon.networkframe.scheduler.SchedulerProvider;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -23,53 +19,33 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RxjavaActivity extends AppCompatActivity {
+public class RxjavaActivity extends BaseActivity {
 
     private ActivityRxjavaBinding mBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_rxjava);
-
-        mBinding.btnRxGet.setOnClickListener((v)->rxTest());
-
-        mBinding.btnRxPostTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rxPost();
-            }
-        });
-
-        mBinding.btnRxGetTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rxgetList();
-            }
-        });
-
+        mBinding.btnRxGet.setOnClickListener(v-> rxTest());
+        mBinding.btnRxPostTest.setOnClickListener(v-> rxPost());
+        mBinding.btnRxGetTest.setOnClickListener(v -> rxgetList());
     }
-
 
     private void rxTest(){
         Observable.create(new ObservableOnSubscribe<Integer>(){//第一步：初始化Observable
             @Override
             public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
-                ZKQLog.e("zkq","observable 1");
+                ZLog.e("zkq","observable 1");
                 emitter.onNext(1);
-                ZKQLog.e("zkq","observable 2");
+                ZLog.e("zkq","observable 2");
                 emitter.onNext(2);
-                ZKQLog.e("zkq","observable 3");
+                ZLog.e("zkq","observable 3");
                 emitter.onNext(3);
-                ZKQLog.e("zkq","observable 4");
+                ZLog.e("zkq","observable 4");
                 emitter.onNext(4);
             }
         }).subscribe(new Observer<Integer>() {//第三步：订阅
@@ -89,18 +65,18 @@ public class RxjavaActivity extends AppCompatActivity {
                 if(i==2){
                     //在RxJava2.x中，新增的disposable可以做到切断的操作，让Observer观察者不再接收上游事件
 //                    mDisposable.dispose();
-                    ZKQLog.e("ZKQ","观察接收中断");
+                    ZLog.e("ZKQ","观察接收中断");
                 }
             }
 
             @Override
             public void onError(Throwable e) {
-                ZKQLog.e("ZKQ","错误消息=="+e.getMessage());
+                ZLog.e("ZKQ","错误消息=="+e.getMessage());
             }
 
             @Override
             public void onComplete() {
-                ZKQLog.e("ZKQ","观察完成");
+                ZLog.e("ZKQ","观察完成");
             }
         });
     }
@@ -116,7 +92,7 @@ public class RxjavaActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
                 try{
-                    ZKQLog.e("ZKQ","list请求结果==="+response.body().string());
+                    ZLog.e("ZKQ","list请求结果==="+response.body().string());
 
                 }catch (Exception e){
 
@@ -133,29 +109,15 @@ public class RxjavaActivity extends AppCompatActivity {
     //post请求
     private void rxPost(){
 
-        RetrofitRequest retrofitRequest = RetrofitUtil.getInstance().createApi(RetrofitRequest.class);
-        Call<ResponseBody> call = retrofitRequest.getMain();
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    String tempString = response.body().string();
-                    ZKQLog.e("ZKQ","main请求结果==="+tempString);
-                }catch (Exception e){
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });
+        RetrofitUtil.getInstance().createApi(RetrofitRequest.class)
+                .rxPostMain()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                 .subscribe();
     }
 
     private void rxgetList(){
-        RetrofitUtil.getInstance().createApi(RetrofitRequest.class).rxgetMain()
+        RetrofitUtil.getInstance().createApi(RetrofitRequest.class).rxPostMain()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext(baseResponse ->
@@ -182,37 +144,19 @@ public class RxjavaActivity extends AppCompatActivity {
                         ZLog.e("onComplete请求完成");
                     }
                 });
-    }
 
-    private void postLazzy(){
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.connectTimeout(5,TimeUnit.SECONDS);
-        Retrofit retrofit = new Retrofit.Builder()
-                .client(builder.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("http://app.store.res.meizu.com/")
-                .build();
+        RetrofitUtil.getInstance().createApi(RetrofitRequest.class).rxPostMain()
+                .compose(SchedulerProvider.getInstance().applySchedulers())
+                .compose(ResponseTransformer.handleResult())
+                .doOnNext(baseResponse -> getTest())
+                .subscribe(baseResponse -> getTest(), throwable -> getTest());
 
-        ApiMethod apiService = retrofit.create(ApiMethod.class);
-        Call<BaseResponseBodyBean> call = apiService.getMain();
-        call.enqueue(new Callback<BaseResponseBodyBean>() {
-            @Override
-            public void onResponse(Call<BaseResponseBodyBean> call, Response<BaseResponseBodyBean> response) {
 
-            }
-
-            @Override
-            public void onFailure(Call<BaseResponseBodyBean> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void test(){
-        RetrofitUtil.getInstance().createApi(ApiMethod.class).getM().observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.io()).subscribe();
     }
 
 
+    private Observable<BaseResponse> getTest(){
+        return null;
+    }
 
 }

@@ -5,9 +5,9 @@ import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.zkq.alldemo.base.BaseActivity;
 import com.zkq.alldemo.BuildConfig;
-import com.zkq.alldemo.util.ZKQLog;
+import com.zkq.weapon.base.BaseActivity;
+import com.zkq.weapon.market.util.ZLog;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class ActivityStack {
      */
     public static void push(@NonNull final Activity activity) {
         if (BuildConfig.LOG_DEBUG) {
-            ZKQLog.e("push: " + activity);
+//            ZLog.e("push: " + activity);
         }
         final ActivityRecord record = new ActivityRecord(activity);
         sActivityStack.add(record);
@@ -160,19 +160,19 @@ public class ActivityStack {
                 }
             }
 
-            ZKQLog.e(msg);
+//            ZLog.e(msg);
         }
     }
 
-    public static boolean hasActivity(final Class<? extends BaseActivity> clz) {
-        for (ActivityRecord rec : sActivityStack) {
-            if (null != rec && null != rec.activityRef.get() && rec.activityRef.get().getClass() == clz) {
-                return true;
-            }
-        }
-
-        return false;
-    }
+//    public static boolean hasActivity(final Class<? extends BaseActivity> clz) {
+//        for (ActivityRecord rec : sActivityStack) {
+//            if (null != rec && null != rec.activityRef.get() && rec.activityRef.get().getClass() == clz) {
+//                return true;
+//            }
+//        }
+//
+//        return false;
+//    }
 
     public static void onActivityStarted(@NonNull final Activity activity) {
         final ActivityRecord record = sActivityRecordMap.get(activity.toString());

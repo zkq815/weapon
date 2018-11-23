@@ -19,12 +19,16 @@ import com.zkq.weapon.R;
 
 /**
  * @author zkq
- * @email zkq815@qq.com
- * @since 2018/4/25
+ * create:2018/11/16 10:21 AM
+ * email:zkq815@126.com
+ * desc: 加载页面
  */
 public class LoadingView extends FrameLayout {
 
     public enum Type {
+        /**
+         *
+         * */
         LOADING_FAIL(R.string.loading_view_loading_fail, R.drawable.loading_view_loading_fail, true),
         NETWORK_ERROR(R.string.loading_view_network_error, R.drawable.loading_view_network_error, true),
         NO_NETWORK(R.string.loading_view_no_network, R.drawable.loading_view_no_network, true),

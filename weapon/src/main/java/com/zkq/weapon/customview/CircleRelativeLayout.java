@@ -6,12 +6,11 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
-
 /**
- * Created by zkq
- * on 2017/5/30.
- *
- * 圆形布局
+ * @author zkq
+ * create:2018/11/16 10:07 AM
+ * email:zkq815@126.com
+ * desc: 圆形布局
  */
 
 public class CircleRelativeLayout extends RelativeLayout {
@@ -19,15 +18,16 @@ public class CircleRelativeLayout extends RelativeLayout {
     private int color;
     private int[] colors;
     private int alpha;
+    private Paint mPaint = new Paint();
     public CircleRelativeLayout(Context context) {
         super(context);
     }
     public CircleRelativeLayout(Context context, AttributeSet attrs) {
         super(context,attrs);
-        init(context,attrs);
+        init();
         setWillNotDraw(false);
     }
-    private void init(Context context, AttributeSet attrs) {
+    private void init() {
         color = 0X0000000;
         alpha = 255;
         setColors();
@@ -35,7 +35,6 @@ public class CircleRelativeLayout extends RelativeLayout {
     @Override
     protected void onDraw(Canvas canvas) { //构建圆形
         int width = getMeasuredWidth();
-        Paint mPaint = new Paint();
         mPaint.setARGB(alpha,colors[0],colors[1],colors[2]);
         mPaint.setAntiAlias(true);
         float cirX = width / 2;

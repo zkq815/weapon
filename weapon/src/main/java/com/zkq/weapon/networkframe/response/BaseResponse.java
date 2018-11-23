@@ -8,22 +8,21 @@ import okio.BufferedSource;
 
 /**
  * @author zkq
- * on 2018/8/27.
- * 全局响应基础
+ * create:2018/11/16 10:42 AM
+ * email:zkq815@126.com
+ * desc: 全局响应返回数据基类
  */
+public class BaseResponse<T extends BaseBean> {
 
-public class BaseResponse<T> extends ResponseBody {
-
-//    private static final Object NULL_DATA = new Object();
     /**
      * 响应状态码
-     * */
+     */
     @SerializedName("code")
     private int code;
 
     /**
      * 响应消息信息
-     * */
+     */
     @SerializedName("message")
     private String msg;
 
@@ -49,18 +48,18 @@ public class BaseResponse<T> extends ResponseBody {
         return data;
     }
 
-    @Override
-    public MediaType contentType() {
-        return null;
-    }
-
-    @Override
-    public long contentLength() {
-        return 0;
-    }
-
-    @Override
-    public BufferedSource source() {
-        return null;
-    }
+//    @Override
+//    public MediaType contentType() {
+//        return null;
+//    }
+//
+//    @Override
+//    public long contentLength() {
+//        return 0;
+//    }
+//
+//    @Override
+//    public BufferedSource source() {
+//        return null;
+//    }
 }
