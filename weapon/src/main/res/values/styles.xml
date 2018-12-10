@@ -1,11 +1,25 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+    <style name="WeaponAppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <!-- actionbar color -->
+        <item name="colorPrimary">@color/blue_beika</item>
+        <!-- statusbar color -->
+        <item name="colorPrimaryDark">@color/blue_beika</item>
+
+        <!-- default checked color -->
+        <item name="colorAccent">@color/blue_beika</item>
+        <!-- default actionbar title color -->
+        <item name="android:textColorPrimary">@color/blue_beika</item>
+
+        <!--页面背景色-->
+        <item name="android:windowBackground">@color/white</item>
+        <!--底部导航栏颜色-->
+        <!--<item name="android:navigationBarColor">@color/navigationColor</item>-->
+        <!--各个控制控件的默认颜色-->
+        <item name="colorControlNormal">@color/blue_beika</item>
+
     </style>
 
     <style name="my_dialog">

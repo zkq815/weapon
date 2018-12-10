@@ -31,8 +31,8 @@ public class RxjavaActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_rxjava);
         mBinding.btnRxGet.setOnClickListener(v-> rxTest());
-        mBinding.btnRxPostTest.setOnClickListener(v-> rxPost());
         mBinding.btnRxGetTest.setOnClickListener(v -> rxgetList());
+        mBinding.btnRxPostTest.setOnClickListener(v-> rxPost());
     }
 
     private void rxTest(){
@@ -113,16 +113,6 @@ public class RxjavaActivity extends BaseActivity {
                 .rxPostMain()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                 .subscribe();
-    }
-
-    private void rxgetList(){
-        RetrofitUtil.getInstance().createApi(RetrofitRequest.class).rxPostMain()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(baseResponse ->
-                        ZLog.e("doOnNext请求成功-----"+"response=="+baseResponse.getMsg())
-                    )
                 .subscribe(new Observer<BaseResponse>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -131,7 +121,34 @@ public class RxjavaActivity extends BaseActivity {
 
                     @Override
                     public void onNext(BaseResponse responseBody) {
-                        ZLog.e("subscribe请求成功-----"+"response=="+responseBody.getMsg());
+                        ZLog.e("subscribe请求成功-----"+"response=="+responseBody.getCode());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        ZLog.e("onError请求失败");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        ZLog.e("onComplete请求完成");
+                    }
+                });
+    }
+
+    private void rxgetList(){
+        RetrofitUtil.getInstance().createApi(RetrofitRequest.class).rxPostMain()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<BaseResponse>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(BaseResponse responseBody) {
+                        ZLog.e("subscribe请求成功-----"+"response=="+responseBody.getCode());
                     }
 
                     @Override
@@ -145,11 +162,11 @@ public class RxjavaActivity extends BaseActivity {
                     }
                 });
 
-        RetrofitUtil.getInstance().createApi(RetrofitRequest.class).rxPostMain()
-                .compose(SchedulerProvider.getInstance().applySchedulers())
-                .compose(ResponseTransformer.handleResult())
-                .doOnNext(baseResponse -> getTest())
-                .subscribe(baseResponse -> getTest(), throwable -> getTest());
+//        RetrofitUtil.getInstance().createApi(RetrofitRequest.class).rxPostMain()
+//                .compose(SchedulerProvider.getInstance().applySchedulers())
+//                .compose(ResponseTransformer.handleResult())
+//                .doOnNext(baseResponse -> getTest())
+//                .subscribe(baseResponse -> getTest(), throwable -> getTest());
 
 
     }

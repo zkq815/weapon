@@ -32,6 +32,7 @@
 
     <color name="blue_theme">#00c3f5</color>
     <color name="blue">#00a5f5</color>
+    <color name="blue_beika">#7BAFD4</color>
     <color name="transparent">#00000000</color>
 
     <color name="blue_indicator_detail_vp_default">#f2f2f2</color>

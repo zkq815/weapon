@@ -13,8 +13,7 @@ import android.widget.TextView;
 
 import com.zkq.alldemo.databinding.ActivityMainBinding;
 import com.zkq.weapon.base.BaseActivity;
-
-import java.util.List;
+import com.zkq.weapon.market.util.ZLog;
 
 public class MainActivity extends BaseActivity {
     private ActivityMainBinding mBinding;
@@ -33,7 +32,10 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+        ZLog.e(getClass().getSimpleName());
         init();
+//        testParcelable();
     }
 
     private void init() {
@@ -90,6 +92,33 @@ public class MainActivity extends BaseActivity {
             super(view);
             tvAcivityName = (TextView) view.findViewById(R.id.tv_activity);
         }
+    }
+
+    private void testParcelable(){
+
+//        Parcel parcel = Parcel.obtain();
+//        Book book = new Book("abcsd","asdasdasd");
+//        book.writeToParcel(parcel, book.describeContents());
+//        parcel.setDataPosition(0);
+//        Book createdFromParcel = Book.CREATOR.createFromParcel(parcel);
+//        Log.e("zkq","****反序列化后==" + createdFromParcel.getTitle());
+//
+//
+//        Parcel parcelBean = Parcel.obtain();
+//        TestBean bean = new TestBean(parcelBean);
+//        bean.mPosition = 19;
+//        bean.writeToParcel(parcelBean,bean.describeContents());
+//        parcelBean.setDataPosition(0);
+//        TestBean now = TestBean.CREATOR.createFromParcel(parcelBean);
+//        Log.e("zkq","**** now === " + now.mPosition);
+//
+//        Parcel parcelBean1 = Parcel.obtain();
+//        TestBean1 bean1 = new TestBean1(parcelBean1,null);
+//        bean1.mPosition = 22;
+//        bean1.writeToParcel(parcelBean1,bean1.describeContents());
+//        parcelBean1.setDataPosition(0);
+//        TestBean1 now1 = TestBean1.CREATOR.createFromParcel(parcelBean1);
+//        Log.e("zkq","**** now1 === " + now1.mPosition);
     }
 
 }

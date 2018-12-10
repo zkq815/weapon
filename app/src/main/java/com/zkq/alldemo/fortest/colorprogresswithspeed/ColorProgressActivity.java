@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.zkq.alldemo.R;
+import com.zkq.weapon.base.BaseActionBarActivity;
 import com.zkq.weapon.base.BaseActivity;
 import com.zkq.weapon.customview.ColorArcProgressBar;
 import com.zkq.weapon.customview.ColorProgressWithSpeed;
@@ -17,6 +18,7 @@ public class ColorProgressActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_color_progress);
 
         progressBar = (ColorArcProgressBar) findViewById(R.id.bar1);

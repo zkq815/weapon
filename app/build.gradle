@@ -5,7 +5,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.zkq.alldemo"
+        applicationId "com.zkq.weapon"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

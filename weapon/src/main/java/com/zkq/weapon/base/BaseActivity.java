@@ -46,8 +46,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStatusBarDark();
-
+        setActionBar();
         mConnected = MobileNetworkUtils.isNetAvailable(this);
+    }
+
+    protected void setActionBar(){
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getClass().getSimpleName());
     }
 
     @Override

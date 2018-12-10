@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:text="restart" />
 
-                <com.zkq.alldemo.costomview.colorprogresswithspeed.ColorArcProgressBar
+                <com.zkq.weapon.customview.ColorArcProgressBar
                     android:id="@+id/bar1"
                     android:layout_width="300dp"
                     android:layout_height="300dp"
@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:text="restart" />
 
-                <com.zkq.alldemo.costomview.colorprogresswithspeed.ColorArcProgressBar
+                <com.zkq.weapon.customview.ColorArcProgressBar
                     android:id="@+id/bar2"
                     android:layout_width="300dp"
                     android:layout_height="300dp"
@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:text="restart" />
 
-                <com.zkq.alldemo.costomview.colorprogresswithspeed.ColorArcProgressBar
+                <com.zkq.weapon.customview.ColorArcProgressBar
                     android:id="@+id/bar3"
                     android:layout_width="300dp"
                     android:layout_height="300dp"
@@ -132,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:text="restart" />
 
-            <com.zkq.alldemo.costomview.colorprogresswithspeed.ColorProgressWithSpeed
+            <com.zkq.weapon.customview.ColorProgressWithSpeed
                 android:id="@+id/mycolor"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
@@ -166,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:text="restart" />
 
-            <com.zkq.alldemo.costomview.colorprogresswithspeed.ColorArcProgressBar
+            <com.zkq.weapon.customview.ColorArcProgressBar
                 android:id="@+id/bar4"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
