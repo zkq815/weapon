@@ -4,9 +4,8 @@ import android.content.Context;
 
 import com.zkq.alldemo.BuildConfig;
 import com.zkq.alldemo.application.MyApplication;
+import com.zkq.weapon.market.tools.ToolNet;
 import com.zkq.weapon.market.util.AndrUtils;
-import com.zkq.weapon.market.util.AndrUtils;
-import com.zkq.weapon.market.util.MobileNetworkUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,16 +15,25 @@ import java.util.Map;
  */
 public class AbsRequest {
     //app info
-    private int versionCode; // app版本号
-    private String channelId;// 渠道号
+    // app版本号
+    private int versionCode;
+    // 渠道号
+    private String channelId;
     //device info
-    private String imei;// imei号
-    private String androidId; // Android 设备的唯一标识码
-    private String brand;// 品牌
-    private String model;// 手机型号
-    private int sdkVerCode; // 手机版本号
-    private String mac; // mac地址
-    private int netType;// 网络类型,未知=0,wifi=1,2g=2,3g=3,4g=4;
+    // imei号
+    private String imei;
+    // Android 设备的唯一标识码
+    private String androidId;
+    // 品牌
+    private String brand;
+    // 手机型号
+    private String model;
+    // 手机版本号
+    private int sdkVerCode;
+    // mac地址
+    private String mac;
+    // 网络类型,未知=0,wifi=1,2g=2,3g=3,4g=4;
+    private int netType;
 
     public AbsRequest() {
         final Context context = MyApplication.getInstance();
@@ -37,7 +45,7 @@ public class AbsRequest {
         this.model = AndrUtils.getModel();
         this.sdkVerCode = AndrUtils.getSdkVersionCode();
         this.mac = AndrUtils.getMacAddress(context);
-        this.netType = MobileNetworkUtils.getNetworkType(context);
+        this.netType = ToolNet.getNetworkType(context);
     }
 
     public Map<String, String> getBaseMap() {

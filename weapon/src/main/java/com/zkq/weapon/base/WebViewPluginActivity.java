@@ -5,9 +5,9 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.zkq.weapon.market.util.StringUtil;
 import com.zkq.weapon.R;
 import com.zkq.weapon.constants.Constants;
+import com.zkq.weapon.market.tools.ToolString;
 
 /**
  * @author zkq
@@ -27,7 +27,7 @@ public class WebViewPluginActivity extends BaseActionBarActivity {
         final Bundle data = new Bundle();
         String targetUrl = getIntent().getStringExtra(Constants.WEB_URL);
         String pushMsgUrl = getIntent().getStringExtra(Constants.WEB_PUSH_URL);
-        if (StringUtil.isNotEmpty(pushMsgUrl)) {
+        if (ToolString.isNotEmpty(pushMsgUrl)) {
             targetUrl = pushMsgUrl;
         }
 

@@ -1,5 +1,9 @@
-package com.zkq.weapon.market.util;
+package com.zkq.weapon.market.tools;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.annotation.StringDef;
+import com.zkq.weapon.market.util.ZLog;
 import java.io.File;
 import java.io.FileInputStream;
 import java.math.BigInteger;
@@ -7,17 +11,78 @@ import java.security.MessageDigest;
 
 /**
  * @author zkq
- * create:2018/11/16 10:26 AM
+ * create:2018/12/11 9:58 AM
  * email:zkq815@126.com
- * desc:MD5工具
+ * desc: 加密工具类
  */
-public class Md5Util {
+public interface ToolEncrypt {
 
-    public static String getMd5(final String path) {
+    @StringDef
+    @interface ENCRYPT_TYPE {
+        /**
+         * MD5加密方式
+         */
+        String ENC_TYPE_MD5 = "MD5";
+        /**
+         * SHA-256加密方式
+         */
+        String ENC_TYPE_SHA256 = "SHA-256";
+    }
+
+    /**
+     * 获取加密后字符串
+     * 默认使用SHA-256
+     *
+     * @param value   要加密的字符串
+     * @param encName 加密类型 {@link ENCRYPT_TYPE}
+     * @return 加密后字符串 16进制32位字符串(小写)
+     */
+    @NonNull
+    static String getEncryptString(@Nullable String value, @ENCRYPT_TYPE String encName) {
+        if (ToolText.isEmptyOrNull(value)) {
+            return "";
+        }
+
+        String strDes;
+        try {
+            MessageDigest md = MessageDigest.getInstance(ToolText.isNotEmpty(encName)
+                    ? encName : ENCRYPT_TYPE.ENC_TYPE_SHA256);
+            md.update(value.getBytes());
+            strDes = bytes2Hex(md.digest());
+        } catch (Exception e) {
+            e.printStackTrace();
+            strDes = "";
+        }
+        return strDes;
+    }
+
+    /**
+     * bytes转16进制字符串
+     *
+     * @param bts bytes数组
+     * @return 16进制字符串 (小写)
+     */
+    @NonNull
+    static String bytes2Hex(@NonNull byte[] bts) {
+        StringBuilder sb = new StringBuilder();
+        String tmp;
+
+        for (byte bt : bts) {
+            tmp = (Integer.toHexString(bt & 0xFF));
+            if (tmp.length() == 1) {
+                sb.append("0");
+            }
+            sb.append(tmp);
+        }
+
+        return sb.toString();
+    }
+
+    static String getMd5(final String path) {
         return getMd5(new File(path));
     }
 
-    public static String getMd5(final File file) {
+    static String getMd5(final File file) {
         if (!file.exists() || !file.isFile()) {
             return null;
         }
@@ -48,7 +113,7 @@ public class Md5Util {
             }
 
         } catch (Exception e) {
-                ZLog.t("getMd5", e);
+            ZLog.t("getMd5", e);
         }
 
         return null;
@@ -57,7 +122,7 @@ public class Md5Util {
     /**
      * MD5加密
      */
-    public static String toMD5(String plainText) {
+    static String toMD5(String plainText) {
         try {
             //生成实现指定摘要算法的 MessageDigest 对象。
             MessageDigest md = MessageDigest.getInstance("MD5");

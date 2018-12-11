@@ -8,6 +8,10 @@ package com.zkq.weapon.constants;
  */
 public interface Constants {
 
+    /**********************************************************************
+     *                          String                                    *
+     **********************************************************************/
+
     /**
      * UTF-8编码
      */
@@ -26,4 +30,28 @@ public interface Constants {
     String WEB_URL = "";
     String WEB_PUSH_URL = "";
     String SHOW_REFRESH = "";
+
+    String CHINA_MOBILE_HEAD = "+86";
+
+
+
+    /**********************************************************************
+     *                          Integer                                   *
+     **********************************************************************/
+
+    /**
+     * 地球半径（单位米）
+     * */
+    double EARTH_RADIUS = 6371.393;
+
+    /**
+     * 大陆第一代身份号码证长度
+     * */
+    int ID_CARD_FIRST = 15;
+
+    /**
+     * 大陆第二代身份号码证长度
+     * */
+    int ID_CARD_SECOND = 18;
+
 }

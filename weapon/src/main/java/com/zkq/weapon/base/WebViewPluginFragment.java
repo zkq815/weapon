@@ -9,8 +9,8 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.zkq.weapon.customview.LoadingView;
-import com.zkq.weapon.market.util.MobileNetworkUtils;
 import com.zkq.weapon.constants.Constants;
+import com.zkq.weapon.market.tools.ToolNet;
 
 /**
  * @author zkq
@@ -36,14 +36,14 @@ public class WebViewPluginFragment extends BaseWebPluginFragment {
                 setTitle(title);
             }
 
-            final boolean connected = MobileNetworkUtils.isNetAvailable(getContext());
+            final boolean connected = ToolNet.isAvailable(getContext());
             if (connected) {
                 load(bundle);
             } else {
                 mLoadingLayout.fail(LoadingView.Type.NO_NETWORK, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        final boolean connected = MobileNetworkUtils.isNetAvailable(getContext());
+                        final boolean connected = ToolNet.isAvailable(getContext());
                         if (connected) {
                             load(bundle);
                         } else {

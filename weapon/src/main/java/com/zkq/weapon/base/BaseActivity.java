@@ -19,8 +19,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.zkq.weapon.market.util.MobileNetworkUtils;
-import com.zkq.weapon.market.util.RomJustUtil;
+import com.zkq.weapon.market.tools.ToolAndroid;
+import com.zkq.weapon.market.tools.ToolNet;
 import com.zkq.weapon.market.util.ZLog;
 import com.zkq.weapon.R;
 import com.zkq.weapon.constants.Constants;
@@ -47,7 +47,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setStatusBarDark();
         setActionBar();
-        mConnected = MobileNetworkUtils.isNetAvailable(this);
+        mConnected = ToolNet.isAvailable(this);
     }
 
     protected void setActionBar(){
@@ -61,7 +61,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         ensureNetReceiver();
 
-        final boolean connected = MobileNetworkUtils.isNetAvailable(this);
+        final boolean connected = ToolNet.isAvailable(this);
         if (mConnected != connected) {
             notifyNetChange(connected, false);
         }
@@ -98,16 +98,18 @@ public abstract class BaseActivity extends AppCompatActivity {
     private void setStatusBarDark() {
         Window window = getWindow();
         //魅族系统
-        if (RomJustUtil.isMeizuFlymeOS()) {
+        if (ToolAndroid.isMeizuFlymeOS()) {
             meizuChangeStatusBar(window);
             //[4.4--6.0)系统
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M &&
                     Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 meizuChangeStatusBar(window);
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {//6.0以后的系统
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                //6.0以后的系统
                 androidLolChangeStatusBar(window);
             }
-        } else if (RomJustUtil.isMIUIOS()) {//MIUI系统
+        } else if (ToolAndroid.isMIUIOS()) {
+            //MIUI系统
             xiaomiChangeStatusBar(window);
         } else {//其他系统
             androidMChangeStatusBar(window);
@@ -190,7 +192,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            final boolean connected = MobileNetworkUtils.isNetAvailable(context);
+            final boolean connected = ToolNet.isAvailable(context);
             notifyNetChange(connected, isInitialStickyBroadcast());
         }
     }
