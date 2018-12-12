@@ -169,6 +169,7 @@ public abstract class BaseWebPluginFragment extends BaseFragment {
             public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
                 return super.shouldInterceptRequest(view, request);
             }
+
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 //微信支付链接拦截
@@ -179,7 +180,7 @@ public abstract class BaseWebPluginFragment extends BaseFragment {
                     try {
                         getActivity().startActivity(intent);
                     } catch (Exception e) {
-                        getActivity().runOnUiThread(()->ZToast.show("检测到你的手机没有安装微信"));
+                        getActivity().runOnUiThread(() -> ZToast.show("检测到你的手机没有安装微信"));
                     }
                     return true;
                 }
@@ -197,15 +198,15 @@ public abstract class BaseWebPluginFragment extends BaseFragment {
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
                 super.onReceivedError(view, request, error);
                 mLoadingLayout.success();
-
-                    ZLog.e(BaseWebPluginFragment.this, "onReceivedError: " + request + " " + error);
+                ZLog.e(BaseWebPluginFragment.this, "onReceivedError: " + request + " " + error);
             }
 
             @Override
             public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                super.onReceivedSslError(view, handler, error);
-                    ZLog.e(BaseWebPluginFragment.this, "onReceivedSslError: " + view.getUrl() + " " + error);
-                }
+//                super.onReceivedSslError(view, handler, error);
+                handler.proceed();
+                ZLog.e(BaseWebPluginFragment.this, "onReceivedSslError: " + view.getUrl() + " " + error);
+            }
         });
     }
 
