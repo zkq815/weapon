@@ -83,7 +83,7 @@ public class LoadingView extends FrameLayout {
         setBackgroundResource(android.R.color.white);
         setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
 
-        inflate(getContext(), R.layout.loading_view, this);
+        inflate(getContext(), R.layout.loading_layout, this);
         image = (ImageView) findViewById(R.id.loading_view_image);
         info = (TextView) findViewById(R.id.loading_view_info);
         loading = (ViewGroup) findViewById(R.id.loading_view_layout);
