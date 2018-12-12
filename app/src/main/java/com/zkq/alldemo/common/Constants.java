@@ -1,20 +1,11 @@
 package com.zkq.alldemo.common;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 /**
- * @author huxiaoyuan
+ * @author zkq
  * @since 16/4/11
  */
 public class Constants {
 
-//    public static final List<String> MEIZU_STORE_COOKIE_URLS = new ArrayList<>(Arrays.asList(
-//            AppConstantsUrl.APP_MALL_URL.getUrl(),
-//            AppConstantsUrl.APP_ALAD_URL.getUrl(),
-//            AppConstantsUrl.APP_INSURANCE_URL.getUrl(),
-//            AppConstantsUrl.APP_PYRAMID_URL.getUrl()));
     public static final String MEIZU_STORE_COOKIE_DOMAIN = ".meizu.com";
     public static final String MEIZU_STORE_COOKIE_PATH = "/";
 

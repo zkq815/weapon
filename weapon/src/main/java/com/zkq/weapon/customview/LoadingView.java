@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.zkq.weapon.R;
 
-
 /**
  * @author zkq
  * create:2018/11/16 10:21 AM

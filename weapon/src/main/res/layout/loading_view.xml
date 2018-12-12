@@ -33,10 +33,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center">
 
-        <com.zkq.alldemo.costomview.LoadingView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"/>
+        <!--<com.zkq.alldemo.costomview.LoadingView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerHorizontal="true"/>-->
 
         <TextView
             android:layout_width="wrap_content"

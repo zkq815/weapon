@@ -3,26 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.zkq.alldemo">
 
-    <!-- 添加可以向外拨打电话的权限 -->
+    <!-- 拨打电话 -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <!-- alipaySDK -S -->
+    <!-- 读取手机状态 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 访问帐户列表 -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!-- 更新设备状态使用证书 -->
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
-    <!-- -End -->
+    <!-- 获取网络状态 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取使用Wi-Fi等WLAN无线网络 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- sd卡写入权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 相机权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" />
+    <!-- 指纹识别权限 -->
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
 
     <application
-        tools:replace="android:name"
         android:name=".application.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        tools:replace="android:name">
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
@@ -50,9 +56,14 @@
         <activity
             android:name=".fortest.scaleanimation.ScaleAnimationActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".fortest.scrollclash.ScrollClashActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".fortest.rxjava_retrofit.RxjavaActivity"
+        <activity
+            android:name=".fortest.scrollclash.ScrollClashActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.rxjava_retrofit.RxjavaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.fingertest.FingerprintMainActivity"
             android:screenOrientation="portrait"/>
     </application>
 

@@ -8,7 +8,6 @@ import android.view.View;
 import com.zkq.alldemo.R;
 import com.zkq.alldemo.databinding.ActivityOkhttpBinding;
 import com.zkq.weapon.base.BaseActivity;
-import com.zkq.weapon.base.BaseActivity;
 import com.zkq.weapon.market.util.ZLog;
 
 import java.io.IOException;
@@ -17,6 +16,12 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
+/**
+ * @author zkq
+ * create:2018/12/11 3:54 PM
+ * email:zkq815@126.com
+ * desc: 测试OKhttp
+ */
 public class OKHttpActivity extends BaseActivity {
     private ActivityOkhttpBinding mBinding;
     @Override

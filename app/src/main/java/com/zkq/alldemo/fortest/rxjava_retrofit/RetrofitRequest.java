@@ -1,6 +1,5 @@
 package com.zkq.alldemo.fortest.rxjava_retrofit;
 
-import com.zkq.weapon.networkframe.response.BaseBean;
 import com.zkq.weapon.networkframe.response.BaseResponse;
 
 import java.util.HashMap;

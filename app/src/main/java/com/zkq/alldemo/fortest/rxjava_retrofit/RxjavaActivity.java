@@ -9,8 +9,6 @@ import com.zkq.weapon.base.BaseActivity;
 import com.zkq.weapon.market.util.ZLog;
 import com.zkq.weapon.networkframe.netbase.RetrofitUtil;
 import com.zkq.weapon.networkframe.response.BaseResponse;
-import com.zkq.weapon.networkframe.response.ResponseTransformer;
-import com.zkq.weapon.networkframe.scheduler.SchedulerProvider;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -23,6 +21,12 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 
+/**
+ * @author zkq
+ * create:2018/12/11 3:56 PM
+ * email:zkq815@126.com
+ * desc: 测试Rxjava
+ */
 public class RxjavaActivity extends BaseActivity {
 
     private ActivityRxjavaBinding mBinding;

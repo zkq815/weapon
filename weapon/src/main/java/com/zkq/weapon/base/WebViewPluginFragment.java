@@ -57,7 +57,7 @@ public class WebViewPluginFragment extends BaseWebPluginFragment {
 
     void load(@NonNull final Bundle bundle) {
 //        final boolean post = bundle.getBoolean(Constants.INTENT_POST, false);
-//        String url = bundle.getString(Constants.WEB_URL, "");
+        String url = bundle.getString(Constants.WEB_URL, "");
 //        if (post) {
 //            final String params = bundle.getString(Constants.INTENT_PARAMS, "");
 //            try {
@@ -66,7 +66,7 @@ public class WebViewPluginFragment extends BaseWebPluginFragment {
 //                e.printStackTrace();
 //            }
 //        } else {
-//            loadUrl(url);
+            loadUrl(url);
 //        }
     }
 

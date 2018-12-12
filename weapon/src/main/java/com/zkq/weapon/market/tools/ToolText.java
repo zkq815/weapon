@@ -1,6 +1,8 @@
 package com.zkq.weapon.market.tools;
 
+import android.graphics.Paint;
 import android.support.annotation.Nullable;
+import android.widget.TextView;
 
 /**
  * @author zkq
@@ -169,6 +171,16 @@ public interface ToolText {
         }
 
         return count;
+    }
+
+    /**
+     * 设置中部划线
+     * */
+    static void addMidLine(TextView tv){
+        //抗锯齿
+        tv.getPaint().setAntiAlias(true);
+        // 设置中划线并加清晰
+        tv.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
     }
 
 

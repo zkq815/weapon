@@ -26,10 +26,10 @@ public interface Constants {
     /**
      * web相关
      * */
-    String WEB_TITLE= "";
-    String WEB_URL = "";
-    String WEB_PUSH_URL = "";
-    String SHOW_REFRESH = "";
+    String WEB_TITLE= "webTitle";
+    String WEB_URL = "webUrl";
+    String WEB_PUSH_URL = "webPushUrl";
+    String SHOW_REFRESH = "webShowFresh";
 
     String CHINA_MOBILE_HEAD = "+86";
 

@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.zkq.alldemo.databinding.ActivityMainBinding;
 import com.zkq.weapon.base.BaseActivity;
+import com.zkq.weapon.base.WebViewPluginActivity;
+import com.zkq.weapon.constants.Constants;
 import com.zkq.weapon.market.util.ZLog;
 
 public class MainActivity extends BaseActivity {
@@ -25,7 +27,9 @@ public class MainActivity extends BaseActivity {
             ".actionbar.MyToolbarActivity",
             ".scaleanimation.ScaleAnimationActivity",
             ".scrollclash.ScrollClashActivity",
-            ".rxjava_retrofit.RxjavaActivity"};
+            ".rxjava_retrofit.RxjavaActivity",
+            ".fingertest.FingerTestActivity",
+            ".fingertest.FingerprintMainActivity"};
     private RecyclerView rv;
 
     @Override
@@ -69,11 +73,21 @@ public class MainActivity extends BaseActivity {
                 itemHolder.tvAcivityName.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        try {
-                            startActivity(new Intent(MainActivity.this, Class.forName(path+info[position])));
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
-                        }
+//                        try {
+//                            startActivity(new Intent(MainActivity.this, Class.forName(path+info[position])));
+
+                            Intent intent = new Intent(MainActivity.this, WebViewPluginActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putString(Constants.WEB_TITLE, "test");
+                            bundle.putString(Constants.WEB_URL, "http://www.baidu.com");
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+
+
+
+//                        } catch (ClassNotFoundException e) {
+//                            e.printStackTrace();
+//                        }
                     }
                 });
             }

@@ -3,7 +3,6 @@ package com.zkq.alldemo.fortest.dialog;
 import android.app.Dialog;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;

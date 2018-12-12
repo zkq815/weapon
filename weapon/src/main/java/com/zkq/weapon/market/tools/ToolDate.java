@@ -7,7 +7,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author zkq
@@ -167,7 +169,6 @@ public interface ToolDate {
         return date.getTime();
     }
 
-
     /**
      * 获取当前日期的字符串形式
      * return String  "2015-06-07"
@@ -251,7 +252,9 @@ public interface ToolDate {
         if (seconds == null || seconds.isEmpty() || seconds.equals("null")) {
             return "";
         }
-        if (format == null || format.isEmpty()) format = "yyyy-MM-dd HH:mm:ss";
+        if (format == null || format.isEmpty()){
+            format = "yyyy-MM-dd HH:mm:ss";
+        }
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         return sdf.format(new Date(Long.valueOf(seconds + "000")));
     }
@@ -272,6 +275,59 @@ public interface ToolDate {
         }
         return "";
     }
+
+    static GregorianCalendar tomorrowStartTime(@NonNull final GregorianCalendar today) {
+        final GregorianCalendar tomorrowStart = new GregorianCalendar(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DAY_OF_MONTH));
+        tomorrowStart.setTimeInMillis(tomorrowStart.getTimeInMillis() + TimeUnit.DAYS.toMillis(1));
+        return tomorrowStart;
+    }
+
+    static boolean sameYear(@NonNull final GregorianCalendar calendar1, @NonNull final GregorianCalendar calendar2) {
+        return calendar1.get(Calendar.YEAR) == calendar2.get(Calendar.YEAR);
+    }
+
+    static boolean sameDay(@NonNull final GregorianCalendar calendar1, @NonNull final GregorianCalendar calendar2) {
+        return calendar1.get(Calendar.DAY_OF_YEAR) == calendar2.get(Calendar.DAY_OF_YEAR);
+    }
+
+    static boolean sameDate(@NonNull final GregorianCalendar calendar1, @NonNull final GregorianCalendar calendar2) {
+        return sameYear(calendar1, calendar2) && sameDay(calendar1, calendar2);
+    }
+
+    static boolean theYearBefore(@NonNull final GregorianCalendar src, @NonNull final GregorianCalendar dest) {
+        return src.get(Calendar.YEAR) < dest.get(Calendar.YEAR);
+    }
+
+    static boolean theDayBefore(@NonNull final GregorianCalendar src, @NonNull final GregorianCalendar dest) {
+        return theYearBefore(src, dest) || sameYear(src, dest) && src.get(Calendar.DAY_OF_YEAR) < dest.get(Calendar.DAY_OF_YEAR);
+    }
+
+    static boolean theYearAfter(@NonNull final GregorianCalendar src, @NonNull final GregorianCalendar dest) {
+        return src.get(Calendar.YEAR) > dest.get(Calendar.YEAR);
+    }
+
+    static boolean theDayAfter(@NonNull final GregorianCalendar src, @NonNull final GregorianCalendar dest) {
+        return theYearAfter(src, dest) || sameYear(src, dest) && src.get(Calendar.DAY_OF_YEAR) > dest.get(Calendar.DAY_OF_YEAR);
+    }
+
+    /**
+     * 防止快速点击，设置保护
+     */
+    // 两次点击按钮之间的点击间隔不能少于100毫秒
+//    int MIN_CLICK_DELAY_TIME = 100;
+//    long lastClickTime = 0;
+//    static boolean isEffectiveClick() {
+//        boolean flag = true;
+//        long curClickTime = System.currentTimeMillis();
+//        if ((curClickTime - lastClickTime) < MIN_CLICK_DELAY_TIME) {
+//            flag = false;
+//        }
+//        lastClickTime = curClickTime;
+//        return flag;
+//    }
+
+
+
 
     static String formatUTC(long l, String strPattern) {
         SimpleDateFormat sdf = null;

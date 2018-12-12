@@ -2,10 +2,6 @@ package com.zkq.weapon.networkframe.response;
 
 import com.google.gson.annotations.SerializedName;
 
-import okhttp3.MediaType;
-import okhttp3.ResponseBody;
-import okio.BufferedSource;
-
 /**
  * @author zkq
  * create:2018/11/16 10:42 AM
@@ -48,18 +44,4 @@ public class BaseResponse<T extends BaseBean> {
         return data;
     }
 
-//    @Override
-//    public MediaType contentType() {
-//        return null;
-//    }
-//
-//    @Override
-//    public long contentLength() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public BufferedSource source() {
-//        return null;
-//    }
 }

@@ -5,11 +5,16 @@ import android.view.View;
 import android.widget.Button;
 
 import com.zkq.alldemo.R;
-import com.zkq.weapon.base.BaseActionBarActivity;
 import com.zkq.weapon.base.BaseActivity;
 import com.zkq.weapon.customview.ColorArcProgressBar;
 import com.zkq.weapon.customview.ColorProgressWithSpeed;
 
+/**
+ * @author zkq
+ * create:2018/12/11 3:56 PM
+ * email:zkq815@126.com
+ * desc: 自定义变色速度仪表
+ */
 public class ColorProgressActivity extends BaseActivity {
 
     private ColorArcProgressBar progressBar,progressBar2,progressBar3,progressBar4;

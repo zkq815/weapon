@@ -6,8 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.zkq.alldemo.BuildConfig;
-import com.zkq.weapon.base.BaseActivity;
-import com.zkq.weapon.market.util.ZLog;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -18,7 +16,7 @@ import java.util.Map;
 /**
  * Activity栈
  *
- * @author yc
+ * @author zkq
  * @since 2017/2/22
  */
 @MainThread

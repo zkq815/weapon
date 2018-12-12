@@ -1,7 +1,6 @@
 package com.zkq.alldemo.fortest.scrollclash;
 
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,6 +12,12 @@ import com.zkq.weapon.base.BaseActivity;
 
 import java.util.ArrayList;
 
+/**
+ * @author zkq
+ * create:2018/12/11 3:55 PM
+ * email:zkq815@126.com
+ * desc: 测试组合滑动
+ */
 public class ScrollClashActivity extends BaseActivity {
     private ActivityScrollClashBinding mBinding;
     private ListView mLV;
@@ -29,8 +34,5 @@ public class ScrollClashActivity extends BaseActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.main_item_viewholder,R.id.tv_activity,dataList);
 
         mBinding.lv.setAdapter(adapter);
-
-
-
     }
 }

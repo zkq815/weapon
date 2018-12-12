@@ -1,6 +1,5 @@
 package com.zkq.weapon.networkframe.response;
 
-import com.zkq.weapon.networkframe.exception.ApiException;
 import com.zkq.weapon.networkframe.exception.CustomException;
 
 import io.reactivex.Observable;
@@ -12,7 +11,7 @@ import io.reactivex.functions.Function;
  * @author zkq
  * create:2018/11/16 10:40 AM
  * email:zkq815@126.com
- * desc:
+ * desc: Rxjava自定义基类
  */
 public class ResponseTransformer {
     static final int RESULT_OK = 200;

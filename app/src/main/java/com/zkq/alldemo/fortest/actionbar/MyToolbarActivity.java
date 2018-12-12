@@ -3,7 +3,6 @@ package com.zkq.alldemo.fortest.actionbar;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Point;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.RadioGroup;
@@ -13,8 +12,12 @@ import com.zkq.alldemo.R;
 import com.zkq.alldemo.databinding.ActivityActionBarDemoBinding;
 import com.zkq.weapon.base.BaseActivity;
 import com.zkq.weapon.customview.RadioButtonTimeTab;
-
-
+/**
+ * @author zkq
+ * create:2018/12/11 3:54 PM
+ * email:zkq815@126.com
+ * desc: 测试ToolBar
+ */
 public class MyToolbarActivity extends BaseActivity {
     private ActivityActionBarDemoBinding mBinding;
     private RadioGroup radioGroup;

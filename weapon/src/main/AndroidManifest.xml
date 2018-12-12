@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zkq.weapon" >
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.zkq.weapon">
     <permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!--通用权限-->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -9,6 +10,12 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/WeaponAppTheme"/>
+        android:theme="@style/WeaponAppTheme">
+
+        <activity android:name=".base.WebViewPluginActivity"
+            android:screenOrientation="portrait"/>
+
+    </application>
+
 
 </manifest>
