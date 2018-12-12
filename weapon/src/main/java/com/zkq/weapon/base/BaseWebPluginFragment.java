@@ -93,7 +93,7 @@ public abstract class BaseWebPluginFragment extends BaseFragment {
     }
 
     private void setupView(View v) {
-//        mLoadingLayout = (LoadingView) v.findViewById(R.id.loading_layout);
+        mLoadingLayout = (LoadingView) v.findViewById(R.id.loading_layout);
         mWebViewContainer = (FrameLayout) v.findViewById(R.id.web_view_container);
         mWebView = new WebView(getContext());
         mWebViewContainer.addView(mWebView);
