@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.util.Base64;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import static com.zkq.weapon.constants.Constants.CHARSET_UTF_8;
+import static com.zkq.weapon.constants.WeaponConstants.CHARSET_UTF_8;
 
 /**
  * @author zkq

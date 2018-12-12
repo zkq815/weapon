@@ -12,9 +12,9 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
-import static com.zkq.weapon.constants.Constants.CHINA_MOBILE_HEAD;
-import static com.zkq.weapon.constants.Constants.ID_CARD_FIRST;
-import static com.zkq.weapon.constants.Constants.ID_CARD_SECOND;
+import static com.zkq.weapon.constants.WeaponConstants.CHINA_MOBILE_HEAD;
+import static com.zkq.weapon.constants.WeaponConstants.ID_CARD_FIRST;
+import static com.zkq.weapon.constants.WeaponConstants.ID_CARD_SECOND;
 
 /**
  * @author zkq

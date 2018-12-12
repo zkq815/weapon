@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.zkq.weapon.customview.LoadingView;
-import com.zkq.weapon.constants.Constants;
+import com.zkq.weapon.constants.WeaponConstants;
 import com.zkq.weapon.market.tools.ToolNet;
 
 /**
@@ -31,7 +31,7 @@ public class WebViewPluginFragment extends BaseWebPluginFragment {
 
     public void setData(final Bundle bundle) {
         if (bundle != null) {
-            final String title = bundle.getString(Constants.WEB_TITLE);
+            final String title = bundle.getString(WeaponConstants.WEB_TITLE);
             if (!TextUtils.isEmpty(title)) {
                 setTitle(title);
             }
@@ -56,12 +56,12 @@ public class WebViewPluginFragment extends BaseWebPluginFragment {
     }
 
     void load(@NonNull final Bundle bundle) {
-//        final boolean post = bundle.getBoolean(Constants.INTENT_POST, false);
-        String url = bundle.getString(Constants.WEB_URL, "");
+//        final boolean post = bundle.getBoolean(WeaponConstants.INTENT_POST, false);
+        String url = bundle.getString(WeaponConstants.WEB_URL, "");
 //        if (post) {
-//            final String params = bundle.getString(Constants.INTENT_PARAMS, "");
+//            final String params = bundle.getString(WeaponConstants.INTENT_PARAMS, "");
 //            try {
-//                postUrl(url, params.getBytes(Constants.ENCODING_UTF8));
+//                postUrl(url, params.getBytes(WeaponConstants.ENCODING_UTF8));
 //            } catch (UnsupportedEncodingException e) {
 //                e.printStackTrace();
 //            }

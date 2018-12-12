@@ -9,7 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
-import static com.zkq.weapon.constants.Constants.EARTH_RADIUS;
+import static com.zkq.weapon.constants.WeaponConstants.EARTH_RADIUS;
 
 /**
  * @author zkq

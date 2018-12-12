@@ -19,11 +19,11 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.zkq.weapon.constants.WeaponConstants;
 import com.zkq.weapon.market.tools.ToolAndroid;
 import com.zkq.weapon.market.tools.ToolNet;
 import com.zkq.weapon.market.util.ZLog;
 import com.zkq.weapon.R;
-import com.zkq.weapon.constants.Constants;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
@@ -123,9 +123,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         try {
             WindowManager.LayoutParams lp = getWindow().getAttributes();
             Field darkFlag = WindowManager.LayoutParams.class
-                    .getDeclaredField(Constants.MEIZU_FLAG_DARK_STATUS_BAR_ICON);
+                    .getDeclaredField(WeaponConstants.MEIZU_FLAG_DARK_STATUS_BAR_ICON);
             Field meizuFlags = WindowManager.LayoutParams.class
-                    .getDeclaredField(Constants.MEIZU_FLAGS);
+                    .getDeclaredField(WeaponConstants.MEIZU_FLAGS);
             darkFlag.setAccessible(true);
             meizuFlags.setAccessible(true);
             int bit = darkFlag.getInt(null);
@@ -145,8 +145,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         Class<? extends Window> clazz = getWindow().getClass();
         try {
             int darkModeFlag = 0;
-            Class<?> layoutParams = Class.forName(Constants.XIAOMI_LAYOUTPARAMS);
-            Field field = layoutParams.getField(Constants.XIAOMI_FLAGS_DARK);
+            Class<?> layoutParams = Class.forName(WeaponConstants.XIAOMI_LAYOUTPARAMS);
+            Field field = layoutParams.getField(WeaponConstants.XIAOMI_FLAGS_DARK);
             darkModeFlag = field.getInt(layoutParams);
             Method extraFlagField = clazz.getMethod("setExtraFlags", int.class, int.class);
             extraFlagField.invoke(window, darkModeFlag, darkModeFlag);

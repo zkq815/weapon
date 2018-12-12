@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.zkq.weapon.R;
-import com.zkq.weapon.constants.Constants;
+import com.zkq.weapon.constants.WeaponConstants;
 import com.zkq.weapon.market.tools.ToolString;
 
 /**
@@ -23,16 +23,16 @@ public class WebViewPluginActivity extends BaseActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mWebFragment = new WebViewPluginFragment();
-        mShowRefresh = getIntent().getBooleanExtra(Constants.SHOW_REFRESH, false);
+        mShowRefresh = getIntent().getBooleanExtra(WeaponConstants.SHOW_REFRESH, false);
         final Bundle data = new Bundle();
-        String targetUrl = getIntent().getStringExtra(Constants.WEB_URL);
-        String pushMsgUrl = getIntent().getStringExtra(Constants.WEB_PUSH_URL);
+        String targetUrl = getIntent().getStringExtra(WeaponConstants.WEB_URL);
+        String pushMsgUrl = getIntent().getStringExtra(WeaponConstants.WEB_PUSH_URL);
         if (ToolString.isNotEmpty(pushMsgUrl)) {
             targetUrl = pushMsgUrl;
         }
 
-        data.putString(Constants.WEB_URL, targetUrl);
-        data.putString(Constants.WEB_TITLE, getIntent().getStringExtra(Constants.WEB_TITLE));
+        data.putString(WeaponConstants.WEB_URL, targetUrl);
+        data.putString(WeaponConstants.WEB_TITLE, getIntent().getStringExtra(WeaponConstants.WEB_TITLE));
         mWebFragment.setArguments(data);
         getSupportFragmentManager().beginTransaction().replace(android.R.id.content, mWebFragment).commit();
     }

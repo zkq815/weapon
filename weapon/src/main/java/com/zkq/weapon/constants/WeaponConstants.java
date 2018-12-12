@@ -6,7 +6,7 @@ package com.zkq.weapon.constants;
  * email: zkq815@126.com
  * desc:
  */
-public interface Constants {
+public interface WeaponConstants {
 
     /**********************************************************************
      *                          String                                    *
