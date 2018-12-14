@@ -9,9 +9,11 @@ import android.os.Build;
 import com.zkq.weapon.market.util.ZLog;
 
 /**
- * Created by popfisher on 2016/11/8.
+ * @author zkq
+ * create:2018/12/12 3:48 PM
+ * email:zkq815@126.com
+ * desc: 锁屏管理
  */
-
 public class KeyguardLockScreenManager {
     public final static int REQUEST_CODE_CONFIRM_DEVICE_CREDENTIALS = 0;
     private KeyguardManager mKeyManager;
@@ -22,6 +24,7 @@ public class KeyguardLockScreenManager {
      */
     public boolean isOpenLockScreenPwd() {
         try {
+            //android4.1
             if (Build.VERSION.SDK_INT < 16) {
                 return false;
             }
@@ -47,6 +50,7 @@ public class KeyguardLockScreenManager {
 
     /**
      * 锁屏密码，注意：有Api版本限制
+     * 测试锁屏密码
      */
     public void showAuthenticationScreen(Activity activity) {
         if (Build.VERSION.SDK_INT < 21) {

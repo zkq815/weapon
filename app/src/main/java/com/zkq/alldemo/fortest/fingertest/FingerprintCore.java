@@ -2,11 +2,11 @@ package com.zkq.alldemo.fortest.fingertest;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
-import android.os.CancellationSignal;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
+import android.support.v4.os.CancellationSignal;
 import android.util.Log;
 
 import com.zkq.weapon.market.util.ZLog;
@@ -14,7 +14,10 @@ import com.zkq.weapon.market.util.ZLog;
 import java.lang.ref.WeakReference;
 
 /**
- * Created by popfisher on 2016/11/7.
+ * @author zkq
+ * create:2018/12/12 3:47 PM
+ * email:zkq815@126.com
+ * desc:
  */
 @TargetApi(Build.VERSION_CODES.M)
 public class FingerprintCore {
@@ -24,11 +27,11 @@ public class FingerprintCore {
     private static final int AUTHENTICATING = 2;
     private int mState = NONE;
 
-    private FingerprintManager mFingerprintManager;
+    private FingerprintManagerCompat mFingerprintManager;
     private WeakReference<IFingerprintResultListener> mFpResultListener;
     private CancellationSignal mCancellationSignal;
     private CryptoObjectCreator mCryptoObjectCreator;
-    private FingerprintManager.AuthenticationCallback mAuthCallback;
+    private FingerprintManagerCompat.AuthenticationCallback mAuthCallback;
 
     private int mFailedTimes = 0;
     private boolean isSupport = false;
@@ -62,7 +65,7 @@ public class FingerprintCore {
         try {
             mCryptoObjectCreator = new CryptoObjectCreator(new CryptoObjectCreator.ICryptoObjectCreateListener() {
                 @Override
-                public void onDataPrepared(FingerprintManager.CryptoObject cryptoObject) {
+                public void onDataPrepared(FingerprintManagerCompat.CryptoObject cryptoObject) {
                     // startAuthenticate(cryptoObject);
                     // 如果需要一开始就进行指纹识别，可以在秘钥数据创建之后就启动指纹认证
                 }
@@ -84,15 +87,15 @@ public class FingerprintCore {
         return mState == AUTHENTICATING;
     }
 
-    private void startAuthenticate(FingerprintManager.CryptoObject cryptoObject) {
+    private void startAuthenticate(FingerprintManagerCompat.CryptoObject cryptoObject) {
         prepareData();
         mState = AUTHENTICATING;
         try {
-            mFingerprintManager.authenticate(cryptoObject, mCancellationSignal, 0, mAuthCallback, null);
+            mFingerprintManager.authenticate(null, 0, mCancellationSignal,  mAuthCallback, null);
             notifyStartAuthenticateResult(true, "");
         } catch (SecurityException e) {
             try {
-                mFingerprintManager.authenticate(null, mCancellationSignal, 0, mAuthCallback, null);
+                mFingerprintManager.authenticate(null, 0, mCancellationSignal,  mAuthCallback, null);
                 notifyStartAuthenticateResult(true, "");
             } catch (SecurityException e2) {
                 notifyStartAuthenticateResult(false, Log.getStackTraceString(e2));
@@ -145,7 +148,7 @@ public class FingerprintCore {
             mCancellationSignal = new CancellationSignal();
         }
         if (mAuthCallback == null) {
-            mAuthCallback = new FingerprintManager.AuthenticationCallback() {
+            mAuthCallback = new FingerprintManagerCompat.AuthenticationCallback() {
                 @Override
                 public void onAuthenticationError(int errMsgId, CharSequence errString) {
                     // 多次指纹密码验证错误后，进入此方法；并且，不能短时间内调用指纹验证,一般间隔从几秒到几十秒不等
@@ -157,7 +160,7 @@ public class FingerprintCore {
                 @Override
                 public void onAuthenticationHelp(int helpMsgId, CharSequence helpString) {
                     mState = NONE;
-                    // 建议根据参数helpString返回值，并且仅针对特定的机型做处理，并不能保证所有厂商返回的状态一致
+                    // 建议根据参数helpString返回值
                     notifyAuthenticationFailed(helpMsgId , helpString.toString());
                     onFailedRetry(helpMsgId, helpString.toString());
                 }
@@ -170,7 +173,7 @@ public class FingerprintCore {
                 }
 
                 @Override
-                public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
+                public void onAuthenticationSucceeded(FingerprintManagerCompat.AuthenticationResult result) {
                     mState = NONE;
                     notifyAuthenticationSucceeded();
                 }
@@ -190,7 +193,8 @@ public class FingerprintCore {
     private void onFailedRetry(int msgId, String helpString) {
         mFailedTimes++;
         ZLog.e("on failed retry time " + mFailedTimes);
-        if (mFailedTimes > 5) { // 每个验证流程最多重试5次，这个根据使用场景而定，验证成功时清0
+        // 每个验证流程最多重试5次，可以指定，验证成功时清0
+        if (mFailedTimes > 5) {
             ZLog.e("on failed retry time more than 5 times");
             return;
         }
@@ -212,7 +216,7 @@ public class FingerprintCore {
     }
 
     /**
-     * 时候有指纹识别硬件支持
+     * 是否有指纹识别硬件支持
      * @return
      */
     public boolean isHardwareDetected() {
@@ -229,7 +233,6 @@ public class FingerprintCore {
      */
     public boolean isHasEnrolledFingerprints() {
         try {
-            // 有些厂商api23之前的版本可能没有做好兼容，这个方法内部会崩溃（redmi note2, redmi note3等）
             return mFingerprintManager.hasEnrolledFingerprints();
         } catch (SecurityException e) {
         } catch (Throwable e) {
@@ -237,10 +240,11 @@ public class FingerprintCore {
         return false;
     }
 
-    public static FingerprintManager getFingerprintManager(Context context) {
-        FingerprintManager fingerprintManager = null;
+    public static FingerprintManagerCompat getFingerprintManager(Context context) {
+        FingerprintManagerCompat fingerprintManager = null;
         try {
-            fingerprintManager = (FingerprintManager) context.getSystemService(Context.FINGERPRINT_SERVICE);
+//            fingerprintManager = (FingerprintManager) context.getSystemService(Context.FINGERPRINT_SERVICE);
+            fingerprintManager = FingerprintManagerCompat.from(context);
         } catch (Throwable e) {
             ZLog.e("have not class FingerprintManager");
         }

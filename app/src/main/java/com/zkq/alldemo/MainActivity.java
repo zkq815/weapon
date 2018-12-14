@@ -20,6 +20,7 @@ import com.zkq.weapon.market.util.ZLog;
 public class MainActivity extends BaseActivity {
     private ActivityMainBinding mBinding;
     private String path = "com.zkq.alldemo.fortest";
+    private RecyclerView rv;
     String[] info = {".colorprogresswithspeed.ColorProgressActivity",
             ".okhttp.OKHttpActivity",
             ".dialog.DialogTestActivity",
@@ -28,9 +29,7 @@ public class MainActivity extends BaseActivity {
             ".scaleanimation.ScaleAnimationActivity",
             ".scrollclash.ScrollClashActivity",
             ".rxjava_retrofit.RxjavaActivity",
-            ".fingertest.FingerTestActivity",
             ".fingertest.FingerprintMainActivity"};
-    private RecyclerView rv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

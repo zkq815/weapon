@@ -1,12 +1,11 @@
 package com.zkq.alldemo.fortest.fingertest;
 
 import android.annotation.TargetApi;
-import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
-import android.util.Log;
+import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
@@ -21,23 +20,24 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
-
 /**
- * Created by popfisher on 2016/11/7.
+ * @author zkq
+ * create:2018/12/12 3:48 PM
+ * email:zkq815@126.com
+ * desc:
  */
-
 @TargetApi(Build.VERSION_CODES.M)
 public class CryptoObjectCreator {
 
     private static final String KEY_NAME = "crypto_object_fingerprint_key";
 
-    private FingerprintManager.CryptoObject mCryptoObject;
+    private FingerprintManagerCompat.CryptoObject mCryptoObject;
     private KeyStore mKeyStore;
     private KeyGenerator mKeyGenerator;
     private Cipher mCipher;
 
     public interface ICryptoObjectCreateListener {
-        void onDataPrepared(FingerprintManager.CryptoObject cryptoObject);
+        void onDataPrepared(FingerprintManagerCompat.CryptoObject cryptoObject);
     }
 
     public CryptoObjectCreator(ICryptoObjectCreateListener createListener) {
@@ -45,7 +45,7 @@ public class CryptoObjectCreator {
         mKeyGenerator = providesKeyGenerator();
         mCipher = providesCipher(mKeyStore);
         if (mKeyStore != null && mKeyGenerator != null && mCipher != null) {
-            mCryptoObject = new FingerprintManager.CryptoObject(mCipher);
+            mCryptoObject = new FingerprintManagerCompat.CryptoObject(mCipher);
         }
         prepareData(createListener);
     }
@@ -152,7 +152,7 @@ public class CryptoObjectCreator {
         }
     }
 
-    public FingerprintManager.CryptoObject getCryptoObject() {
+    public FingerprintManagerCompat.CryptoObject getCryptoObject() {
         return mCryptoObject;
     }
 

@@ -2,8 +2,7 @@ package com.zkq.alldemo.fortest.fingertest;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,22 +11,26 @@ import android.widget.Toast;
 import com.zkq.alldemo.R;
 import com.zkq.weapon.base.BaseActivity;
 
-
+/**
+ * @author zkq
+ * create:2018/12/12 3:44 PM
+ * email:zkq815@126.com
+ * desc: 指纹识别测试
+ */
 public class FingerprintMainActivity extends BaseActivity implements View.OnClickListener {
 
     private FingerprintCore mFingerprintCore;
     private KeyguardLockScreenManager mKeyguardLockScreenManager;
-
     private Toast mToast;
-    private Handler mHandler = new Handler(Looper.getMainLooper());
-
     private ImageView mFingerGuideImg;
     private TextView mFingerGuideTxt;
+    private CheckPopupWindow popupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fingerprint_main);
+        popupWindow = new CheckPopupWindow(this);
         initViews();
         initViewListeners();
         initFingerprintCore();
@@ -71,10 +74,16 @@ public class FingerprintMainActivity extends BaseActivity implements View.OnClic
         }
     }
 
+    /**
+     * 进入系统设置页面
+     * */
     private void enterSysFingerprintSettingPage() {
         FingerprintUtil.openFingerPrintSettingPage(this);
     }
 
+    /**
+     * 取消指纹认证
+     * */
     private void cancelFingerprintRecognition() {
         if (mFingerprintCore.isAuthenticating()) {
             mFingerprintCore.cancelAuthenticate();
@@ -82,6 +91,9 @@ public class FingerprintMainActivity extends BaseActivity implements View.OnClic
         }
     }
 
+    /**
+     * 验证手机指纹
+     * */
     private void startFingerprintRecognitionUnlockScreen() {
         if (mKeyguardLockScreenManager == null) {
             return;
@@ -98,18 +110,24 @@ public class FingerprintMainActivity extends BaseActivity implements View.OnClic
      * 开始指纹识别
      */
     private void startFingerprintRecognition() {
+        //判断是否支持指纹识别
         if (mFingerprintCore.isSupport()) {
+            //判断是否已经有录入的指纹
             if (!mFingerprintCore.isHasEnrolledFingerprints()) {
                 toastTipMsg(R.string.fingerprint_recognition_not_enrolled);
                 FingerprintUtil.openFingerPrintSettingPage(this);
                 return;
             }
-            toastTipMsg(R.string.fingerprint_recognition_tip);
+//            toastTipMsg(R.string.fingerprint_recognition_tip);
             mFingerGuideTxt.setText(R.string.fingerprint_recognition_tip);
             mFingerGuideImg.setBackgroundResource(R.drawable.fingerprint_guide);
+            showPop();
+//            createDialog();
+            //指纹验证是否就绪
             if (mFingerprintCore.isAuthenticating()) {
                 toastTipMsg(R.string.fingerprint_recognition_authenticating);
             } else {
+                //开启指纹验证
                 mFingerprintCore.startAuthenticate();
             }
         } else {
@@ -118,36 +136,50 @@ public class FingerprintMainActivity extends BaseActivity implements View.OnClic
         }
     }
 
+    private void showPop(){
+        popupWindow = new CheckPopupWindow(this);
+        popupWindow.showAtLocation(getWindow().getDecorView(), Gravity.CENTER,0,0);
+    }
+
+
     private void resetGuideViewState() {
         mFingerGuideTxt.setText(R.string.fingerprint_recognition_guide_tip);
         mFingerGuideImg.setBackgroundResource(R.drawable.fingerprint_normal);
     }
 
+    /**
+     * 认证识别回调
+     * */
     private FingerprintCore.IFingerprintResultListener mResultListener = new FingerprintCore.IFingerprintResultListener() {
+        //认证成功
         @Override
         public void onAuthenticateSuccess() {
-            toastTipMsg(R.string.fingerprint_recognition_success);
+            popupWindow.success();
             resetGuideViewState();
         }
 
+        //认证成功
         @Override
         public void onAuthenticateFailed(int helpId) {
-            toastTipMsg(R.string.fingerprint_recognition_failed);
+            popupWindow.fail();
             mFingerGuideTxt.setText(R.string.fingerprint_recognition_failed);
         }
 
+        //认证错误
         @Override
         public void onAuthenticateError(int errMsgId) {
             resetGuideViewState();
             toastTipMsg(R.string.fingerprint_recognition_error);
         }
 
+        //
         @Override
         public void onStartAuthenticateResult(boolean isSuccess) {
 
         }
     };
 
+    //验证手机密码界面返回
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == KeyguardLockScreenManager.REQUEST_CODE_CONFIRM_DEVICE_CREDENTIALS) {
@@ -165,19 +197,7 @@ public class FingerprintMainActivity extends BaseActivity implements View.OnClic
             mToast = Toast.makeText(this, messageId, Toast.LENGTH_SHORT);
         }
         mToast.setText(messageId);
-        mToast.cancel();
-        mHandler.removeCallbacks(mShowToastRunnable);
-        mHandler.postDelayed(mShowToastRunnable, 0);
-    }
-
-    private void toastTipMsg(String message) {
-        if (mToast == null) {
-            mToast = Toast.makeText(this, message, Toast.LENGTH_LONG);
-        }
-        mToast.setText(message);
-        mToast.cancel();
-        mHandler.removeCallbacks(mShowToastRunnable);
-        mHandler.postDelayed(mShowToastRunnable, 200);
+        mToast.show();
     }
 
     private Runnable mShowToastRunnable = new Runnable() {
