@@ -16,7 +16,7 @@ import com.zkq.weapon.market.tools.ToolNet;
  * @author zkq
  * create:2018/11/16 10:17 AM
  * email:zkq815@126.com
- * desc:
+ * desc: webviewFragment类逻辑处理
  */
 public class WebViewPluginFragment extends BaseWebPluginFragment {
 

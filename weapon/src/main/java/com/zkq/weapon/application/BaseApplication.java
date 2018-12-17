@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
@@ -14,7 +16,7 @@ import com.squareup.leakcanary.RefWatcher;
  * email: zkq815@126.com
  * desc:
  */
-public class BaseApplication extends Application {
+public class BaseApplication extends MultiDexApplication {
     @SuppressLint("StaticFieldLeak")
     private static BaseApplication instance;
     @NonNull
@@ -48,7 +50,7 @@ public class BaseApplication extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-//        MultiDex.install(this);
+        MultiDex.install(this);
     }
 
     public static void watch(final Object watchedReference) {

@@ -36,7 +36,7 @@ public class MyApplication extends BaseApplication {
 
     public MyApplication(){
         super();
-        this.application = this;
+        this.application = getBaseApplication();
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,8 +23,10 @@ import android.view.WindowManager;
 import com.zkq.weapon.constants.WeaponConstants;
 import com.zkq.weapon.market.tools.ToolAndroid;
 import com.zkq.weapon.market.tools.ToolNet;
+import com.zkq.weapon.market.tools.ToolString;
 import com.zkq.weapon.market.util.ZLog;
 import com.zkq.weapon.R;
+import com.zkq.weapon.networkframe.response.BaseResponse;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
@@ -39,6 +42,10 @@ import java.util.List;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
+    static final int STATEBAR_HIDE = 0;
+    static final int STATEBAR_TRANSPARENT = 1;
+    static final int STATEBAR_SHOW = 2;
+
     private NetReceiver mNetReceiver;
     private boolean mConnected;
 
@@ -46,13 +53,56 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStatusBarDark();
-        setActionBar();
+        setStateBar(1, R.color.blue_beika);
+        showActionBar(true, "");
         mConnected = ToolNet.isAvailable(this);
     }
 
-    protected void setActionBar(){
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getClass().getSimpleName());
+    protected void showActionBar(boolean isShow, String title) {
+        if (isShow) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            title = ToolString.isEmpty(title) ? getClass().getSimpleName() : title;
+            getSupportActionBar().setTitle(title);
+            getSupportActionBar().show();
+        } else {
+            getSupportActionBar().hide();
+        }
+    }
+
+    protected void setStateBar(int flagCode, int color) {
+
+        //View.SYSTEM_UI_FLAG_VISIBLE：显示状态栏，Activity不全屏显示(恢复到有状态的正常情况)。
+        //View.INVISIBLE：隐藏状态栏，同时Activity会伸展全屏显示。
+        //View.SYSTEM_UI_FLAG_FULLSCREEN：Activity全屏显示，且状态栏被隐藏覆盖掉。
+        //View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN：Activity全屏显示，但状态栏不会被隐藏覆盖，状态栏依然可见，Activity顶端布局部分会被状态遮住。
+        //View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION：效果同View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        //View.SYSTEM_UI_LAYOUT_FLAGS：效果同View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        //View.SYSTEM_UI_FLAG_HIDE_NAVIGATION：隐藏虚拟按键(导航栏)。有些手机会用虚拟按键来代替物理按键。
+        //View.SYSTEM_UI_FLAG_LOW_PROFILE：状态栏显示处于低能显示状态(low profile模式)，状态栏上一些图标显示会被隐藏。
+
+        switch (flagCode) {
+            //状态栏隐藏
+            case STATEBAR_HIDE:
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN
+                        , WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                color = color == 0 ? R.color.blue_beika : color;
+                getWindow().setStatusBarColor(getResources().getColor(color));
+                break;
+            //状态栏透明
+            case STATEBAR_TRANSPARENT:
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+                getWindow().setStatusBarColor(Color.TRANSPARENT);
+                break;
+            //状态栏正常显示
+            case STATEBAR_SHOW:
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                getWindow().setStatusBarColor(getResources().getColor(R.color.blue_beika));
+                break;
+            default:
+                break;
+        }
+
     }
 
     @Override
@@ -86,14 +136,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-                onBackPressed();
+            onBackPressed();
         }
         return super.onOptionsItemSelected(item);
     }
 
     /**
      * flyme系统中关闭沉浸式通知栏，通知栏字体图标、背景都为白色
-     *
      */
     private void setStatusBarDark() {
         Window window = getWindow();
@@ -118,8 +167,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 魅族系统更新状态栏
-     * */
-    private void meizuChangeStatusBar(Window window){
+     */
+    private void meizuChangeStatusBar(Window window) {
         try {
             WindowManager.LayoutParams lp = getWindow().getAttributes();
             Field darkFlag = WindowManager.LayoutParams.class
@@ -140,8 +189,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 小米系统更新状态栏
-     * */
-    private void xiaomiChangeStatusBar(Window window){
+     */
+    private void xiaomiChangeStatusBar(Window window) {
         Class<? extends Window> clazz = getWindow().getClass();
         try {
             int darkModeFlag = 0;
@@ -157,8 +206,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * androidLol更新状态栏
-     * */
-    private void androidLolChangeStatusBar(Window window){
+     */
+    private void androidLolChangeStatusBar(Window window) {
         //取消状态栏透明
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         //添加Flag把状态栏设为可绘制模式
@@ -175,8 +224,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * androidM更新状态栏
-     * */
-    private void androidMChangeStatusBar(Window window){
+     */
+    private void androidMChangeStatusBar(Window window) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
                 && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {//[4.4--5.0)系统
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -187,7 +236,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 接收网络变化广播
-     * */
+     */
     private class NetReceiver extends BroadcastReceiver {
 
         @Override
@@ -275,7 +324,7 @@ public abstract class BaseActivity extends AppCompatActivity {
          * onPermissionsResult
          *
          * @param permissions 权限请求
-         * @param result 返回值
+         * @param result      返回值
          */
         void onPermissionsResult(@NonNull final Permissions permissions, final boolean result);
     }

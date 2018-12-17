@@ -13,9 +13,9 @@ import com.zkq.weapon.market.tools.ToolString;
  * @author zkq
  * create:2018/11/15 4:06 PM
  * email:zkq815@126.com
- * desc:
+ * desc: 网页显示Activity
  */
-public class WebViewPluginActivity extends BaseActionBarActivity {
+public class WebViewPluginActivity extends BaseActivity {
 
     private WebViewPluginFragment mWebFragment;
     private boolean mShowRefresh = false;
@@ -81,9 +81,9 @@ public class WebViewPluginActivity extends BaseActionBarActivity {
         }
         super.onBackPressed();
     }
-
-    @Override
-    protected boolean showBack() {
-        return true;
-    }
+//
+//    @Override
+//    protected boolean showBack() {
+//        return true;
+//    }
 }

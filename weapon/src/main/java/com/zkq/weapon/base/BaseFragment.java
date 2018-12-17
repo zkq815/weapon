@@ -17,7 +17,7 @@ import com.zkq.weapon.market.util.ZLog;
  * @author zkq
  * create:2018/11/15 3:50 PM
  * email:zkq815@126.com
- * desc:
+ * desc: Fragment基类
  */
 public class BaseFragment extends Fragment implements BaseActivity.INetChange {
 

@@ -34,7 +34,7 @@ import java.lang.ref.WeakReference;
  * @author zkq
  * create:2018/11/15 3:51 PM
  * email:zkq815@126.com
- * desc:
+ * desc: webviewFragment基类
  */
 public abstract class BaseWebPluginFragment extends BaseFragment {
 

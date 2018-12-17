@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">alldemo</string>
+    <string name="app_name">weapon</string>
     <!-- 网页 -->
     <string name="refresh">刷新</string>
 
@@ -15,7 +15,7 @@
     <string name="near_shop_no_shop">该城市暂无门店信息</string>
     <string name="near_shop_no_permission">无定位权限，请开启定位权限</string>
 
-
+    <!-- 指纹识别相关功能 -->
     <string name="fingerprint_recognition_start">开始指纹识别</string>
     <string name="fingerprint_recognition_cancel">取消指纹识别</string>
     <string name="fingerprint_recognition_guide_tip">点击“开始指纹识别”按钮</string>
