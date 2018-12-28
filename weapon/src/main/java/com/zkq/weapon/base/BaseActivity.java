@@ -53,7 +53,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStatusBarDark();
-        setStateBar(1, R.color.blue_beika);
+        setStateBar(2, R.color.blue_beika);
         showActionBar(true, "");
         mConnected = ToolNet.isAvailable(this);
     }

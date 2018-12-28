@@ -21,15 +21,16 @@ public class MainActivity extends BaseActivity {
     private ActivityMainBinding mBinding;
     private String path = "com.zkq.alldemo.fortest";
     private RecyclerView rv;
-    String[] info = {".colorprogresswithspeed.ColorProgressActivity",
-            ".okhttp.OKHttpActivity",
-            ".dialog.DialogTestActivity",
-            ".flowlayout.FlowLayoutActivity",
-            ".actionbar.MyToolbarActivity",
-            ".scaleanimation.ScaleAnimationActivity",
-            ".scrollclash.ScrollClashActivity",
-            ".rxjava_retrofit.RxjavaActivity",
-            ".fingertest.FingerprintMainActivity"};
+    String[] info = {".colorprogresswithspeed.ColorProgressActivity"
+            , ".okhttp.OKHttpActivity", ".dialog.DialogTestActivity"
+            , ".flowlayout.FlowLayoutActivity"
+            , ".actionbar.MyToolbarActivity"
+            , ".scaleanimation.ScaleAnimationActivity"
+            , ".scrollclash.ScrollClashActivity"
+            , ".rxjava_retrofit.RxjavaActivity"
+            , ".fingertest.FingerprintMainActivity"
+            , ".countdown.demo1.CountdownActivity"
+            , ".countdown.demo2.Demo2Activity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

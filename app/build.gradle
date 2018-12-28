@@ -11,6 +11,12 @@ android {
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
+//        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName(), viewCodeInt: "10000"]
+            }
+        }
 //        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

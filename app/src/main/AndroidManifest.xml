@@ -20,7 +20,7 @@
     <!-- 相机权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
     <!-- 指纹识别权限 -->
-    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
     <application
         android:name=".application.MyApplication"
@@ -64,7 +64,13 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".fortest.fingertest.FingerprintMainActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.countdown.demo1.CountdownActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.countdown.demo2.Demo2Activity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
