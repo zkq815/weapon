@@ -1,11 +1,12 @@
-package com.zkq.alldemo.fortest.countdown.demo2;
+package com.zkq.alldemo.fortest.countdown.demo1;
 
-import android.graphics.Color;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
+
+import com.zkq.alldemo.fortest.countdown.CountdownBean;
+import com.zkq.alldemo.fortest.countdown.OnTimerListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,6 +68,7 @@ public class TimerUtils {
                 break;
             }
         }
+
     }
 
     public void reStartCountDownById(String id){
@@ -96,6 +98,27 @@ public class TimerUtils {
      */
     public static String[] getNumInTimerStr(String mTimerStr){
         return mTimerStr.split("[^\\d]");
+    }
+
+    /**
+     * 获取倒计时字符串中的数值部分，并使用指定的分隔符替换所有非数字的字符
+     * @param mTimerStr 倒计时字符串
+     * @return 数值数组
+     */
+    public static String getTimerStr(String mTimerStr, String replace){
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i = 0; i < mTimerStr.length(); i++) {
+            if(Character.isDigit(mTimerStr.charAt(i))){
+                stringBuffer.append(mTimerStr.charAt(i));
+            }else{
+                if(i!=0){
+                    if(Character.isDigit(mTimerStr.charAt(i-1))){
+                        stringBuffer.append(mTimerStr.charAt(i));
+                    }
+                }
+            }
+        }
+        return stringBuffer.toString().replaceAll("[^\\d]",replace);
     }
 
     /**
@@ -173,7 +196,7 @@ public class TimerUtils {
 
         StringBuilder showTime = new StringBuilder();
         if (ms >= 0 && bean != null) {
-            String conn = TextUtils.isEmpty(bean.getConnection()) ? ":" : bean.getConnection();
+            String conn = TextUtils.isEmpty(bean.getSplit()) ? ":" : bean.getSplit();
             if (bean.isShowYear()) {
                 showTime.append(map.get(YEAR));
             }
@@ -247,6 +270,84 @@ public class TimerUtils {
         return showTime.toString();
     }
 
+    public static String showTimeWithSplit(long ms, CountdownBean bean, Map<String,String> map){
+        StringBuilder showTime = new StringBuilder();
+        if (ms >= 0 && bean != null) {
+            String conn = TextUtils.isEmpty(bean.getSplit()) ? ":" : bean.getSplit();
+            if (bean.isShowYear()) {
+                showTime.append(map.get(YEAR));
+            }
+
+            if (bean.isShowDay()) {
+                if (!TextUtils.isEmpty(showTime.toString())) {
+                    if(bean.isShowUnit()){
+                        showTime.append(":").append(map.get(DAY));
+                    }else{
+
+                        showTime.append(conn).append(map.get(DAY));
+                    }
+                } else {
+                    showTime.append(map.get(DAY));
+                }
+            }
+
+            if (bean.isShowHour()) {
+                if (!TextUtils.isEmpty(showTime.toString())) {
+                    if(bean.isShowUnit()){
+                        showTime.append(":").append(map.get(HOUR));
+                    }else{
+
+                        showTime.append(conn).append(map.get(HOUR));
+                    }
+                } else {
+                    showTime.append(map.get(HOUR));
+                }
+            }
+
+            if (bean.isShowMinutes()) {
+                if (!TextUtils.isEmpty(showTime.toString())) {
+                    if(bean.isShowUnit()){
+                        showTime.append(":").append(map.get(MINUTE));
+                    }else{
+
+                        showTime.append(conn).append(map.get(MINUTE));
+                    }
+                } else {
+                    showTime.append(map.get(MINUTE));
+                }
+            }
+
+            if (bean.isShowSecond()) {
+                if (!TextUtils.isEmpty(showTime.toString())) {
+                    if(bean.isShowUnit()){
+                        showTime.append(":").append(map.get(SECOND));
+                    }else{
+
+                        showTime.append(conn).append(map.get(SECOND));
+                    }
+                } else {
+                    showTime.append(map.get(SECOND));
+                }
+            }
+
+            if (bean.isShowMillisecond()) {
+                if (!TextUtils.isEmpty(showTime.toString())) {
+                    if(bean.isShowUnit()){
+                        showTime.append(":").append(map.get(MILLISECOND));
+                    }else{
+
+                        showTime.append(conn).append(map.get(MILLISECOND));
+                    }
+                } else {
+                    showTime.append(map.get(MILLISECOND));
+                }
+            }
+        }
+
+        return showTime.toString();
+    }
+
+
     /**
      * 获取展示的时间
      *
@@ -254,7 +355,7 @@ public class TimerUtils {
      */
     public static String getEndShowTime(CountdownBean mBean) {
         StringBuilder endTime = new StringBuilder();
-        String conn = TextUtils.isEmpty(mBean.getConnection()) ? ":" : mBean.getConnection();
+        String conn = TextUtils.isEmpty(mBean.getSplit()) ? ":" : mBean.getSplit();
         if (mBean.isShowYear()) {
             endTime.append("00");
         }

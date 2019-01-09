@@ -1,4 +1,4 @@
-package com.zkq.alldemo.fortest.countdown.demo2;
+package com.zkq.alldemo.fortest.countdown;
 
 /**
  * @author zkq

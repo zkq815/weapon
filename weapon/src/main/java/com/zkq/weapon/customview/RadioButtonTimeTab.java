@@ -81,7 +81,7 @@ public class RadioButtonTimeTab extends AppCompatRadioButton {
         } else {
             mPaintTime.setTypeface(defaultFont);
             mPaintTime.setTextSize(getContext().getResources().getDimension(R.dimen.action_bar_text_color_blue_size));
-            mPaintTime.setColor(ContextCompat.getColor(getContext(), R.color.grey));
+            mPaintTime.setColor(ContextCompat.getColor(getContext(), R.color.grey_cbc));
             mPaintDate.setColor(ContextCompat.getColor(getContext(), R.color.blue_category_selected));
             setBackgroundColor(ContextCompat.getColor(getContext(), R.color.blue_category_selected));
         }

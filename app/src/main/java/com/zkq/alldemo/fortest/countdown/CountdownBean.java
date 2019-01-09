@@ -1,4 +1,4 @@
-package com.zkq.alldemo.fortest.countdown.demo1;
+package com.zkq.alldemo.fortest.countdown;
 
 /**
  * @author:zkq
@@ -6,7 +6,7 @@ package com.zkq.alldemo.fortest.countdown.demo1;
  * email: zkq815@126.com
  * desc:
  */
-public class CountBean {
+public class CountdownBean {
 
     /**
      * 是否显示年
@@ -41,7 +41,22 @@ public class CountBean {
     /**
      * 是否显示毫秒
      */
-    private boolean showMillSecond;
+    private boolean showMillisecond;
+
+    /**
+     * 是否显示单位
+     */
+    private boolean showUnit;
+
+    /**
+     * 背景是否填充
+     */
+    private boolean isFill;
+
+    /**
+     * 边框宽度
+     */
+    private int strokeWidth;
 
     /**
      * 间隔时间
@@ -49,9 +64,9 @@ public class CountBean {
     private int interval;
 
     /**
-     * 连接符号或文字
-     */
-    private String connection;
+     * 背景颜色
+     * */
+    private String bgColor;
 
     /**
      * 文字颜色
@@ -64,18 +79,34 @@ public class CountBean {
     private String textSize;
 
     /**
-     * 背景图片url
-     * */
-    private String bgPicUrl;
+     * 连接符号或文字
+     */
+    private String split;
 
     /**
-     * 背景颜色
-     * */
-    private String bgColor;
+     * 连接符号或文字颜色
+     */
+    private String splitColor;
 
+    /**
+     * 圆角弧度
+     */
+    private int rad;
+
+    /**
+     * 总的倒计时
+     */
     private long times;
 
-    private int state;
+    /**
+     * 文字与背景边框的内边距
+     */
+    private int innerPadding;
+
+    /**
+     * 分隔符与背景边框的外边距
+     */
+    private int outPadding;
 
     public boolean isShowYear() {
         return showYear;
@@ -125,20 +156,52 @@ public class CountBean {
         this.showSecond = showSecond;
     }
 
-    public boolean isShowMillSecond() {
-        return showMillSecond;
+    public boolean isShowMillisecond() {
+        return showMillisecond;
     }
 
-    public void setShowMillSecond(boolean showMillSecond) {
-        this.showMillSecond = showMillSecond;
+    public void setShowMillisecond(boolean showMillisecond) {
+        this.showMillisecond = showMillisecond;
     }
 
-    public String getConnection() {
-        return connection;
+    public boolean isShowUnit() {
+        return showUnit;
     }
 
-    public void setConnection(String connection) {
-        this.connection = connection;
+    public void setShowUnit(boolean showUnit) {
+        this.showUnit = showUnit;
+    }
+
+    public boolean isFill() {
+        return isFill;
+    }
+
+    public void setFill(boolean fill) {
+        isFill = fill;
+    }
+
+    public int getStrokeWidth() {
+        return strokeWidth;
+    }
+
+    public void setStrokeWidth(int strokeWidth) {
+        this.strokeWidth = strokeWidth;
+    }
+
+    public String getSplit() {
+        return split;
+    }
+
+    public void setSplit(String split) {
+        this.split = split;
+    }
+
+    public String getSplitColor() {
+        return splitColor;
+    }
+
+    public void setSplitColor(String splitColor) {
+        this.splitColor = splitColor;
     }
 
     public int getInterval() {
@@ -165,14 +228,6 @@ public class CountBean {
         this.textSize = textSize;
     }
 
-    public String getBgPicUrl() {
-        return bgPicUrl;
-    }
-
-    public void setBgPicUrl(String bgPicUrl) {
-        this.bgPicUrl = bgPicUrl;
-    }
-
     public String getBgColor() {
         return bgColor;
     }
@@ -189,11 +244,27 @@ public class CountBean {
         this.times = times;
     }
 
-    public int getState() {
-        return state;
+    public int getInnerPadding() {
+        return innerPadding;
     }
 
-    public void setState(int state) {
-        this.state = state;
+    public void setInnerPadding(int innerPadding) {
+        this.innerPadding = innerPadding;
+    }
+
+    public int getOutPadding() {
+        return outPadding;
+    }
+
+    public void setOutPadding(int outPadding) {
+        this.outPadding = outPadding;
+    }
+
+    public int getRad() {
+        return rad;
+    }
+
+    public void setRad(int rad) {
+        this.rad = rad;
     }
 }

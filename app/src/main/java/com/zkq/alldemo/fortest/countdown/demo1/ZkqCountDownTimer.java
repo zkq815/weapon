@@ -1,19 +1,18 @@
-package com.zkq.alldemo.fortest.countdown.demo2;
+package com.zkq.alldemo.fortest.countdown.demo1;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.CountDownTimer;
 import android.text.SpannableString;
-import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ForegroundColorSpan;
-import android.text.style.ImageSpan;
 import android.widget.TextView;
 
 import com.zkq.alldemo.R;
+import com.zkq.alldemo.fortest.countdown.CountdownBean;
+import com.zkq.alldemo.fortest.countdown.OnTimerListener;
 import com.zkq.weapon.market.tools.ToolString;
-import com.zkq.weapon.market.util.ZLog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -80,7 +79,7 @@ public class ZkqCountDownTimer extends CountDownTimer {
     /**
      * 默认分割符颜色
      */
-    private int mConnectColor;
+    private int mSplitColor;
 
     /**
      * 设置标记flag,用于控制使得初始化Span的数据一次
@@ -125,8 +124,8 @@ public class ZkqCountDownTimer extends CountDownTimer {
                 ? Color.BLACK : Color.parseColor(bean.getBgColor());
         this.mTimerTextColor = ToolString.isEmpty(bean.getTextColor())
                 ? Color.WHITE : Color.parseColor(bean.getTextColor());
-        this.mConnectColor = ToolString.isEmpty(bean.getConnectColor())
-                ? Color.BLACK : Color.parseColor(bean.getConnectColor());
+        this.mSplitColor = ToolString.isEmpty(bean.getSplitColor())
+                ? Color.BLACK : Color.parseColor(bean.getSplitColor());
         initData();
     }
 
@@ -249,7 +248,7 @@ public class ZkqCountDownTimer extends CountDownTimer {
         }
 
         for (int i = 0; i < nonNumbers.length; i++) {
-            ForegroundColorSpan mGapSpan = new ForegroundColorSpan(mConnectColor);
+            ForegroundColorSpan mGapSpan = new ForegroundColorSpan(mSplitColor);
             mConnectColorSpanList.add(mGapSpan);
 //            ZkqSpan mBackSpan = new ZkqSpan(new ColorDrawable(defaultBgColor), ImageSpan.ALIGN_BOTTOM);
 //            initConnectSpanStyle(mBackSpan);
@@ -275,7 +274,7 @@ public class ZkqCountDownTimer extends CountDownTimer {
      */
     public void initConnectSpanStyle(ZkqSpan mBackSpan) {
         mBackSpan.setTimerPadding(defaultPadding, defaultPadding, defaultPadding, defaultPadding);
-        mBackSpan.setTimerTextColor(mConnectColor);
+        mBackSpan.setTimerTextColor(mSplitColor);
         mBackSpan.setTimerTextSize(mSpanTextSize);
     }
 
@@ -363,7 +362,7 @@ public class ZkqCountDownTimer extends CountDownTimer {
      * @return 倒计时对象
      */
     public ZkqCountDownTimer setTimeConnectColor(int color) {
-        this.mConnectColor = color;
+        this.mSplitColor = color;
         return this;
     }
 

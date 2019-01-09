@@ -59,7 +59,7 @@ public class ToolImage {
         if (filter(url)) {
             return;
         }
-        getPicasso().load(url).fit().centerCrop().placeholder(R.color.grey_placeholder).into(view);
+        getPicasso().load(url).fit().centerCrop().placeholder(R.color.grey_fa).into(view);
     }
 
     public static void loadWithNoHolder(String url, ImageView view) {
@@ -73,7 +73,7 @@ public class ToolImage {
         if (filter(url)) {
             return;
         }
-        getPicasso().load(url).placeholder(R.color.grey_placeholder).into(view, callback);
+        getPicasso().load(url).placeholder(R.color.grey_fa).into(view, callback);
     }
 
     public static void load(String url, ImageView view, Transformation transformation) {
@@ -81,9 +81,9 @@ public class ToolImage {
             return;
         }
         if (transformation != null) {
-            getPicasso().load(url).placeholder(R.color.grey_placeholder).transform(transformation).into(view);
+            getPicasso().load(url).placeholder(R.color.grey_fa).transform(transformation).into(view);
         } else {
-            getPicasso().load(url).placeholder(R.color.grey_placeholder).into(view);
+            getPicasso().load(url).placeholder(R.color.grey_fa).into(view);
         }
     }
 
@@ -102,7 +102,7 @@ public class ToolImage {
         if (filter(url)) {
             return;
         }
-        getPicasso().load(url).fit().placeholder(R.color.grey_placeholder).into(imageView);
+        getPicasso().load(url).fit().placeholder(R.color.grey_fa).into(imageView);
     }
 
     private static boolean filter(final String url) {

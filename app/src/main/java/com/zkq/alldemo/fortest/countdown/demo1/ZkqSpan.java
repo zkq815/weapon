@@ -1,4 +1,4 @@
-package com.zkq.alldemo.fortest.countdown.demo2;
+package com.zkq.alldemo.fortest.countdown.demo1;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -6,8 +6,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.style.ImageSpan;
-
-import com.zkq.weapon.market.util.ZLog;
 
 /**
  * @author zkq

@@ -213,7 +213,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         //添加Flag把状态栏设为可绘制模式
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         //设置状态栏颜色
-        window.setStatusBarColor(getResources().getColor(R.color.default_bg_color));
+        window.setStatusBarColor(getResources().getColor(R.color.grey_e5));
         //全屏显示
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         //设置系统状态栏处于可见状态，android6.0以后可以对状态栏文字颜色和图标进行修改,设置状态栏文字为深色

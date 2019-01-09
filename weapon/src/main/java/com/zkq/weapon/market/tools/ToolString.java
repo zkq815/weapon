@@ -5,10 +5,13 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.UnderlineSpan;
 
 import java.net.URLDecoder;
 import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +26,16 @@ import static com.zkq.weapon.constants.WeaponConstants.ID_CARD_SECOND;
  * desc:
  */
 public interface ToolString {
+    String YEAR = "year";
+    String MONTH = "month";
+    String DAY = "day";
+    String HOUR = "hour";
+    String MINUTE = "minute";
+    String SECOND = "second";
+    String MILLISECOND = "millisecond";
+    int TEN = 10;
+    int HUNDRED = 100;
+    String ZERO_END = "00";
 
     /**
      * 将价格最后面的.0和.00去掉
@@ -257,8 +270,99 @@ public interface ToolString {
         return true;
     }
 
+    /**
+     * 获取倒计时字符串中的数值部分
+     * @param mTimerStr 倒计时字符串
+     * @return 数值数组
+     */
+    static String[] getNumInTimerStr(String mTimerStr){
+        return mTimerStr.split("[^\\d]");
+    }
 
+    /**
+     * 获取倒计时字符串中的数值部分，并使用指定的分隔符替换所有非数字的字符
+     * @param mTimerStr 倒计时字符串
+     * @return 数值数组
+     */
+    static String getTimerStr(String mTimerStr, String replace){
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i = 0; i < mTimerStr.length(); i++) {
+            if(Character.isDigit(mTimerStr.charAt(i))){
+                stringBuffer.append(mTimerStr.charAt(i));
+            }else{
+                if(i!=0){
+                    if(Character.isDigit(mTimerStr.charAt(i-1))){
+                        stringBuffer.append(mTimerStr.charAt(i));
+                    }
+                }
+            }
+        }
+        return stringBuffer.toString().replaceAll("[^\\d]",replace);
+    }
 
+    /**
+     * 得到倒计时中字符串中的非数值的字符串,并把数值过滤掉重新组合成一个字符串，
+     * 并把字符串拆分字符数组，也就是保存倒计时中间的间隔
+     * @param mTimerStr 倒计时字符串
+     * @return 非数字的数组
+     */
+    static char[] getNonNumInTimerStr(String mTimerStr){
+        return mTimerStr.replaceAll("\\d","").toCharArray();
+    }
+
+    /**
+     * 设置内容的Span
+     * @param mSpan 目标span
+     * @param span 子span
+     * @param start 开始下标
+     * @param end 结束下标
+     */
+    static void setContentSpan(SpannableString mSpan, Object span, int start, int end) {
+//        mSpan.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        mSpan.setSpan(span, start, end, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+    }
+
+    /**
+     * 获取时间map，存放各个单位的时间
+     *
+     * @param ms 毫秒
+     * @return 时间map
+     */
+    static Map<String, String> getTimeMap(long ms) {
+        if (ms >= 0) {
+            Map<String, String> tempMap = new HashMap<>();
+            int ss = 1000;
+            int mi = ss * 60;
+            int hh = mi * 60;
+            int dd = hh * 24;
+            int yy = dd * 365;
+
+            long year = ms / yy;
+            long day = (ms - year * yy) / dd;
+            long hour = (ms - year * yy - day * dd) / hh;
+            long minute = (ms - year * yy - day * dd - hour * hh) / mi;
+            long second = (ms - year * yy - day * dd - hour * hh - minute * mi) / ss;
+            long milliSecond = ms - day * dd - hour * hh - minute * mi - second * ss;
+
+            String strMilliSecond = milliSecond <= TEN ? "0" + milliSecond : "" + milliSecond;
+            strMilliSecond = milliSecond < HUNDRED ? "0" + strMilliSecond : "" + milliSecond;
+            if (milliSecond < TEN) {
+                strMilliSecond = ZERO_END + milliSecond;
+            } else if (milliSecond >= TEN && milliSecond < HUNDRED) {
+                strMilliSecond = "0" + milliSecond;
+            }
+
+            tempMap.put(MILLISECOND, strMilliSecond.substring(0, 2));
+            tempMap.put(SECOND, second < TEN ? "0" + second : "" + second);
+            tempMap.put(MINUTE, minute < TEN ? "0" + minute : "" + minute);
+            tempMap.put(HOUR, hour < TEN ? "0" + hour : "" + hour);
+            tempMap.put(DAY, day < TEN ? "0" + day : "" + day);
+            tempMap.put(YEAR, year < TEN ? "0" + year : "" + year);
+
+            return tempMap;
+        }
+        return null;
+    }
 
     static boolean isNotBlank(String str) {
         return !isBlank(str);
