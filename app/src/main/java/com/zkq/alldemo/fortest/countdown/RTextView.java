@@ -102,8 +102,7 @@ public class RTextView extends View {
 	/**
 	 * 计算控件宽高
 	 * 
-	 * @param
-	 *            [0宽,1高]
+	 * @param	 *            [0宽,1高]
 	 * @param oldMeasure
 	 * @author Ruffian
 	 */
