@@ -37,8 +37,6 @@ import java.util.Map;
  */
 public interface ToolFile {
 
-    String MEIZU = "meizu";
-    String DOWNLOAD = "download";
     String PATCH = "patch";
     String TINKER = "tinker";
 

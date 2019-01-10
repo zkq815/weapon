@@ -1,6 +1,8 @@
 package com.zkq.weapon.market.tools;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -127,6 +129,17 @@ public interface ToolAndroid {
         return screenWidth;
     }
 
-
+    /**
+     * 拷贝到剪贴板
+     *
+     * @param context context
+     * @param label   用户可见标签
+     * @param content 实际剪贴的文本内容
+     */
+    static void copyToClipboard(final Context context, final String label, final String content) {
+        final ClipboardManager manager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        final ClipData data = ClipData.newPlainText(label, content);
+        manager.setPrimaryClip(data);
+    }
 
 }

@@ -8,7 +8,7 @@ import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
  * @author zkq
  * time: 2018/12/11:16:07
  * email: zkq815@126.com
- * desc:
+ * desc: 指纹识别
  */
 public interface ToolFinger {
 

@@ -75,7 +75,7 @@ public interface ToolRegex {
      * @return true：符合邮箱规则
      */
     static boolean isEmail(@Nullable String email) {
-        return ToolText.isNotEmpty(email) && Pattern.matches(REGEX_EMAIL, email);
+        return ToolString.isNotEmpty(email) && Pattern.matches(REGEX_EMAIL, email);
     }
 
     /**
@@ -85,7 +85,7 @@ public interface ToolRegex {
      * @return true:符合规则
      * */
     static boolean isPhone(@Nullable String phoneNumber){
-        return ToolText.isNotEmpty(phoneNumber) && Pattern.matches(REGEX_MOBILE, phoneNumber);
+        return ToolString.isNotEmpty(phoneNumber) && Pattern.matches(REGEX_MOBILE, phoneNumber);
     }
 
     /**
@@ -95,7 +95,7 @@ public interface ToolRegex {
      * @return true:符合规则
      * */
     static boolean isChinese(@Nullable String chinese){
-        return ToolText.isNotEmpty(chinese) && Pattern.matches(REGEX_CHINESE, chinese);
+        return ToolString.isNotEmpty(chinese) && Pattern.matches(REGEX_CHINESE, chinese);
     }
 
     /**
@@ -105,7 +105,7 @@ public interface ToolRegex {
      * @return true:符合规则
      * */
     static boolean isIdCard(@Nullable String idCard){
-        return ToolText.isNotEmpty(idCard) && Pattern.matches(REGEX_ID_CARD, idCard);
+        return ToolString.isNotEmpty(idCard) && Pattern.matches(REGEX_ID_CARD, idCard);
     }
 
     /**
@@ -115,7 +115,7 @@ public interface ToolRegex {
      * @return true:符合规则
      * */
     static boolean isUrl(@Nullable String url){
-        return ToolText.isNotEmpty(url) && Pattern.matches(REGEX_URL, url);
+        return ToolString.isNotEmpty(url) && Pattern.matches(REGEX_URL, url);
     }
 
     /**
@@ -125,7 +125,7 @@ public interface ToolRegex {
      * @return true:符合规则
      * */
     static boolean isIP(@Nullable String ip){
-        return ToolText.isNotEmpty(ip) && Pattern.matches(REGEX_IP_ADDR, ip);
+        return ToolString.isNotEmpty(ip) && Pattern.matches(REGEX_IP_ADDR, ip);
     }
 
     /**
@@ -135,7 +135,7 @@ public interface ToolRegex {
      * @return true:只包含数字和英文字母
      */
     static boolean isOnlyEnglishAndNumber(String str) {
-        return ToolText.isNotEmpty(str) && Pattern.matches(REGEX_ENGLISH_NUMBER, str);
+        return ToolString.isNotEmpty(str) && Pattern.matches(REGEX_ENGLISH_NUMBER, str);
     }
 
     /**
@@ -145,7 +145,7 @@ public interface ToolRegex {
      * @return true:只有英文数字和汉字
      */
     static boolean isEnglishNumberAndChinese(String str) {
-        return ToolText.isNotEmpty(str) && Pattern.matches(REGEX_ENGLISH_NUMBER_CHINESE, str);
+        return ToolString.isNotEmpty(str) && Pattern.matches(REGEX_ENGLISH_NUMBER_CHINESE, str);
     }
 
     /**
@@ -155,7 +155,7 @@ public interface ToolRegex {
      * @return true:只有英文数字和汉字
      */
     static boolean isEnglishNumberAndChar(String str) {
-        return ToolText.isNotEmpty(str) && Pattern.matches(REGEX_ENGLISH_NUMBER_CHAR, str);
+        return ToolString.isNotEmpty(str) && Pattern.matches(REGEX_ENGLISH_NUMBER_CHAR, str);
     }
 
     /**
@@ -166,7 +166,7 @@ public interface ToolRegex {
      * @return       true：传入的字符串满足正则规则
      */
     static boolean isMatches(@Nullable String input, @NonNull String regex) {
-        return ToolText.isNotEmpty(input) && Pattern.matches(regex, input);
+        return ToolString.isNotEmpty(input) && Pattern.matches(regex, input);
     }
 
     /**

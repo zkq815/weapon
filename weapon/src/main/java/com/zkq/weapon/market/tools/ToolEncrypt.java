@@ -39,13 +39,13 @@ public interface ToolEncrypt {
      */
     @NonNull
     static String getEncryptString(@Nullable String value, @ENCRYPT_TYPE String encName) {
-        if (ToolText.isEmptyOrNull(value)) {
+        if (ToolString.isEmptyOrNull(value)) {
             return "";
         }
 
         String strDes;
         try {
-            MessageDigest md = MessageDigest.getInstance(ToolText.isNotEmpty(encName)
+            MessageDigest md = MessageDigest.getInstance(ToolString.isNotEmpty(encName)
                     ? encName : ENCRYPT_TYPE.ENC_TYPE_SHA256);
             md.update(value.getBytes());
             strDes = bytes2Hex(md.digest());

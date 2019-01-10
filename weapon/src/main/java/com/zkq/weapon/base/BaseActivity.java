@@ -54,19 +54,23 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setStatusBarDark();
         setStateBar(2, R.color.blue_beika);
-        showActionBar(true, "");
+        showActionBar(true, true,"");
         mConnected = ToolNet.isAvailable(this);
     }
 
-    protected void showActionBar(boolean isShow, String title) {
+    protected void showActionBar(boolean isShow, boolean isShowBack,String title) {
         if (isShow) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            title = ToolString.isEmpty(title) ? getClass().getSimpleName() : title;
+            getSupportActionBar().setDisplayHomeAsUpEnabled(isShowBack);
+            title = ToolString.isEmptyOrNull(title) ? getClass().getSimpleName() : title;
             getSupportActionBar().setTitle(title);
             getSupportActionBar().show();
         } else {
             getSupportActionBar().hide();
         }
+    }
+
+    protected void isShowBack(boolean isShowBack){
+        getSupportActionBar().setDisplayHomeAsUpEnabled(isShowBack);
     }
 
     protected void setStateBar(int flagCode, int color) {

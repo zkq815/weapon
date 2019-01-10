@@ -3,11 +3,14 @@ package com.zkq.weapon.market.tools;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.graphics.Paint;
+import android.support.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.UnderlineSpan;
+import android.widget.TextView;
 
 import java.net.URLDecoder;
 import java.text.DecimalFormat;
@@ -44,7 +47,6 @@ public interface ToolString {
      * @return 处理后的价格
      * */
     static String deleteDecimalPoint(String goodsPrice) {
-
         String price = String.valueOf(goodsPrice);
         String tempPrice = "";
         if (price.contains(".")) {
@@ -59,26 +61,6 @@ public interface ToolString {
             tempPrice = price;
         }
         return tempPrice;
-    }
-
-    /**
-     * 判断字符串是否为空
-     *
-     * @param str 字符串
-     * @return true:为空
-     * */
-    static boolean isEmpty(String str) {
-        return (str == null) || (str.length() == 0);
-    }
-
-    /**
-     * 判断字符串是否为空
-     *
-     * @param str 字符串
-     * @return true:非空
-     * */
-    static boolean isNotEmpty(String str) {
-        return !isEmpty(str);
     }
 
     /**
@@ -105,7 +87,6 @@ public interface ToolString {
     static String meter2KM(int meter){
         int KM = 1000;
         String tempDistance = "";
-
         if(meter < KM){
             //小于一千米，显示米
             tempDistance = String.valueOf(meter+"米");
@@ -113,9 +94,7 @@ public interface ToolString {
             //大于一千米显示千米
             DecimalFormat df = new DecimalFormat("#.00");
             tempDistance = String.valueOf(df.format((double)meter/1000.00)+"千米");
-
         }
-
         return tempDistance;
     }
 
@@ -135,6 +114,16 @@ public interface ToolString {
     }
 
     /**
+     * 设置中部划线
+     * */
+    static void addMidLine(TextView tv){
+        //抗锯齿
+        tv.getPaint().setAntiAlias(true);
+        // 设置中划线并加清晰
+        tv.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
+    }
+
+    /**
      * URL 解码
      *
      * @param url 需要解码的url
@@ -142,20 +131,6 @@ public interface ToolString {
      */
     static String unicodeToUrl(String url) {
         return URLDecoder.decode(url);
-    }
-
-
-    /**
-     * 拷贝到剪贴板
-     *
-     * @param context context
-     * @param label   用户可见标签
-     * @param content 实际剪贴的文本内容
-     */
-    static void copyToClipboard(final Context context, final String label, final String content) {
-        final ClipboardManager manager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        final ClipData data = ClipData.newPlainText(label, content);
-        manager.setPrimaryClip(data);
     }
 
     /**
@@ -197,40 +172,18 @@ public interface ToolString {
      * @param oldString 原始字符串
      * @return 处理后的字符串
      */
-    static String saveAllNumber(String oldString) {
-        String str = "";
-        if (oldString.contains(CHINA_MOBILE_HEAD)) {
-            oldString = oldString.substring(3, oldString.length());
-        }
-        for (int i = 0; i < oldString.length(); i++) {
-            if (Character.isDigit(oldString.charAt(i))) {
-                str = str + oldString.charAt(i);
-            }
-        }
-        return str;
-    }
-
-    /**
-     * 显示填充字符串
-     *
-     * @param original 填充前的字符串，以$1s,$2s表示要填充的地方
-     * @param params   要填充的字符，对应$1s,$2s
-     * @return 填充后的字符串<br>
-     * <p/>
-     * 比如，original传入“今天是$1s月$2s号”,params传入{6,4}，返回字符串为"今天是6月4号".
-     */
-    static String getString(String original, String[] params) {
-        if (original == null || original.length() <= 0 || params == null || params.length <= 0) {
-            return original;
-        }
-        String result = original;
-
-        for (int i = 0; i < params.length; i++) {
-            String old = "$" + (i + 1) + "s";
-            result = result.replace(old, params[i]);
-        }
-
-        return result;
+    static String saveNumStr(String oldString) {
+//        String str = "";
+//        if (oldString.contains(CHINA_MOBILE_HEAD)) {
+//            oldString = oldString.substring(3, oldString.length());
+//        }
+//        for (int i = 0; i < oldString.length(); i++) {
+//            if (Character.isDigit(oldString.charAt(i))) {
+//                str = str + oldString.charAt(i);
+//            }
+//        }
+//        return str;
+        return oldString.replaceAll("[^\\d]","");
     }
 
     /**
@@ -257,57 +210,45 @@ public interface ToolString {
         return result;
     }
 
-    static boolean isBlank(String str) {
-        int strLen;
-        if ((str == null) || ((strLen = str.length()) == 0)) {
-            return true;
-        }
-        for (int i = 0; i < strLen; i++) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
+    /**
+     * 获取字符串中的数值部分
+     * @param oldString 倒计时字符串
+     * @return 数值数组
+     */
+    static String[] getNumStrArray(String oldString){
+        return oldString.split("[^\\d]");
     }
 
     /**
-     * 获取倒计时字符串中的数值部分
-     * @param mTimerStr 倒计时字符串
+     * 获取字符串中的数值部分，并使用指定的分隔符替换所有非数字的字符
+     * @param oldString 原字符串
+     * @param splitStr 分割字符串
      * @return 数值数组
      */
-    static String[] getNumInTimerStr(String mTimerStr){
-        return mTimerStr.split("[^\\d]");
-    }
-
-    /**
-     * 获取倒计时字符串中的数值部分，并使用指定的分隔符替换所有非数字的字符
-     * @param mTimerStr 倒计时字符串
-     * @return 数值数组
-     */
-    static String getTimerStr(String mTimerStr, String replace){
-        StringBuffer stringBuffer = new StringBuffer();
-        for (int i = 0; i < mTimerStr.length(); i++) {
-            if(Character.isDigit(mTimerStr.charAt(i))){
-                stringBuffer.append(mTimerStr.charAt(i));
+    static String getNumStrWithSplit(String oldString, String splitStr){
+        StringBuilder stringBuffer = new StringBuilder();
+        for (int i = 0; i < oldString.length(); i++) {
+            if(Character.isDigit(oldString.charAt(i))){
+                stringBuffer.append(oldString.charAt(i));
             }else{
                 if(i!=0){
-                    if(Character.isDigit(mTimerStr.charAt(i-1))){
-                        stringBuffer.append(mTimerStr.charAt(i));
+                    if(Character.isDigit(oldString.charAt(i-1))){
+                        stringBuffer.append(oldString.charAt(i));
                     }
                 }
             }
         }
-        return stringBuffer.toString().replaceAll("[^\\d]",replace);
+        return stringBuffer.toString().replaceAll("[^\\d]",splitStr);
     }
 
     /**
-     * 得到倒计时中字符串中的非数值的字符串,并把数值过滤掉重新组合成一个字符串，
+     * 获得字符串中的非数值的字符串,并把数值过滤掉重新组合成一个字符串，
      * 并把字符串拆分字符数组，也就是保存倒计时中间的间隔
-     * @param mTimerStr 倒计时字符串
+     * @param oldString 原字符串
      * @return 非数字的数组
      */
-    static char[] getNonNumInTimerStr(String mTimerStr){
-        return mTimerStr.replaceAll("\\d","").toCharArray();
+    static char[] getNonNumInTimerStr(String oldString){
+        return oldString.replaceAll("\\d","").toCharArray();
     }
 
     /**
@@ -318,7 +259,6 @@ public interface ToolString {
      * @param end 结束下标
      */
     static void setContentSpan(SpannableString mSpan, Object span, int start, int end) {
-//        mSpan.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         mSpan.setSpan(span, start, end, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
     }
 
@@ -362,6 +302,180 @@ public interface ToolString {
             return tempMap;
         }
         return null;
+    }
+
+    /**
+     * 将字符串首字母转为小写
+     *
+     * @param str 传入的字符串
+     * @return 首字母小写后的字符串，若传入的字符串去掉首末空格后为空，则返回传入的字符串
+     */
+    @Nullable
+    static String lowerFirstLetter(@Nullable String str) {
+        String trim = trim(str);
+        //trim之后为空，返回原始字符串
+        if (isEmptyOrNull(trim)) {
+            return str;
+        }
+
+        if (!Character.isUpperCase(trim.charAt(0))) {
+            return trim;
+        }
+
+        return String.valueOf((char) (trim.charAt(0) + 32)) + trim.substring(1);
+    }
+
+    /**
+     * 判断是否为空
+     *
+     * @param str 传入的字符串
+     * @return true:为空
+     */
+    static boolean isEmptyOrNull(@Nullable String str) {
+        return str == null || str.length() == 0;
+    }
+
+    /**
+     * 判断字符串是否 非空
+     *
+     * @param str 传入的字符串
+     * @return true:传入的字符串不为空
+     */
+    static boolean isNotEmpty(@Nullable String str) {
+        return !isEmptyOrNull(str);
+    }
+
+    /**
+     * 判断字符串中是否含有指定的文案
+     *
+     * @param str       被检测的字符串
+     * @param searchStr 指定的文案
+     * @return true: 字符串中是否含有要查找的字符串
+     */
+    static boolean contains(@Nullable String str, @Nullable String searchStr) {
+        return !isEmptyOrNull(str) && searchStr != null && str.contains(searchStr);
+    }
+
+    /**
+     * 去除字符串左右空格
+     *
+     * @param str 传入的字符串
+     * @return 去除左右空格后的字符串
+     */
+    @Nullable
+    static String trim(@Nullable String str) {
+        if (isEmptyOrNull(str)) {
+            return str;
+        }
+        return str.trim();
+    }
+
+    /**
+     * 获取字符串的长度
+     *
+     * @param str 字符文本
+     * @return str的长度
+     */
+    static int length(@Nullable String str) {
+        return isEmptyOrNull(str) ? 0 : str.length();
+    }
+
+    /**
+     * 忽略大小写后判断字符串是否相等
+     *
+     * @param str1 要比较的两字符串的其中一个
+     * @param str2 要比较的两字符串的另一个
+     * @return true：忽略大小写后，两字符串相等
+     */
+    static boolean equalsIgnoreCase(@Nullable String str1, @Nullable String str2) {
+        if (str1 == null) {
+            //判断str2是否也为null，都为null，返回true
+            return str2 == null;
+        } else {
+            return str1.equalsIgnoreCase(str2);
+        }
+    }
+
+    /**
+     * 根据传入的拆分字符，拆分字符串
+     *
+     * @param textStr  字符串
+     * @param splitStr 拆分字符
+     * @return 拆分后的字符串数组
+     */
+    @Nullable
+    static String[] split(@Nullable String textStr, @Nullable String splitStr) {
+        if (isEmptyOrNull(textStr)) {
+            return null;
+        }
+        if (splitStr == null) {
+            return new String[]{textStr};
+        }
+        return textStr.split(splitStr);
+    }
+
+    /**
+     * 将字符串首字母转为大写
+     *
+     * @param str 传入的字符串
+     * @return 首字母大写后的字符串，若传入的字符串去掉首末空格后为空，则返回传入的字符串
+     */
+    @Nullable
+    static String upperFirstLetter(@Nullable String str) {
+        String trim = trim(str);
+        //trim之后为空，返回原始字符串
+        if (isEmptyOrNull(trim)) {
+            return str;
+        }
+
+        if (!Character.isLowerCase(trim.charAt(0))) {
+            return trim;
+        }
+
+        return String.valueOf((char) (trim.charAt(0) - 32)) + trim.substring(1);
+    }
+
+    /**
+     * 统计fullStr中包含searchStr的个数，默认返回0
+     *
+     * @param fullStr   长字符串
+     * @param searchStr 要统计的短字符串
+     * @return count  含有的个数
+     */
+    static int countStr(@Nullable String fullStr, @Nullable String searchStr) {
+        if (!contains(fullStr, searchStr) || isEmptyOrNull(searchStr)) {
+            return 0;
+        }
+
+        int count = 0;
+        int index;
+        String temp = fullStr;
+
+        while ((index = temp.indexOf(searchStr)) > -1) {
+            count++;
+            if (temp.length() > index + searchStr.length()) {
+                // fullStr最后几位恰好为searchStr时，此时index + searchStr.length() = temp.length
+                // ，此时substring不会抛索引越界，但建议过滤
+                temp = temp.substring(index + searchStr.length());
+            } else {
+                break;
+            }
+        }
+
+        return count;
+    }
+
+    static boolean isBlank(String str) {
+        int strLen;
+        if ((str == null) || ((strLen = str.length()) == 0)) {
+            return true;
+        }
+        for (int i = 0; i < strLen; i++) {
+            if (!Character.isWhitespace(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     static boolean isNotBlank(String str) {

@@ -35,9 +35,9 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        isShowBack(false);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        ZLog.e(getClass().getSimpleName());
         init();
 //        testParcelable();
     }

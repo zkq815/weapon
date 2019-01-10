@@ -387,7 +387,7 @@ public class CustomCountDown extends View {
                         split = unitArray.get(i);
                     }
                 } else {
-                    split = ToolString.isEmpty(mBean.getSplit()) ? ":" : mBean.getSplit();
+                    split = ToolString.isEmptyOrNull(mBean.getSplit()) ? ":" : mBean.getSplit();
                 }
 
                 canvas.drawText(split, left, -mPaintText.ascent() + innerPadding, mPaintSplit);
@@ -467,7 +467,7 @@ public class CustomCountDown extends View {
 //            mPaintStroke.setShader(linearGradient);
             //背景色重置
             mPaintStroke.setColor(
-                    Color.parseColor(ToolString.isEmpty(bean.getBgColor()) ? DEFAULT_BG_COLOR : bean.getBgColor()));
+                    Color.parseColor(ToolString.isEmptyOrNull(bean.getBgColor()) ? DEFAULT_BG_COLOR : bean.getBgColor()));
             //背景色style
             mPaintStroke.setStyle(bean.isFill() ? Paint.Style.FILL : Paint.Style.STROKE);
             if (bean.isFill()) {
@@ -478,26 +478,26 @@ public class CustomCountDown extends View {
             }
 
             rad = bean.getRad();
-            mTextSize = Integer.parseInt(ToolString.isEmpty(bean.getTextSize())
+            mTextSize = Integer.parseInt(ToolString.isEmptyOrNull(bean.getTextSize())
                     ? String.valueOf(DEFAULT_TEXT_SIZE) : bean.getTextSize());
 
             //文字与背景边框之间的距离
             innerPadding = bean.getInnerPadding() == 0 ? DEFAULT_INNER_PADDING : bean.getInnerPadding();
             //文字颜色
             mPaintText.setColor(
-                    Color.parseColor(ToolString.isEmpty(bean.getTextColor())
+                    Color.parseColor(ToolString.isEmptyOrNull(bean.getTextColor())
                             ? DEFAULT_TEXT_COLOR : bean.getTextColor()));
             //文字大小
             mPaintText.setTextSize(
-                    Integer.parseInt(ToolString.isEmpty(bean.getTextSize())
+                    Integer.parseInt(ToolString.isEmptyOrNull(bean.getTextSize())
                             ? String.valueOf(DEFAULT_TEXT_SIZE) : bean.getTextSize()));
             //连接符颜色
             mPaintSplit.setColor(Color.parseColor(
-                    ToolString.isEmpty(bean.getSplitColor())
+                    ToolString.isEmptyOrNull(bean.getSplitColor())
                             ? DEFAULT_SPLIT_COLOR : bean.getSplitColor()));
             //连接符文字大小
             mPaintSplit.setTextSize(
-                    Integer.parseInt(ToolString.isEmpty(bean.getTextSize())
+                    Integer.parseInt(ToolString.isEmptyOrNull(bean.getTextSize())
                             ? String.valueOf(DEFAULT_TEXT_SIZE) : bean.getTextSize()));
             //分隔符与背景边框之间的距离
             outsidePadding = bean.getInnerPadding() == 0 ? DEFAULT_OUTSIDE_PADDING : bean.getOutPadding();

@@ -23,7 +23,7 @@ public interface ToolEncode {
      */
     @NonNull
     static String encodeUrl(@Nullable String url) {
-        if (ToolText.isEmptyOrNull(url)) {
+        if (ToolString.isEmptyOrNull(url)) {
             return "";
         }
         try {
@@ -42,7 +42,7 @@ public interface ToolEncode {
      */
     @NonNull
     static String decodeUrl(@Nullable String url) {
-        if (ToolText.isEmptyOrNull(url)) {
+        if (ToolString.isEmptyOrNull(url)) {
             return "";
         }
         try {
@@ -62,7 +62,7 @@ public interface ToolEncode {
      */
     @NonNull
     static String encodeBase64(@Nullable String value) {
-        if (ToolText.isEmptyOrNull(value)) {
+        if (ToolString.isEmptyOrNull(value)) {
             return "";
         }
 
@@ -84,7 +84,7 @@ public interface ToolEncode {
      */
     @NonNull
     static String decodeBase64(@Nullable String value) {
-        if (ToolText.isEmptyOrNull(value)) {
+        if (ToolString.isEmptyOrNull(value)) {
             return "";
         }
 

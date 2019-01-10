@@ -7,6 +7,7 @@ import android.os.CountDownTimer;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.ImageSpan;
 import android.widget.TextView;
 
 import com.zkq.alldemo.R;
@@ -120,11 +121,11 @@ public class ZkqCountDownTimer extends CountDownTimer {
         this.mContext = textView.getContext();
         this.mCountdownTime = countdownTime;
         this.mBean = bean;
-        this.defaultBgColor = ToolString.isEmpty(bean.getBgColor())
+        this.defaultBgColor = ToolString.isEmptyOrNull(bean.getBgColor())
                 ? Color.BLACK : Color.parseColor(bean.getBgColor());
-        this.mTimerTextColor = ToolString.isEmpty(bean.getTextColor())
+        this.mTimerTextColor = ToolString.isEmptyOrNull(bean.getTextColor())
                 ? Color.WHITE : Color.parseColor(bean.getTextColor());
-        this.mSplitColor = ToolString.isEmpty(bean.getSplitColor())
+        this.mSplitColor = ToolString.isEmptyOrNull(bean.getSplitColor())
                 ? Color.BLACK : Color.parseColor(bean.getSplitColor());
         initData();
     }
@@ -236,9 +237,8 @@ public class ZkqCountDownTimer extends CountDownTimer {
         nonNumbers = TimerUtils.getNonNumInTimerStr(timeStr);
 
         for (int i = 0; i < numbers.length; i++) {
-//            ZkqSpan mBackSpan = new ZkqSpan(mContext.getDrawable(mDrawableId), ImageSpan.ALIGN_BOTTOM);
             ZkqSpan mBackSpan = null;
-            if(ToolString.isEmpty(mBean.getBgColor())){
+            if(ToolString.isEmptyOrNull(mBean.getBgColor())){
                 mBackSpan = new ZkqSpan(mContext.getDrawable(mDrawableId));
             }else{
                 mBackSpan = new ZkqSpan(new ColorDrawable(defaultBgColor));
@@ -250,9 +250,6 @@ public class ZkqCountDownTimer extends CountDownTimer {
         for (int i = 0; i < nonNumbers.length; i++) {
             ForegroundColorSpan mGapSpan = new ForegroundColorSpan(mSplitColor);
             mConnectColorSpanList.add(mGapSpan);
-//            ZkqSpan mBackSpan = new ZkqSpan(new ColorDrawable(defaultBgColor), ImageSpan.ALIGN_BOTTOM);
-//            initConnectSpanStyle(mBackSpan);
-//            mConnectColorSpanList.add(mBackSpan);
         }
     }
 

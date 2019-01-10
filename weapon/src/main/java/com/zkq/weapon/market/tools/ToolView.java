@@ -131,7 +131,7 @@ public interface ToolView {
      */
     static void setTextColor(@Size(min = 7, max = 9) final String colorString, @Nullable final TextView... textViews) {
         // 空处理
-        if (ToolText.isEmptyOrNull(colorString) || textViews == null || textViews.length == 0) {
+        if (ToolString.isEmptyOrNull(colorString) || textViews == null || textViews.length == 0) {
             return;
         }
 
