@@ -15,10 +15,9 @@ import com.zkq.weapon.application.BaseApplication;
 import okhttp3.OkHttpClient;
 
 /**
- * Created by zkq
+ * @author zkq
  * on 2018/2/24.
  */
-
 public class MyApplication extends BaseApplication {
     @SuppressLint("StaticFieldLeak")
     private static MyApplication instance;
@@ -99,7 +98,6 @@ public class MyApplication extends BaseApplication {
     protected OkHttpClient getOkHttpClient() {
         return new OkHttpClient();
     }
-
 
     public static Application getApp() {
         if (instance != null) {
