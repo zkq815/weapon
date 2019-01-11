@@ -19,17 +19,29 @@ android {
         }
 //        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        weapon {
+            keyAlias 'fuxi'
+            keyPassword 'cjyzkq123'
+            storeFile file('../key/fuxi.jks')
+            storePassword 'cjyzkq123'
+        }
+    }
+
     buildTypes {
         debug {
 //            matchingFallbacks = ['release', 'debug']
-            versionNameSuffix "-debug"
             minifyEnabled false
+            versionNameSuffix "-debug"
             buildConfigField "boolean", "LOG_DEBUG", "true"//是否输出LOG信息
         }
         release {
-            minifyEnabled true
+            minifyEnabled true//开启混淆
+            zipAlignEnabled true//压缩优化
+            signingConfig signingConfigs.weapon//签名文件相关信息
             buildConfigField "boolean", "LOG_DEBUG", "false"//是否输出LOG信息
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 

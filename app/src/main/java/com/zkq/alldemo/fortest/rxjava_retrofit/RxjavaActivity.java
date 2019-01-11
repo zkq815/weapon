@@ -8,7 +8,7 @@ import com.zkq.alldemo.databinding.ActivityRxjavaBinding;
 import com.zkq.weapon.base.BaseActivity;
 import com.zkq.weapon.market.util.ZLog;
 import com.zkq.weapon.networkframe.netbase.RetrofitUtil;
-import com.zkq.weapon.networkframe.response.BaseResponse;
+import com.zkq.weapon.entity.response.BaseResponse;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;

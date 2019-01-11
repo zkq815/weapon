@@ -1,8 +1,8 @@
 package com.zkq.weapon.networkframe.request;
 
 
-import com.zkq.weapon.networkframe.response.BaseResponse;
-import com.zkq.weapon.networkframe.response.BaseResponseBodyBean;
+import com.zkq.weapon.entity.response.BaseResponse;
+import com.zkq.weapon.entity.response.BaseResponseBodyBean;
 
 import java.util.Map;
 

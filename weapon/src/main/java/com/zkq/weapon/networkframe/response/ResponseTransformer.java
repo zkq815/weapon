@@ -1,5 +1,6 @@
 package com.zkq.weapon.networkframe.response;
 
+import com.zkq.weapon.entity.response.BaseResponse;
 import com.zkq.weapon.networkframe.exception.CustomException;
 
 import io.reactivex.Observable;

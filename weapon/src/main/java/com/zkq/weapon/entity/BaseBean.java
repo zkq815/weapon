@@ -1,4 +1,4 @@
-package com.zkq.weapon.networkframe.response;
+package com.zkq.weapon.entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;

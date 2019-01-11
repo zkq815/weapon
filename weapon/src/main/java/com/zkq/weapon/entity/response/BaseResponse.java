@@ -1,6 +1,7 @@
-package com.zkq.weapon.networkframe.response;
+package com.zkq.weapon.entity.response;
 
 import com.google.gson.annotations.SerializedName;
+import com.zkq.weapon.entity.BaseBean;
 
 /**
  * @author zkq

@@ -1,4 +1,4 @@
-package com.zkq.weapon.networkframe.response;
+package com.zkq.weapon.entity.response;
 
 import io.reactivex.annotations.Nullable;
 import okhttp3.MediaType;

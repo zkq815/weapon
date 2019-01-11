@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         tools:context="com.zkq.alldemo.fortest.actionbar.ActionBarDemoActivity">
 
-        <com.zkq.alldemo.fortest.actionbar.MyTextView
+        <com.zkq.alldemo.customview.MyTextView
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:visibility="visible"
             android:layout_marginTop="200dp"
@@ -19,7 +19,7 @@
             android:layout_height="100dp"
             android:text="weweewrwerqwerqerwqewrqerwqewrqwerwerwer" />
 
-        <com.zkq.alldemo.fortest.actionbar.MyBlingTextView
+        <com.zkq.alldemo.customview.MyBlingTextView
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:visibility="visible"
             android:layout_marginTop="100dp"
@@ -27,7 +27,7 @@
             android:layout_height="100dp"
             android:text="1234564564654654654654564654654654"/>
 
-        <com.zkq.alldemo.fortest.actionbar.MyToolBar
+        <com.zkq.alldemo.customview.MyToolBar
             android:visibility="visible"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"

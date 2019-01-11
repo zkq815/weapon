@@ -26,7 +26,6 @@ import com.zkq.weapon.market.tools.ToolNet;
 import com.zkq.weapon.market.tools.ToolString;
 import com.zkq.weapon.market.util.ZLog;
 import com.zkq.weapon.R;
-import com.zkq.weapon.networkframe.response.BaseResponse;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
