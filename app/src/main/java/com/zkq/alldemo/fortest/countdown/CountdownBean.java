@@ -69,14 +69,29 @@ public class CountdownBean {
     private String bgColor;
 
     /**
+     * 背景颜色
+     */
+    private int bgColorCode;
+
+    /**
+     * 背景边框宽度
+     */
+    private int bgStrokeWidth;
+
+    /**
      * 文字颜色
      * */
     private String textColor;
 
     /**
+     * 文字颜色
+     */
+    private int textColorCode;
+
+    /**
      * 文字大小
      * */
-    private String textSize;
+    private int textSize;
 
     /**
      * 连接符号或文字
@@ -84,9 +99,14 @@ public class CountdownBean {
     private String split;
 
     /**
-     * 连接符号或文字颜色
+     * 连接符文字颜色
      */
     private String splitColor;
+
+    /**
+     * 连接符文字颜色
+     */
+    private int splitColorCode;
 
     /**
      * 圆角弧度
@@ -220,11 +240,35 @@ public class CountdownBean {
         this.textColor = textColor;
     }
 
-    public String getTextSize() {
+    public int getBgColorCode() {
+        return bgColorCode;
+    }
+
+    public void setBgColorCode(int bgColorCode) {
+        this.bgColorCode = bgColorCode;
+    }
+
+    public int getTextColorCode() {
+        return textColorCode;
+    }
+
+    public void setTextColorCode(int textColorCode) {
+        this.textColorCode = textColorCode;
+    }
+
+    public int getSplitColorCode() {
+        return splitColorCode;
+    }
+
+    public void setSplitColorCode(int splitColorCode) {
+        this.splitColorCode = splitColorCode;
+    }
+
+    public int getTextSize() {
         return textSize;
     }
 
-    public void setTextSize(String textSize) {
+    public void setTextSize(int textSize) {
         this.textSize = textSize;
     }
 
@@ -266,5 +310,13 @@ public class CountdownBean {
 
     public void setRad(int rad) {
         this.rad = rad;
+    }
+
+    public int getBgStrokeWidth() {
+        return bgStrokeWidth;
+    }
+
+    public void setBgStrokeWidth(int bgStrokeWidth) {
+        this.bgStrokeWidth = bgStrokeWidth;
     }
 }

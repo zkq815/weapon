@@ -5,9 +5,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.zkq.alldemo.fortest.countdown.CountdownBean;
@@ -33,6 +33,12 @@ import java.util.Map;
  * 5.top：是指的是最高字符到baseline的值,即ascent的最大值
  * 6.bottom：是指最低字符到baseline的值,即descent的最大值
  */
+/**
+ * @author zkq
+ * time: 2019/1/4:11:27
+ * email: zkq815@126.com
+ * desc: 倒计时控件
+ */
 public class CustomCountDown extends View {
     /**
      * 默认的文字颜色
@@ -46,6 +52,10 @@ public class CustomCountDown extends View {
      * 默认的背景颜色
      */
     private static final String DEFAULT_BG_COLOR = "#ffffff";
+    /**
+     * 默认的背景边框宽度
+     */
+    private static final int DEFAULT_BG_STROKE_WIDTH = 2;
     /**
      * 默认的分隔符颜色
      */
@@ -68,7 +78,6 @@ public class CustomCountDown extends View {
      */
     private static final int DEFAULT_INTERVAL = 43;
 
-    private Context mContext;
     /**
      * 背景画笔
      */
@@ -103,7 +112,17 @@ public class CustomCountDown extends View {
     /**
      * 背景颜色
      */
-    private String mBgColor;
+    private int mBgColor;
+
+    /**
+     * 背景边框宽度
+     */
+    private int mBgStrokeWidth;
+
+    /**
+     * 背景是否填充
+     */
+    private boolean mBgIsFill;
 
     /**
      * 背景的弧度
@@ -113,20 +132,30 @@ public class CustomCountDown extends View {
     /**
      * 文字颜色
      */
-    private String mTextColor;
+    private int mTextColor;
 
     /**
      * 文字大小
      */
     private int mTextSize;
+
     /**
      * 分隔符颜色
      */
-    private String mSplitColor;
+    private int mSplitColor;
+
     /**
      * 倒计时总时长
      */
     private long times;
+
+    /**
+     * 已经开始的时间
+     * 在RecyclerView列表中使用此控件，一定要传递此参数
+     * 否则在item被回收后,时间会不准确
+     */
+    private long mPassTime;
+
     /**
      * 时间存储map，以年、日、时、分、秒、毫秒为key进行存储
      */
@@ -150,7 +179,7 @@ public class CustomCountDown extends View {
     /**
      * 分隔符
      */
-    private String split = "";
+    private String mSplit = "";
     /**
      * 配置文件bean
      */
@@ -193,7 +222,6 @@ public class CustomCountDown extends View {
 
     public CustomCountDown(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.mContext = context;
         mPaintStroke = new Paint();
         mPaintText = new Paint();
         mPaintSplit = new Paint();
@@ -216,7 +244,9 @@ public class CustomCountDown extends View {
             showTime = TimerUtils.getTimerStr(TimerUtils.getShowTime(timeLeft, mBean, timeMap)
                     , DEFAULT_SPLIT_TEXT);
             setText(showTime);
-            onTimerListener.onEveryTime(timeLeft, key);
+            if (null != onTimerListener) {
+                onTimerListener.onEveryTime(timeLeft, key);
+            }
         }
 
         @Override
@@ -224,7 +254,9 @@ public class CustomCountDown extends View {
             showTime = TimerUtils.getTimerStr(TimerUtils.getEndShowTime(mBean), DEFAULT_SPLIT_TEXT);
             setText(showTime);
             isGoing = false;
-            onTimerListener.onTimeOver(key);
+            if (null != onTimerListener) {
+                onTimerListener.onTimeOver(key);
+            }
         }
     };
 
@@ -232,20 +264,22 @@ public class CustomCountDown extends View {
      * 开启倒计时
      */
     public void start() {
-        if (null != mTimer) {
-            startTime = System.currentTimeMillis();
-            mTimer.start();
-            isGoing = true;
-            isStart = true;
-        }
+
+        startTime = System.currentTimeMillis();
+        mTimer = new CustonCountdowmTimer(times - mPassTime, interval, mListener);
+        mTimer.start();
+        isGoing = true;
+        isStart = true;
     }
 
     /**
      * 暂停倒计时
      */
     public void pause() {
-        startTime = System.currentTimeMillis();
-        cancel();
+        if (isGoing) {
+            startTime = System.currentTimeMillis();
+            cancel();
+        }
     }
 
     /**
@@ -294,6 +328,9 @@ public class CustomCountDown extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         final int minimumWidth = getSuggestedMinimumWidth();
         final int minimumHeight = getSuggestedMinimumHeight();
+        if (null == getParamsBean()) {
+            resetParams(null);
+        }
         int width = measureWidth(minimumWidth, widthMeasureSpec);
         int height = measureHeight(minimumHeight, heightMeasureSpec);
         setMeasuredDimension(width, height);
@@ -309,16 +346,16 @@ public class CustomCountDown extends View {
             case MeasureSpec.AT_MOST:
                 int size = showTime.split(DEFAULT_SPLIT_TEXT).length;
                 if (mBean.isShowUnit()) {
-                    split = "年";
+                    mSplit = "年";
                 } else {
-                    split = mBean.getSplit();
+                    mSplit = mBean.getSplit();
                 }
                 //文字长度 + 两端padding + 文字内边距*2*显示文字区域的个数 + 分割区域的个数 *（2*padding + 分隔符的宽度）
 
                 defaultWidth = (int) mPaintText.measureText(showTime)
                         + getPaddingLeft() + getPaddingRight()
                         + 2 * innerPadding * size
-                        + (2 * outsidePadding + (int) mPaintSplit.measureText(split)) * (size - 1);
+                        + (2 * outsidePadding + (int) mPaintSplit.measureText(mSplit)) * (size - 1);
                 break;
             case MeasureSpec.EXACTLY:
                 defaultWidth = specSize;
@@ -369,7 +406,11 @@ public class CustomCountDown extends View {
         int left = 0;
         for (int i = 0; i < str.length; i++) {
             //绘制背景框
-            canvas.drawRoundRect(left, 0, left + getHeight(), getHeight(), rad, rad, mPaintStroke);
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                canvas.drawRoundRect(left, 0, left + getHeight(), getHeight(), rad, rad, mPaintStroke);
+            }else{
+                canvas.drawRect(left, 0, left + getHeight(), getHeight(), mPaintStroke);
+            }
             //绘制文字，居中显示
             canvas.drawText(str[i]
                     , left + innerPadding
@@ -384,15 +425,15 @@ public class CustomCountDown extends View {
                 //判断是否显示时间单位，当前的索引要小于存储单位的数据列表长度
                 if (mBean.isShowUnit() && i < unitArray.size()) {
                     if (i < unitArray.size()) {
-                        split = unitArray.get(i);
+                        mSplit = unitArray.get(i);
                     }
                 } else {
-                    split = ToolString.isEmptyOrNull(mBean.getSplit()) ? ":" : mBean.getSplit();
+                    mSplit = ToolString.isEmptyOrNull(mBean.getSplit()) ? ":" : mBean.getSplit();
                 }
 
-                canvas.drawText(split, left, -mPaintText.ascent() + innerPadding, mPaintSplit);
+                canvas.drawText(mSplit, left, -mPaintText.ascent() + innerPadding, mPaintSplit);
                 //准备绘制下一个内容的起始位置偏移量
-                left += mPaintSplit.measureText(split) + outsidePadding;
+                left += mPaintSplit.measureText(mSplit) + outsidePadding;
             }
         }
     }
@@ -428,7 +469,7 @@ public class CustomCountDown extends View {
         mPaintSplit.setAntiAlias(true);
         mPaintSplit.setTextSize(50);
         mPaintSplit.setStyle(Paint.Style.STROKE);
-        mPaintSplit.getTextBounds(split, 0, split.length(), mRectSplit);
+        mPaintSplit.getTextBounds(mSplit, 0, mSplit.length(), mRectSplit);
     }
 
     /**
@@ -453,6 +494,10 @@ public class CustomCountDown extends View {
         return this;
     }
 
+    public CountdownBean getParamsBean() {
+        return mBean;
+    }
+
     /**
      * 根据配置项重置配置
      *
@@ -460,63 +505,95 @@ public class CustomCountDown extends View {
      */
     private void resetParams(CountdownBean bean) {
         if (null != bean) {
-//            LinearGradient linearGradient = new LinearGradient(0,0,getHeight(),getHeight()
-//                    ,new int[]{0xff00ffff,0xff000000}
-//                    ,new float[]{0f,1.0f}
-//                    , Shader.TileMode.CLAMP);
-//            mPaintStroke.setShader(linearGradient);
+
+            //倒计时间隔
+            this.interval = bean.getInterval() == 0 ? DEFAULT_INTERVAL : bean.getInterval();
+            //倒计时总时间
+            this.times = bean.getTimes() - mPassTime;
+
+            //背景弧度
+            rad = bean.getRad();
+            //背景颜色 优先取Bean中的colorcode
+            mBgColor = Color.parseColor(ToolString.isEmptyOrNull(bean.getBgColor())
+                    ? DEFAULT_BG_COLOR : bean.getBgColor());
+            mBgColor = (0 == bean.getBgColorCode() ? mBgColor : bean.getBgColorCode());
+            //背景是否填充
+            mBgIsFill = bean.isFill();
+            //背景边框宽度
+            mBgStrokeWidth = bean.getStrokeWidth() == 0
+                    ? DEFAULT_BG_STROKE_WIDTH : bean.getStrokeWidth();
+            //倒计时数字大小
+            mTextSize = bean.getTextSize() == 0 ? DEFAULT_TEXT_SIZE : bean.getTextSize();
+            //倒计时数字颜色 优先取Bean中的colorcode
+            mTextColor = Color.parseColor(ToolString.isEmptyOrNull(bean.getTextColor())
+                    ? DEFAULT_TEXT_COLOR : bean.getTextColor());
+            mTextColor = (0 == bean.getTextColorCode() ? mTextColor : bean.getTextColorCode());
+
+            //分隔符
+            this.mSplit = bean.getSplit();
+            //分隔符字体颜色  优先取Bean中的colorcode
+            mSplitColor = Color.parseColor(ToolString.isEmptyOrNull(bean.getSplitColor())
+                    ? DEFAULT_SPLIT_COLOR : bean.getSplitColor());
+            mSplitColor = (0 == bean.getSplitColorCode() ? mSplitColor : bean.getSplitColorCode());
+            //文字与背景边框之间的距离
+            innerPadding = (0 == bean.getInnerPadding()
+                    ? DEFAULT_INNER_PADDING : bean.getInnerPadding());
+            //分隔符与背景边框之间的距离
+            outsidePadding = (0 == bean.getInnerPadding()
+                    ? DEFAULT_OUTSIDE_PADDING : bean.getOutPadding());
+
+            /********************************画笔重置************************************/
+
             //背景色重置
-            mPaintStroke.setColor(
-                    Color.parseColor(ToolString.isEmptyOrNull(bean.getBgColor()) ? DEFAULT_BG_COLOR : bean.getBgColor()));
+            mPaintStroke.setColor(mBgColor);
             //背景色style
-            mPaintStroke.setStyle(bean.isFill() ? Paint.Style.FILL : Paint.Style.STROKE);
+            mPaintStroke.setStyle(mBgIsFill ? Paint.Style.FILL : Paint.Style.STROKE);
             if (bean.isFill()) {
                 mPaintStroke.setStyle(Paint.Style.FILL);
             } else {
                 mPaintStroke.setStyle(Paint.Style.STROKE);
-                mPaintStroke.setStrokeWidth(bean.getStrokeWidth() == 0 ? 2 : bean.getStrokeWidth());
+                mPaintStroke.setStrokeWidth(mBgStrokeWidth);
             }
-
-            rad = bean.getRad();
-            mTextSize = Integer.parseInt(ToolString.isEmptyOrNull(bean.getTextSize())
-                    ? String.valueOf(DEFAULT_TEXT_SIZE) : bean.getTextSize());
-
-            //文字与背景边框之间的距离
-            innerPadding = bean.getInnerPadding() == 0 ? DEFAULT_INNER_PADDING : bean.getInnerPadding();
             //文字颜色
-            mPaintText.setColor(
-                    Color.parseColor(ToolString.isEmptyOrNull(bean.getTextColor())
-                            ? DEFAULT_TEXT_COLOR : bean.getTextColor()));
+            mPaintText.setColor(mTextColor);
             //文字大小
-            mPaintText.setTextSize(
-                    Integer.parseInt(ToolString.isEmptyOrNull(bean.getTextSize())
-                            ? String.valueOf(DEFAULT_TEXT_SIZE) : bean.getTextSize()));
+            mPaintText.setTextSize(mTextSize);
             //连接符颜色
-            mPaintSplit.setColor(Color.parseColor(
-                    ToolString.isEmptyOrNull(bean.getSplitColor())
-                            ? DEFAULT_SPLIT_COLOR : bean.getSplitColor()));
+            mPaintSplit.setColor(mSplitColor);
             //连接符文字大小
-            mPaintSplit.setTextSize(
-                    Integer.parseInt(ToolString.isEmptyOrNull(bean.getTextSize())
-                            ? String.valueOf(DEFAULT_TEXT_SIZE) : bean.getTextSize()));
-            //分隔符与背景边框之间的距离
-            outsidePadding = bean.getInnerPadding() == 0 ? DEFAULT_OUTSIDE_PADDING : bean.getOutPadding();
-            //倒计时间隔
-            this.interval = bean.getInterval() == 0 ? DEFAULT_INTERVAL : bean.getInterval();
-            //倒计时总时间
-            this.times = bean.getTimes();
-            //初始化倒计时
-            mTimer = new CustonCountdowmTimer(times, interval, mListener);
+            mPaintSplit.setTextSize(mTextSize);
+
+            /******************************画笔重置完成************************************/
             //创建倒计时单位
             setUnitArray(bean);
-            //分隔符
-            this.split = bean.getSplit();
             //创建所有时间集合map
             timeMap = TimerUtils.getTimeMap(bean.getTimes());
             //获取显示时间
-            showTime = TimerUtils.getTimerStr(TimerUtils.getShowTime(bean.getTimes(), bean, timeMap)
+            showTime = TimerUtils.getTimerStr(TimerUtils.getShowTime(times, bean, timeMap)
                     , DEFAULT_SPLIT_TEXT);
+        } else {
+            //如果没有设置参数bean，则设置一个默认参数
+            mBean = setDefaultBean();
+            resetParams(mBean);
         }
+    }
+
+    private CountdownBean setDefaultBean() {
+        CountdownBean bean = new CountdownBean();
+        bean.setBgColor(DEFAULT_BG_COLOR);
+        bean.setTextColor(DEFAULT_TEXT_COLOR);
+        bean.setTextSize(DEFAULT_TEXT_SIZE);
+        bean.setSplitColor(DEFAULT_SPLIT_COLOR);
+        bean.setSplit(DEFAULT_SPLIT_TEXT);
+        bean.setInnerPadding(DEFAULT_INNER_PADDING);
+        bean.setOutPadding(DEFAULT_OUTSIDE_PADDING);
+        bean.setInterval(DEFAULT_INTERVAL);
+        bean.setTimes(0);
+        bean.setShowHour(true);
+        bean.setShowMinutes(true);
+        bean.setShowSecond(true);
+        bean.setShowMillisecond(true);
+        return bean;
     }
 
     /**
@@ -545,7 +622,6 @@ public class CustomCountDown extends View {
         }
     }
 
-
     /**
      * 滚动时调用
      */
@@ -554,7 +630,9 @@ public class CustomCountDown extends View {
         super.onWindowVisibilityChanged(visibility);
         //不可见
         if (visibility == View.INVISIBLE || visibility == View.GONE) {
-            cancel();
+            if (isGoing) {
+                cancel();
+            }
         } else {
             if (!isGoing && isStart) {
                 goon();
@@ -563,16 +641,9 @@ public class CustomCountDown extends View {
     }
 
     @Override
-    public void destroyDrawingCache() {
-        super.destroyDrawingCache();
-        ZLog.e("destroyDrawingCache");
-    }
-
-    @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ZLog.e("onDetachedFromWindow");
-//        destory();
+        destory();
     }
 
     /**
@@ -583,7 +654,6 @@ public class CustomCountDown extends View {
         mPaintText = null;
         mPaintSplit = null;
         unitArray = null;
-        mContext = null;
         onTimerListener = null;
         timeMap = null;
         mBean = null;
@@ -618,27 +688,38 @@ public class CustomCountDown extends View {
         return this;
     }
 
-    public String getBgColor() {
+    public int getBgColor() {
         return mBgColor;
     }
 
+    private CustomCountDown setBgColor(int colorCode) {
+        this.mBgColor = colorCode == 0 ? mBgColor : colorCode;
+
+        return this;
+    }
+
     public CustomCountDown setBgColor(String bgColor) {
-        this.mBgColor = bgColor;
-        mPaintStroke.setColor(
-                Color.parseColor(null == bgColor ? DEFAULT_BG_COLOR : bgColor));
+        this.mBgColor = Color.parseColor(null == bgColor ? DEFAULT_BG_COLOR : bgColor);
+        mPaintStroke.setColor(mBgColor);
         mBean.setBgColor(bgColor);
         return this;
     }
 
-    public String getTextColor() {
+    public int getTextColor() {
         return mTextColor;
     }
 
     public CustomCountDown setTextColor(String textColor) {
-        this.mTextColor = textColor;
-        mBean.setTextColor(textColor);
-        mPaintText.setColor(
-                Color.parseColor(null == textColor ? DEFAULT_BG_COLOR : textColor));
+        this.mTextColor = Color.parseColor(null == textColor ? DEFAULT_BG_COLOR : textColor);
+        mBean.setTextColorCode(mTextColor);
+        mPaintText.setColor(mTextColor);
+        return this;
+    }
+
+    public CustomCountDown setTextColor(int textColor) {
+        this.mTextColor = 0 == textColor ? textColor : mTextColor;
+        mBean.setTextColorCode(mTextColor);
+        mPaintText.setColor(mTextColor);
         return this;
     }
 
@@ -648,20 +729,65 @@ public class CustomCountDown extends View {
 
     public CustomCountDown setTextSize(int textSize) {
         this.mTextSize = textSize;
-        mBean.setTextSize(String.valueOf(textSize));
+        mBean.setTextSize(textSize);
         mPaintText.setTextSize(textSize);
         return this;
     }
 
-    public String getSplitColor() {
+    public int getBgStrokeWidth() {
+        return mBgStrokeWidth;
+    }
+
+    public CustomCountDown setBgStrokeWidth(int mBgStrokeWidth) {
+        this.mBgStrokeWidth = mBgStrokeWidth;
+        mBean.setBgStrokeWidth(mBgStrokeWidth);
+        return this;
+    }
+
+    public boolean isBgIsFill() {
+        return mBgIsFill;
+    }
+
+    public CustomCountDown setBgIsFill(boolean bgIsFill) {
+        this.mBgIsFill = bgIsFill;
+        mBean.setFill(mBgIsFill);
+        return this;
+    }
+
+    public long getTimes() {
+        return times;
+    }
+
+    public CustomCountDown setTimes(long times) {
+        this.times = times;
+        mBean.setTimes(times);
+        return this;
+    }
+
+    public CountdownBean getmBean() {
+        return mBean;
+    }
+
+    public CustomCountDown setmBean(CountdownBean mBean) {
+        this.mBean = mBean;
+        return this;
+    }
+
+    public int getSplitColor() {
         return mSplitColor;
     }
 
+    public CustomCountDown setSplitColor(int splitColor) {
+        this.mSplitColor = (0 == splitColor ? mSplitColor : splitColor);
+        mPaintSplit.setColor(mSplitColor);
+        mBean.setSplitColorCode(mSplitColor);
+        return this;
+    }
+
     public CustomCountDown setSplitColor(String splitColor) {
-        this.mSplitColor = splitColor;
-        mBean.setSplitColor(splitColor);
-        mPaintSplit.setColor(
-                Color.parseColor(null == splitColor ? DEFAULT_BG_COLOR : splitColor));
+        this.mSplitColor = Color.parseColor(null == splitColor ? DEFAULT_BG_COLOR : splitColor);
+        mPaintSplit.setColor(mSplitColor);
+        mBean.setSplitColorCode(mSplitColor);
         return this;
     }
 
@@ -700,19 +826,21 @@ public class CustomCountDown extends View {
     }
 
     public String getSplit() {
-        return split;
+        return mSplit;
     }
 
     public CustomCountDown setSplit(String split) {
-        this.split = split;
+        this.mSplit = ToolString.isEmptyOrNull(split) ? mSplit : split;
         mBean.setSplit(split);
-
         return this;
     }
 
-    public interface TimeCallBack {
-        void onTick(long timeLeft);
+    public long getPassTime() {
+        return mPassTime;
+    }
 
-        void onFinish();
+    public CustomCountDown setPassTime(long passTime) {
+        this.mPassTime = passTime;
+        return this;
     }
 }

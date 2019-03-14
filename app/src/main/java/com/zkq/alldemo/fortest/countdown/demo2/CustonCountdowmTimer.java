@@ -10,9 +10,9 @@ import android.os.CountDownTimer;
  * desc:
  */
 public class CustonCountdowmTimer extends CountDownTimer {
-    private CustomCountDown.TimeCallBack mListener;
+    private TimeCallBack mListener;
 
-    public CustonCountdowmTimer(long millisInFuture, long countDownInterval, CustomCountDown.TimeCallBack listener) {
+    public CustonCountdowmTimer(long millisInFuture, long countDownInterval, TimeCallBack listener) {
         super(millisInFuture, countDownInterval);
         this.mListener = listener;
     }
