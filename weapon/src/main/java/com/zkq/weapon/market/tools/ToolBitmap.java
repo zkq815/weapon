@@ -349,7 +349,8 @@ public interface ToolBitmap {
             //cv.drawText(title,0,40,paint);
         }
         // 保存
-        cv.save(Canvas.ALL_SAVE_FLAG);
+//        cv.save(Canvas.ALL_SAVE_FLAG);
+        cv.save();
         // 存储
         cv.restore();
         return newb;
