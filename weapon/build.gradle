@@ -33,68 +33,80 @@ android {
     }
 }
 
-def supportLibraryVersion = '28.0.0'
-def retrofitVersion = "2.2.0"
-def okhttpVersion = "3.6.0"
-def picassoVersion = "2.5.2"
-def picassoLoadVersion = "1.1.0"
-def glideVersion = "4.8.0"
-def rxjavaVersion = "2.2.3"
-def rxAndroidVersion = "2.1.0"
-def gsonVersion = "2.8.0"
-def fastjsonVersoin = "1.2.51"
 //再高版本的编译报错，应该是有冲突
-def leakcanaryVerison = "1.5.4"
+def leakcanaryVerison = '1.5.4'
 def multidexVersion = '1.0.3'
+def retrofitVersion = '2.2.0'
+def okhttpVersion = '3.6.0'
+def picassoVersion = '2.5.2'
+def picassoLoadVersion = '1.1.0'
+def glideVersion = '4.8.0'
+def rxjavaVersion = '2.2.3'
+def rxAndroidVersion = '2.1.0'
+def gsonVersion = '2.8.0'
+def fastjsonVersoin = '1.2.51'
+def vlayoutVersion = '1.2.8@aar'
+def arouterVersion = '1.3.1'
+def arouterCompilerVersion = '1.1.3'
+def streamVersion = '1.2.1'
+
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api "com.android.support:support-annotations:${supportLibraryVersion}"
+    api "com.android.support:support-annotations:${rootProject.ext.supportLibraryVersion}"
 
     //support
-    api "com.android.support:appcompat-v7:${supportLibraryVersion}"
-    api "com.android.support:recyclerview-v7:${supportLibraryVersion}"
-    api "com.android.support:cardview-v7:${supportLibraryVersion}"
-    api "com.android.support:multidex:${multidexVersion}"
+    api "com.android.support:appcompat-v7:${rootProject.ext.supportLibraryVersion}"
+    api "com.android.support:recyclerview-v7:${rootProject.ext.supportLibraryVersion}"
+    api "com.android.support:cardview-v7:${rootProject.ext.supportLibraryVersion}"
+    api "com.android.support:multidex:${rootProject.ext.multidexVersion}"
 
     // OKHttp
-    api "com.squareup.okhttp3:okhttp:${okhttpVersion}"
-    api "com.squareup.okhttp3:okhttp-urlconnection:${okhttpVersion}"
-    api "com.squareup.okhttp3:logging-interceptor:${okhttpVersion}"
+    api "com.squareup.okhttp3:okhttp:${rootProject.ext.okhttpVersion}"
+    api "com.squareup.okhttp3:okhttp-urlconnection:${rootProject.ext.okhttpVersion}"
+    api "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpVersion}"
 
     // Retrofit
-    api "com.squareup.retrofit2:retrofit:${retrofitVersion}"
-    api "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
-    api "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+    api "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofitVersion}"
 
     // RxJava
-    api "io.reactivex.rxjava2:rxjava:${rxjavaVersion}"
-    api "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}"
+    api "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxjavaVersion}"
+    api "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxAndroidVersion}"
 
     // GSon
-    api "com.google.code.gson:gson:${gsonVersion}"
-    api "com.alibaba:fastjson:${fastjsonVersoin}"
+    api "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"
+    api "com.alibaba:fastjson:${rootProject.ext.fastjsonVersoin}"
 
     // image
-    api "com.squareup.picasso:picasso:${picassoVersion}"
-    api "com.jakewharton.picasso:picasso2-okhttp3-downloader:${picassoLoadVersion}"
+    api "com.squareup.picasso:picasso:${rootProject.ext.picassoVersion}"
+    api "com.jakewharton.picasso:picasso2-okhttp3-downloader:${rootProject.ext.picassoLoadVersion}"
 
     //去除glide中的support依赖包，防止与项目冲突
-    api("com.github.bumptech.glide:glide:${glideVersion}") {
+    api("com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}") {
         exclude group: 'com.android.support'
     }
 
-    // gif
-    api 'pl.droidsonroids.gif:android-gif-drawable:1.1.16'
+    // vLayout
+    api ("com.alibaba.android:vlayout:${rootProject.ext.vlayoutVersion}") {
+        transitive = true
+        exclude(group: 'com.android.support')
+    }
+    /* ARouter注解编译器 */
+    annotationProcessor "com.alibaba:arouter-compiler:${rootProject.ext.arouterCompilerVersion}"
+    api "com.alibaba:arouter-api:${rootProject.ext.arouterVersion}"
+    // lightweight stream
+    api "com.annimon:stream:${rootProject.ext.streamVersion}"
 
     //内存监控
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakcanaryVerison}"
-    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${leakcanaryVerison}"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${rootProject.ext.leakcanaryVerison}"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${rootProject.ext.leakcanaryVerison}"
 
     //Optional, if you use support library fragments:加入后，无法下载资源，编译报错
-    //debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:${leakcanaryVerison}"
+    //debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:${rootProject.ext.leakcanaryVerison}"
 
     //找不到javax.annotation.concurrent.NotThreadSafe的类文件 bug，@ThreadSafe
-    api 'com.google.code.findbugs:jsr305:1.3.9'
+    api "com.google.code.findbugs:jsr305:${rootProject.ext.findBugsVersion}"
     api files('libs/commons-lang.jar')
 }
