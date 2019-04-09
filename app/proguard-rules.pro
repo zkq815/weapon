@@ -116,7 +116,7 @@
     @android.support.annotation.Keep <init>(...);
 }
 
-##-----------------------------保留部分------------------------------------
+##---------------------------通用保留部分------------------------------------
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application
 -keep public class * extends android.app.Service
@@ -134,6 +134,7 @@
 -keep public class * extends android.view.View
 -keep public class * extends android.view.View
 -keep public class com.android.vending.licensing.ILicensingService
+-keep public class android.arch.** { *;}
 #
 -keep class android.support.** {*;}                                             # 保持support包
 
@@ -178,31 +179,23 @@
     void *(**On*Event);
 }
 
-
-## 数据层
-#-keep class **.entity.** { *;}
-#
-## modle
-#-keep class **.model.** { *;}
-#
 #公共库类
 -keep class com.zkq.weapon.** { *;}
 -keep class com.zkq.weapon.entity.**{ *;}
 -keep class com.zkq.weapon.market.glide.** { *;}
 -dontwarn com.zkq.weapon.**
 #控件不混淆
--keep class com.zkq.alldemo.customview.** { *;}
+-keep class com.zkq.weapon.customview.** { *;}
 
 #-libraryjars <java.home>/lib/rt.jar(java/**,javax/security/**,javax/activation/**)
-#
 #保持greenDao的方法不被混淆
--keep class de.greenrobot.dao.** {*;}
--keepclassmembers class * extends de.greenrobot.dao.AbstractDao {
+-keep class org.greenrobot.dao.** {*;}
+-keepclassmembers class * extends org.greenrobot.dao.AbstractDao {
    public static java.lang.String TABLENAME;
 }
 -keep class **$Properties
--keep class org.sqlite.** { *; }
--keep public class android.database.sqlite.**
+#-keep class org.sqlite.** { *; }
+-keep class android.database.sqlite.**
 -keep class com.db.models.**
 -keepclassmembers class com.db.models.** { *; }
 
@@ -212,6 +205,10 @@
 -keep class android.support.v7.internal.view.menu.MenuBuilder
 
 ##---------------------------------webview-----------------------------------
+-dontnote fqcn.of.**
+-dontwarn fqcn.of.**
+-dontnote android.webkit.**
+-dontwarn android.webkit.**
 -keepclassmembers class fqcn.of.javascript.interface.for.webview {
    public *;
 }
@@ -230,7 +227,13 @@
 #alibaba fastjson
 -keepattributes Signature
 -dontwarn com.alibaba.fastjson.**
+-dontnote com.alibaba.fastjson.**
 -keep class com.alibaba.fastjson.** { *; }
+
+#alibaba arouter
+-keep class com.alibaba.android.arouter.**{ *;}
+-dontnote com.alibaba.android.arouter.**
+-dontwarn com.alibaba.android.arouter.**
 
 #glide
 -keep public class * implements com.bumptech.glide.module.GlideModule
@@ -266,6 +269,7 @@
 -keepattributes Exceptions
 # RxJava RxAndroid
 -dontwarn sun.misc.**
+-dontnote io.reactivex.**
 -keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
     long producerIndex;
     long consumerIndex;
@@ -279,6 +283,8 @@
 
 #picasso
 -keep class com.parse.*{ *; }
+-keep class com.squareup.okhttp.** { *; }
+-keep interface com.squareup.okhttp.** { *; }
 -dontwarn com.parse.**
 -dontwarn com.squareup.picasso.**
 -keepclasseswithmembernames class * {
@@ -287,7 +293,7 @@
 
 # Gson
 -keepattributes EnclosingMethod
--keep class sun.misc.Unsafe { *;}
+-keep class sun.misc.** { *;}
 -keep class com.google.gson.** { *;}
 -keep class com.google.gson.stream.** { *;}
 # Application classes that will be serialized/deserialized over Gson

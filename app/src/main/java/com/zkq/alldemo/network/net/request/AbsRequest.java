@@ -2,16 +2,16 @@ package com.zkq.alldemo.network.net.request;
 
 import android.content.Context;
 
-import com.zkq.alldemo.BuildConfig;
 import com.zkq.alldemo.application.MyApplication;
+import com.zkq.alldemo.BuildConfig;
+import com.zkq.weapon.market.tools.ToolAndroid;
 import com.zkq.weapon.market.tools.ToolNet;
-import com.zkq.weapon.market.util.AndrUtils;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author huxiaoyuan on 16/4/11
+ * @author zkq on 16/4/11
  */
 public class AbsRequest {
     //app info
@@ -38,13 +38,13 @@ public class AbsRequest {
     public AbsRequest() {
         final Context context = MyApplication.getInstance();
         this.versionCode = BuildConfig.VERSION_CODE;
-//        this.channelId = BuildConfig.CHANNEL;
-        this.imei = AndrUtils.getIMEI(context);
-        this.androidId = AndrUtils.getPhoneId(context);
-        this.brand = AndrUtils.getBrand();
-        this.model = AndrUtils.getModel();
-        this.sdkVerCode = AndrUtils.getSdkVersionCode();
-        this.mac = AndrUtils.getMacAddress(context);
+        this.channelId = BuildConfig.CHANNEL;
+        this.imei = ToolAndroid.getIMEI(context);
+        this.androidId = ToolAndroid.getPhoneId(context);
+        this.brand = ToolAndroid.getBrand();
+        this.model = ToolAndroid.getModel();
+        this.sdkVerCode = ToolAndroid.getSdkVersionCode();
+        this.mac = ToolAndroid.getMacAddress(context);
         this.netType = ToolNet.getNetworkType(context);
     }
 

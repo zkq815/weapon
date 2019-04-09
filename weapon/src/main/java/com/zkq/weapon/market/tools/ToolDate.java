@@ -313,7 +313,7 @@ public interface ToolDate {
     /**
      * 防止快速点击，设置保护
      */
-    // 两次点击按钮之间的点击间隔不能少于100毫秒
+//    // 两次点击按钮之间的点击间隔不能少于100毫秒
 //    int MIN_CLICK_DELAY_TIME = 100;
 //    long lastClickTime = 0;
 //    static boolean isEffectiveClick() {
@@ -325,9 +325,6 @@ public interface ToolDate {
 //        lastClickTime = curClickTime;
 //        return flag;
 //    }
-
-
-
 
     static String formatUTC(long l, String strPattern) {
         SimpleDateFormat sdf = null;

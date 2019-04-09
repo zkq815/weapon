@@ -134,6 +134,7 @@
 -keep public class * extends android.view.View
 -keep public class * extends android.view.View
 -keep public class com.android.vending.licensing.ILicensingService
+-keep public class android.arch.** { *;}
 #
 -keep class android.support.** {*;}                                             # 保持support包
 
@@ -196,13 +197,13 @@
 #-libraryjars <java.home>/lib/rt.jar(java/**,javax/security/**,javax/activation/**)
 #
 #保持greenDao的方法不被混淆
--keep class de.greenrobot.dao.** {*;}
--keepclassmembers class * extends de.greenrobot.dao.AbstractDao {
+-keep class org.greenrobot.dao.** {*;}
+-keepclassmembers class * extends org.greenrobot.dao.AbstractDao {
    public static java.lang.String TABLENAME;
 }
 -keep class **$Properties
--keep class org.sqlite.** { *; }
--keep public class android.database.sqlite.**
+#-keep class org.sqlite.** { *; }
+-keep class android.database.sqlite.**
 -keep class com.db.models.**
 -keepclassmembers class com.db.models.** { *; }
 
@@ -227,80 +228,86 @@
 }
 ##--------------------------------第三方--------------------------------------------
 
-#alibaba fastjson
--keepattributes Signature
--dontwarn com.alibaba.fastjson.**
--keep class com.alibaba.fastjson.** { *; }
-
-#glide
--keep public class * implements com.bumptech.glide.module.GlideModule
--keep public class * extends com.bumptech.glide.module.AppGlideModule
--keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
-  **[] $VALUES;
-  public *;
-}
-# glide升级4.7.1
--dontwarn com.bumptech.**
-
-#squareup picasso、retrofit、
--keep class com.squareup.** { *;}
--dontwarn com.squareup.**
-
-# OkHttp3
--keep class okhttp3.** { *; }
--keep class okhttp3.internal.**{*;}
--keep interface okhttp3.** { *; }
--dontwarn okio.**
--dontwarn okhttp3.logging.**
--dontwarn okhttp3.**
-
--keep class okio.** { *; }
-#OkHttp3Downloader
--keep class com.jakewharton.**{ *;}
--dontwarn com.jakewharton.**
-
-# Retrofit
--dontwarn retrofit2.**
--keep class retrofit2.** { *; }
--keepattributes Signature
--keepattributes Exceptions
-# RxJava RxAndroid
--dontwarn sun.misc.**
--keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
-    long producerIndex;
-    long consumerIndex;
-}
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
-    rx.internal.util.atomic.LinkedQueueNode producerNode;
-}
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
-    rx.internal.util.atomic.LinkedQueueNode consumerNode;
-}
-
-#picasso
--keep class com.parse.*{ *; }
--dontwarn com.parse.**
--dontwarn com.squareup.picasso.**
--keepclasseswithmembernames class * {
-    native <methods>;
-}
-
-# Gson
--keepattributes EnclosingMethod
--keep class sun.misc.Unsafe { *;}
--keep class com.google.gson.** { *;}
--keep class com.google.gson.stream.** { *;}
-# Application classes that will be serialized/deserialized over Gson
--keep class com.google.gson.examples.android.model.** { *;}
-
+##alibaba fastjson
+#-keepattributes Signature
+#-dontwarn com.alibaba.fastjson.*
+#-keep class com.alibaba.fastjson.** { *; }
+##alibaba arouter
+#-keep class com.alibaba.android.arouter.**{ *;}
+#-dontnote com.alibaba.android.arouter.**
+#-dontwarn com.alibaba.android.arouter.**
 #
--keep class com.sun.** { *;}
--dontwarn com.sun.**
-
-#gif库
--keep class pl.droidsonroids.gif.** { *;}
--dontwarn pl.droidsonroids.**
-
-#org.apache.commons
--keep class org.apache.** { *;}
--dontwarn org.apache.**
+##glide
+#-keep public class * implements com.bumptech.glide.module.GlideModule
+#-keep public class * extends com.bumptech.glide.module.AppGlideModule
+#-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+#  **[] $VALUES;
+#  public *;
+#}
+## glide升级4.7.1
+#-dontwarn com.bumptech.**
+#
+##squareup picasso、retrofit、
+#-keep class com.squareup.** { *;}
+#-dontwarn com.squareup.**
+#
+## OkHttp3
+#-keep class okhttp3.** { *; }
+#-keep class okhttp3.internal.**{*;}
+#-keep interface okhttp3.** { *; }
+#-dontwarn okio.**
+#-dontwarn okhttp3.logging.**
+#-dontwarn okhttp3.**
+#
+#-keep class okio.** { *; }
+##OkHttp3Downloader
+#-keep class com.jakewharton.**{ *;}
+#-dontwarn com.jakewharton.**
+#
+## Retrofit
+#-dontwarn retrofit2.** { *; }
+#-keep class retrofit2.** { *; }
+#-keepattributes Signature
+#-keepattributes Exceptions
+## RxJava RxAndroid
+#-dontwarn sun.misc.**
+#-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+#    long producerIndex;
+#    long consumerIndex;
+#}
+#-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+#    rx.internal.util.atomic.LinkedQueueNode producerNode;
+#}
+#-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+#    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+#}
+#
+##picasso
+##-keep class com.parse.*{ *; }
+#-keep class com.squareup.okhttp.** { *; }
+#-keep interface com.squareup.okhttp.** { *; }
+#-dontwarn com.parse.**
+#-dontwarn com.squareup.picasso.**
+#-keepclasseswithmembernames class * {
+#    native <methods>;
+#}
+#
+## Gson
+#-keepattributes EnclosingMethod
+#-keep class sun.misc.Unsafe { *;}
+#-keep class com.google.gson.** { *;}
+#-keep class com.google.gson.stream.** { *;}
+## Application classes that will be serialized/deserialized over Gson
+#-keep class com.google.gson.examples.android.model.** { *;}
+#
+##
+#-keep class com.sun.** { *;}
+#-dontwarn com.sun.**
+#
+##gif库
+#-keep class pl.droidsonroids.gif.** { *;}
+#-dontwarn pl.droidsonroids.**
+#
+##org.apache.commons
+#-keep class org.apache.** { *;}
+#-dontwarn org.apache.**

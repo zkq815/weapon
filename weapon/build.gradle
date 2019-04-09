@@ -7,49 +7,33 @@ android {
         multiDexEnabled true
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName(), viewCodeInt: "10000"]
+            }
+        }
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-//        debug {
-//            minifyEnabled false
-//            buildConfigField "boolean", "LOG_DEBUG", "true"//是否输出LOG信息
-//        }
-//
-//        release {
-//            minifyEnabled true//开启混淆
-////            shrinkResources true//去除无用资源
-//
-//            buildConfigField "boolean", "LOG_DEBUG", "false"//是否输出LOG信息
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//
-//        }
+        debug {
+            minifyEnabled false
+            buildConfigField "boolean", "LOG_DEBUG", "true"//是否输出LOG信息
+        }
+
+        release {
+            minifyEnabled true//开启混淆
+            buildConfigField "boolean", "LOG_DEBUG", "false"//是否输出LOG信息
+            consumerProguardFiles 'proguard-android.txt'
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-
-//再高版本的编译报错，应该是有冲突
-def leakcanaryVerison = '1.5.4'
-def multidexVersion = '1.0.3'
-def retrofitVersion = '2.2.0'
-def okhttpVersion = '3.6.0'
-def picassoVersion = '2.5.2'
-def picassoLoadVersion = '1.1.0'
-def glideVersion = '4.8.0'
-def rxjavaVersion = '2.2.3'
-def rxAndroidVersion = '2.1.0'
-def gsonVersion = '2.8.0'
-def fastjsonVersoin = '1.2.51'
-def vlayoutVersion = '1.2.8@aar'
-def arouterVersion = '1.3.1'
-def arouterCompilerVersion = '1.1.3'
-def streamVersion = '1.2.1'
-
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')

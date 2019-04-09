@@ -102,7 +102,6 @@ public class MyToolBar extends RelativeLayout {
         });
     }
 
-
     public void setOnTopbarClickListener(TopbarClickLinstener listener){
         this.topbarClickLinstener = listener;
     }

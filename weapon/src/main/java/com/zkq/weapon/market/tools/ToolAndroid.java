@@ -1,19 +1,42 @@
 package com.zkq.weapon.market.tools;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+import android.os.Build;
+import android.os.Environment;
+import android.os.StatFs;
+import android.provider.Settings;
 import android.support.annotation.DimenRes;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.telephony.CellLocation;
+import android.telephony.TelephonyManager;
+import android.telephony.gsm.GsmCellLocation;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.ViewConfiguration;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
+import com.zkq.weapon.market.util.ZLog;
+
+import java.io.File;
 import java.lang.reflect.Method;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 /**
  * @author zkq
@@ -23,18 +46,14 @@ import java.lang.reflect.Method;
  */
 public interface ToolAndroid {
 
-    /**
-     *rom是否是MIUI的标示
-     */
-    String IS_MIUI_ROM_FLAG = "IS_MIUI_ROM_FLAG";
+    int TEMP_LEN = 32;
+
+    String EMPTY = "111111111111111";
 
     /**
-     *rom是否是FLYME的标示
+     * 获取魅族系统操作版本标识
      */
-    String IS_FLYME_ROM_FLAG = "IS_FLYME_ROM_FLAG";
-
     static boolean isMeizuFlymeOS() {
-        /* 获取魅族系统操作版本标识*/
         String meizuFlymeOSFlag = getSystemProperty("ro.build.display.id", "");
         if (null == meizuFlymeOSFlag) {
             return false;
@@ -45,8 +64,11 @@ public interface ToolAndroid {
         }
     }
 
+
+    /**
+     * 获版MIUI标识
+     */
     static boolean isMIUIOS() {
-        /* 获版MIUI标识*/
         String meizuFlymeOSFlag = getSystemProperty("ro.miui.ui.version.name", "");
         if (!TextUtils.isEmpty(meizuFlymeOSFlag)) {
             return true;
@@ -79,8 +101,7 @@ public interface ToolAndroid {
         try {
             PackageManager manager = activity.getPackageManager();
             PackageInfo info = manager.getPackageInfo(activity.getPackageName(), 0);
-            String version = info.versionName;
-            return version;
+            return info.versionName;
         } catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -103,11 +124,9 @@ public interface ToolAndroid {
      */
     static int getScreenWidth(Activity activity) {
         int screenWidth;
-
         WindowManager windowManager = activity.getWindowManager();
         Display display = windowManager.getDefaultDisplay();
         screenWidth = display.getWidth();
-
         return screenWidth;
     }
 
@@ -123,10 +142,12 @@ public interface ToolAndroid {
         return screenHeight;
     }
 
+    /**
+     * 获取手机的屏幕宽度
+     */
     static int getPhoneWidth(Context context) {
         DisplayMetrics dm = context.getApplicationContext().getResources().getDisplayMetrics();
-        int screenWidth = dm.widthPixels;
-        return screenWidth;
+        return dm.widthPixels;
     }
 
     /**
@@ -140,6 +161,333 @@ public interface ToolAndroid {
         final ClipboardManager manager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         final ClipData data = ClipData.newPlainText(label, content);
         manager.setPrimaryClip(data);
+    }
+
+    static TelephonyManager getTelephonyManager(Context context) {
+        return (TelephonyManager) context
+                .getSystemService(Context.TELEPHONY_SERVICE);
+    }
+
+    static WifiManager getWifiManager(@NonNull final Context context) {
+        return (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+    }
+
+    static PackageManager getPackageManager(Context context) {
+        try {
+            return context.getPackageManager();
+        } catch (Exception ignored) {
+
+        }
+        return null;
+    }
+
+    static NetworkInfo getActiveNetworkType(Context context) {
+        ConnectivityManager connectivity = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivity == null) {
+            return null;
+        }
+
+        NetworkInfo activeInfo = connectivity.getActiveNetworkInfo();
+        if (activeInfo == null) {
+            return null;
+        }
+        return activeInfo;
+    }
+
+    static long getVersion(Context ctx) {
+        try {
+            return getPackageManager(ctx).getPackageInfo(ctx.getPackageName(),
+                    0).getLongVersionCode();
+
+        } catch (Exception ignored) {
+
+        }
+        return -1;
+    }
+
+    static String getVersionName(Context ctx) {
+        try {
+            return getPackageManager(ctx).getPackageInfo(ctx.getPackageName(),
+                    0).versionName;
+
+        } catch (Exception ignored) {
+
+        }
+        return null;
+    }
+
+    static String getBrand() {
+        try {
+            return (Build.BRAND.length() > TEMP_LEN ? Build.BRAND.substring(0,
+                    TEMP_LEN) : Build.BRAND).toUpperCase();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+
+    }
+
+    static String getModel() {
+        try {
+            return (Build.MODEL.length() > TEMP_LEN ? Build.MODEL.substring(0,
+                    TEMP_LEN) : Build.MODEL).toUpperCase();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    static int getSdkVersionCode() {
+        return Build.VERSION.SDK_INT;
+    }
+
+    static String getIMSI(Context context) {
+        String imsi = null;
+
+        try {
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                imsi = getTelephonyManager(context).getSubscriberId();
+                return imsi;
+            }
+        } catch (Exception e) {
+            ZLog.e("getIMSI", e);
+        }
+
+        if (TextUtils.isEmpty(imsi)) {
+            return EMPTY;
+        }
+        return imsi;
+    }
+
+    static String getIMEI(Context context) {
+        String imei = null;
+
+        try {
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                imei = getTelephonyManager(context).getDeviceId();
+                return imei;
+            }
+        } catch (Exception e) {
+            ZLog.e("", e);
+        }
+
+        if (TextUtils.isEmpty(imei)) {
+            return EMPTY;
+        }
+        if (imei.length() > 15) {
+            return imei.substring(imei.length() - 15);
+        }
+        return imei;
+    }
+
+    static GsmCellLocation getGsmCellLocation() {
+        CellLocation cell = CellLocation.getEmpty();
+        return (GsmCellLocation) cell;
+    }
+
+    static char getLac() {
+        try {
+            return (char) getGsmCellLocation().getLac();
+        } catch (Exception e) {
+            return '0';
+        }
+
+    }
+
+    static char getCellID() {
+        try {
+            return (char) getGsmCellLocation().getCid();
+        } catch (Exception e) {
+            return 1234;
+        }
+
+    }
+
+    static String getMacAddress(Context context) {
+        WifiManager wifiManager = getWifiManager(context);
+        if (wifiManager != null) {
+            WifiInfo info = wifiManager.getConnectionInfo();
+            if (info != null) {
+                return info.getMacAddress();
+            }
+        }
+        return "";
+
+    }
+
+    static int getMcc(Context context) {
+        return context.getResources().getConfiguration().mcc;
+    }
+
+    static int getMnc(Context context) {
+        return context.getResources().getConfiguration().mnc;
+    }
+
+    static int getWidthPixels(Context context) {
+        return context.getResources().getDisplayMetrics().widthPixels;
+    }
+
+    static int getHeightPixels(Context context) {
+        return context.getResources().getDisplayMetrics().heightPixels;
+    }
+
+    static float getDensity(Context context) {
+        return context.getResources().getDisplayMetrics().density;
+    }
+
+    static String getPhoneId(Context context) {
+        try {
+            return Settings.Secure
+                    .getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    static int getMemSize() {
+        try {
+            File root = Environment.getDataDirectory();
+            StatFs sf = new StatFs(root.getPath());
+            return (int) ((long) sf.getBlockCount() * (long) sf.getBlockSize() / (1024 * 1024));
+
+        } catch (Exception ignored) {
+
+        }
+        return -1;
+    }
+
+    /**
+     * 获取虚拟按键的高度
+     */
+    static int getNavigationBarHeight(Context context) {
+        int result = 0;
+        if (hasNavBar(context)) {
+            Resources res = context.getResources();
+            int resourceId = res.getIdentifier("navigation_bar_height", "dimen", "android");
+            if (resourceId > 0) {
+                result = res.getDimensionPixelSize(resourceId);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 检查是否存在虚拟按键栏
+     *
+     * @param context 上下文
+     * @return 是否有虚拟按键
+     */
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    static boolean hasNavBar(Context context) {
+        Resources res = context.getResources();
+        int resourceId = res.getIdentifier("config_showNavigationBar", "bool", "android");
+        if (resourceId != 0) {
+            boolean hasNav = res.getBoolean(resourceId);
+            // check override flag
+            String sNavBarOverride = getNavBarOverride();
+            if ("1".equals(sNavBarOverride)) {
+                hasNav = false;
+            } else if ("0".equals(sNavBarOverride)) {
+                hasNav = true;
+            }
+            return hasNav;
+        } else { // fallback
+            return !ViewConfiguration.get(context).hasPermanentMenuKey();
+        }
+    }
+
+    /**
+     * 判断虚拟按键栏是否重写
+     *
+     * @return
+     */
+    static String getNavBarOverride() {
+        String sNavBarOverride = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            try {
+                Class c = Class.forName("android.os.SystemProperties");
+                Method m = c.getDeclaredMethod("get", String.class);
+                m.setAccessible(true);
+                sNavBarOverride = (String) m.invoke(null, "qemu.hw.mainkeys");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return sNavBarOverride;
+    }
+
+    /**
+     * 获取状态栏高度
+     */
+    static int getStateBarHeight(Context context) {
+        int statusBarHeight1 = -1;
+        //获取status_bar_height资源的ID
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            //根据资源ID获取响应的尺寸值
+            statusBarHeight1 = context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return statusBarHeight1;
+    }
+
+    /**
+     * 判断手机上有没有安装某一应用
+     *
+     * @param packageName 应用包名
+     * @return true已安装   false未安装
+     */
+
+    static boolean isAppInstalled(Context context, String packageName) {
+        PackageInfo packageInfo;
+        try {
+            packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            packageInfo = null;
+            e.printStackTrace();
+        }
+        return packageInfo != null;
+    }
+
+    static String sHA1(Context context) {
+        try {
+            PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_SIGNATURES);
+            byte[] cert = info.signatures[0].toByteArray();
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            byte[] publicKey = md.digest(cert);
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < publicKey.length; i++) {
+                String appendString = Integer.toHexString(0xFF & publicKey[i])
+                        .toUpperCase(Locale.US);
+                if (appendString.length() == 1) {
+                    hexString.append("0");
+                }
+                hexString.append(appendString);
+                hexString.append(":");
+            }
+            String result = hexString.toString();
+            return result.substring(0, result.length() - 1);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 获取手机的屏幕高度
+     */
+    static int getScreenHeight(Context context) {
+        DisplayMetrics dm = context.getApplicationContext().getResources().getDisplayMetrics();
+        return dm.heightPixels;
+    }
+
+    /**
+     * 隐藏软键盘
+     */
+    static void hideSoftKeyboard(Activity activity) {
+        ((InputMethodManager) activity.getBaseContext().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
 }

@@ -11,13 +11,6 @@ android {
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
-//        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [moduleName: project.getName(), viewCodeInt: "10000"]
-            }
-        }
-//        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
@@ -43,6 +36,17 @@ android {
             buildConfigField "boolean", "LOG_DEBUG", "false"//是否输出LOG信息
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    flavorDimensions "channel"
+
+    productFlavors {
+        yingyongbao {}
+    }
+
+    productFlavors.all { flavor ->
+        flavor.dimension = "channel"
+        flavor.buildConfigField "String", "CHANNEL", "\"$name\""
     }
 
     dataBinding {
