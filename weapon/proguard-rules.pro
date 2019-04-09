@@ -180,6 +180,7 @@
 
 #公共库类
 -keep class com.zkq.weapon.** { *;}
+-keep interface com.zkq.weapon.** { *;}
 #-keep class com.zkq.weapon.entity.**{ *;}
 #-keep class com.zkq.weapon.market.glide.** { *;}
 #-keep class com.zkq.weapon.customview.** { *;}

@@ -24,7 +24,7 @@ android {
         }
 
         release {
-            minifyEnabled true//开启混淆
+//            minifyEnabled true//开启混淆
             buildConfigField "boolean", "LOG_DEBUG", "false"//是否输出LOG信息
             consumerProguardFiles 'proguard-android.txt'
         }
