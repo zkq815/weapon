@@ -132,7 +132,6 @@
 -keep public class * extends com.zkq.weapon.base.BaseWebPluginFragment
 -keep public class * extends com.zkq.weapon.base.WebViewPluginFragment
 -keep public class * extends android.view.View
--keep public class * extends android.view.View
 -keep public class com.android.vending.licensing.ILicensingService
 -keep public class android.arch.** { *;}
 #
@@ -179,20 +178,13 @@
     void *(**On*Event);
 }
 
-
-## 数据层
-#-keep class **.entity.** { *;}
-#
-## modle
-#-keep class **.model.** { *;}
-#
 #公共库类
 -keep class com.zkq.weapon.** { *;}
--keep class com.zkq.weapon.entity.**{ *;}
--keep class com.zkq.weapon.market.glide.** { *;}
+#-keep class com.zkq.weapon.entity.**{ *;}
+#-keep class com.zkq.weapon.market.glide.** { *;}
+#-keep class com.zkq.weapon.customview.** { *;}
 -dontwarn com.zkq.weapon.**
 #控件不混淆
--keep class com.zkq.weapon.customview.** { *;}
 
 #-libraryjars <java.home>/lib/rt.jar(java/**,javax/security/**,javax/activation/**)
 #
@@ -202,7 +194,7 @@
    public static java.lang.String TABLENAME;
 }
 -keep class **$Properties
-#-keep class org.sqlite.** { *; }
+-keep class org.sqlite.** { *; }
 -keep class android.database.sqlite.**
 -keep class com.db.models.**
 -keepclassmembers class com.db.models.** { *; }
