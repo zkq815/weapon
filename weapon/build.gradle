@@ -63,6 +63,9 @@ dependencies {
     api "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"
     api "com.alibaba:fastjson:${rootProject.ext.fastjsonVersoin}"
 
+    // eventbus
+    api "org.greenrobot:eventbus:${rootProject.ext.eventbusVersion}"
+
     // image
     api "com.squareup.picasso:picasso:${rootProject.ext.picassoVersion}"
     api "com.jakewharton.picasso:picasso2-okhttp3-downloader:${rootProject.ext.picassoLoadVersion}"
@@ -77,6 +80,15 @@ dependencies {
         transitive = true
         exclude(group: 'com.android.support')
     }
+    //Tangram
+    api "com.alibaba.android:tangram:$rootProject.ext.tangramVersion"
+
+    //Tencent MMKV 高性能key-value
+    api "com.tencent:mmkv:$rootProject.ext.mmkvVersion"
+
+    //lottie 动画框架 2.8.0及以上只支持适配android X
+    api "com.airbnb.android:lottie:$rootProject.ext.lottieVersion"
+
     /* ARouter注解编译器 */
     annotationProcessor "com.alibaba:arouter-compiler:${rootProject.ext.arouterCompilerVersion}"
     api "com.alibaba:arouter-api:${rootProject.ext.arouterVersion}"

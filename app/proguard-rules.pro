@@ -132,7 +132,6 @@
 -keep public class * extends com.zkq.weapon.base.BaseWebPluginFragment
 -keep public class * extends com.zkq.weapon.base.WebViewPluginFragment
 -keep public class * extends android.view.View
--keep public class * extends android.view.View
 -keep public class com.android.vending.licensing.ILicensingService
 -keep public class android.arch.** { *;}
 #

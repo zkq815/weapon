@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.zkq.alldemo.databinding.ActivityMainBinding;
@@ -17,10 +18,15 @@ import com.zkq.weapon.base.WebViewPluginActivity;
 import com.zkq.weapon.constants.WeaponConstants;
 import com.zkq.weapon.market.util.ZLog;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 public class MainActivity extends BaseActivity {
     private ActivityMainBinding mBinding;
     private String path = "com.zkq.alldemo.fortest";
     private RecyclerView rv;
+    private Button btnEventBus;
     String[] info = {".colorprogresswithspeed.ColorProgressActivity"
             , ".okhttp.OKHttpActivity", ".dialog.DialogTestActivity"
             , ".flowlayout.FlowLayoutActivity"
@@ -30,22 +36,37 @@ public class MainActivity extends BaseActivity {
             , ".rxjava_retrofit.RxjavaActivity"
             , ".fingertest.FingerprintMainActivity"
             , ".countdown.demo1.CountdownActivity"
-            , ".countdown.demo2.Demo2Activity"};
+            , ".countdown.demo2.Demo2Activity"
+            , ".subscreen.SubScreenActivity"
+            , ".lottieanimal.LottieAnimalActivity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
         isShowBack(false);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         init();
-//        testParcelable();
     }
 
     private void init() {
         rv = mBinding.rv;
+        btnEventBus = mBinding.btnEvent;
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(new MainAdapter(this));
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void btnChange(String text){
+        ZLog.e("方法一");
+        btnEventBus.setText(text);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void btnChangeTwo(String text){
+        ZLog.e("方法二");
+        btnEventBus.setText(text);
     }
 
     class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -74,16 +95,8 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void onClick(View v) {
                         try {
-                            startActivity(new Intent(MainActivity.this, Class.forName(path+info[position])));
-
-//                            Intent intent = new Intent(MainActivity.this, WebViewPluginActivity.class);
-//                            Bundle bundle = new Bundle();
-//                            bundle.putString(WeaponConstants.WEB_TITLE, "test");
-//                            bundle.putString(WeaponConstants.WEB_URL, "http://www.baidu.com");
-//                            intent.putExtras(bundle);
-//                            startActivity(intent);
-
-
+                            startActivity(new Intent(MainActivity.this
+                                    , Class.forName(path+info[position])));
 
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
@@ -135,4 +148,9 @@ public class MainActivity extends BaseActivity {
 //        Log.e("zkq","**** now1 === " + now1.mPosition);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

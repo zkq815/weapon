@@ -10,17 +10,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.zkq.alldemo.fortest.okhttp.OKHttpActivity">
-
-        <Button
-            android:id="@+id/btn_okhttp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="okHttp请求"
-            android:visibility="visible" />
+        tools:context="com.zkq.alldemo.fortest.lottieanimal.LottieAnimalActivity">
 
     </android.support.constraint.ConstraintLayout>
-
-
 </layout>
-

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -13,6 +14,12 @@ import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.format.Time;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Display;
+import android.view.TextureView;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.zkq.weapon.R;
@@ -25,6 +32,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Map;
@@ -641,7 +649,7 @@ public interface ToolFile {
                 int hour = time.hour + 8;
                 int minute = time.minute;
                 int sec = time.second;
-//            图片存储地址
+                //图片存储地址
                 String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath() + "/hiyun/";
                 File file = new File(path);
                 if (!file.exists()) {
@@ -682,6 +690,66 @@ public interface ToolFile {
         } else {
             Toast.makeText(activity, "SD卡未检测到，请检查是否存在", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /**
+     * 拼接view与sufview bitmap并保存为图片存储，返回路径
+     * */
+    static String cropVideoImage(TextureView textureView, View layoutView, WindowManager windowManager
+            , int topY, int paddingLeft) {
+        if (textureView == null || layoutView == null) {
+            return null;
+        }
+        String filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath()
+                + "/zkq/";
+        File file = new File(filePath);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        File imgFile = new File(filePath, System.currentTimeMillis() + ".png");
+        Bitmap subViewBitmap = textureView.getBitmap();
+        layoutView.setDrawingCacheEnabled(true);
+//        Bitmap layout = layoutView.getDrawingCache();
+        Bitmap layout = convertViewToBitmap(layoutView);
+        Bitmap screenshot = Bitmap.createBitmap(layout.getWidth(), layout.getHeight(), Bitmap.Config.ARGB_8888);
+
+        Display defaultDisplay = windowManager.getDefaultDisplay();
+        DisplayMetrics metrics = new DisplayMetrics();
+        defaultDisplay.getMetrics(metrics);
+
+        //拼接
+        Canvas canvas = new Canvas(screenshot);
+        canvas.drawBitmap(subViewBitmap, paddingLeft, topY, new Paint());
+        canvas.drawBitmap(layout, 0, 0, new Paint());
+        canvas.save();
+        canvas.restore();
+
+        OutputStream fout = null;
+        try {
+            fout = new FileOutputStream(imgFile);
+            screenshot.compress(Bitmap.CompressFormat.PNG, 70, fout);
+            fout.flush();
+            fout.close();
+            return imgFile.getAbsolutePath();
+        } catch (FileNotFoundException e) {
+            Log.d("com.sscf.investment", "FileNotFoundException");
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            Log.d("com.sscf.investment", "IOException");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 将view的缓存转为bitmap
+     * */
+    static Bitmap convertViewToBitmap(View view) {
+        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
+        return bitmap;
     }
 
 }

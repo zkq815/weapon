@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="800dp"
+    android:background="@color/red"
+    tools:context="com.zkq.alldemo.fortest.subscreen.SubScreenActivity">
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btn_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击截图"/>
+        <ImageView
+            android:id="@+id/iv_content_one"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
+        <ImageView
+            android:id="@+id/iv_content_two"
+            android:layout_width="150dp"
+            android:layout_height="150dp" />
+    </LinearLayout>
+
+</RelativeLayout>

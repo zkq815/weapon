@@ -9,7 +9,7 @@ import com.zkq.weapon.entity.BaseBean;
  * email:zkq815@126.com
  * desc: 全局响应返回数据基类
  */
-public class BaseResponse<T extends BaseBean> {
+public class BaseResponse<T>{
 
     /**
      * 响应状态码

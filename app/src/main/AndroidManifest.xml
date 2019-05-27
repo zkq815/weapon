@@ -2,24 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.zkq.alldemo">
-
     <!-- 拨打电话 -->
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <!-- 读取手机状态 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!-- 访问帐户列表 -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <!-- 更新设备状态使用证书 -->
-    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
-    <!-- 获取网络状态 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- 获取使用Wi-Fi等WLAN无线网络 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!-- sd卡写入权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- 相机权限 -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!-- 指纹识别权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- 读取手机状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 访问帐户列表 -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- 更新设备状态使用证书 -->
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" /> <!-- 获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 获取使用Wi-Fi等WLAN无线网络 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- sd卡写入权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 相机权限 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 指纹识别权限 -->
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
     <application
@@ -34,7 +25,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -71,6 +62,11 @@
         <activity
             android:name=".fortest.countdown.demo2.Demo2Activity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.subscreen.SubScreenActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".fortest.lottieanimal.LottieAnimalActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

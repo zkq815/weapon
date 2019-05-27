@@ -55,4 +55,8 @@ ext {
     arouterVersion = '1.3.1'
     arouterCompilerVersion = '1.1.3'
     streamVersion = '1.2.1'
+    eventbusVersion = '3.0.0'
+    tangramVersion = '2.0.5@aar'
+    lottieVersion = '2.7.0'
+    mmkvVersion = '1.0.10'
 }

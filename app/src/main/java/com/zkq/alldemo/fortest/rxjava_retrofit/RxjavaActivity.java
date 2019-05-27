@@ -2,6 +2,7 @@ package com.zkq.alldemo.fortest.rxjava_retrofit;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.util.EventLog;
 
 import com.zkq.alldemo.R;
 import com.zkq.alldemo.databinding.ActivityRxjavaBinding;
@@ -9,6 +10,9 @@ import com.zkq.weapon.base.BaseActivity;
 import com.zkq.weapon.market.util.ZLog;
 import com.zkq.weapon.networkframe.netbase.RetrofitUtil;
 import com.zkq.weapon.entity.response.BaseResponse;
+import com.zkq.weapon.networkframe.response.ResponseTransformer;
+
+import org.greenrobot.eventbus.EventBus;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -33,10 +37,15 @@ public class RxjavaActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        EventBus.getDefault().register(this);
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_rxjava);
         mBinding.btnRxGet.setOnClickListener(v-> rxTest());
         mBinding.btnRxGetTest.setOnClickListener(v -> rxgetList());
         mBinding.btnRxPostTest.setOnClickListener(v-> rxPost());
+//        mBinding.btnRxPostTest.setOnClickListener(v-> {
+//            EventBus.getDefault().post("EventBus你好啊");
+//        });
+
     }
 
     private void rxTest(){
@@ -143,6 +152,7 @@ public class RxjavaActivity extends BaseActivity {
     private void rxgetList(){
         RetrofitUtil.getInstance().createApi(RetrofitRequest.class).rxPostMain()
                 .subscribeOn(Schedulers.io())
+//                .compose(ResponseTransformer.handleResult())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<BaseResponse>() {
                     @Override
@@ -180,4 +190,9 @@ public class RxjavaActivity extends BaseActivity {
         return null;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        EventBus.getDefault().unregister(this);
+    }
 }
