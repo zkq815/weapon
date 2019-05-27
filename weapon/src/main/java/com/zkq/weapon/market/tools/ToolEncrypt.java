@@ -1,8 +1,8 @@
 package com.zkq.weapon.market.tools;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringDef;
 import com.zkq.weapon.market.util.ZLog;
 import java.io.File;
 import java.io.FileInputStream;

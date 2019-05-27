@@ -1,6 +1,6 @@
 package com.zkq.alldemo.fortest.countdown.demo1;
 
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 
 import com.zkq.alldemo.R;

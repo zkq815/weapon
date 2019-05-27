@@ -6,16 +6,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Build;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.zkq.alldemo.fortest.countdown.CountdownBean;
 import com.zkq.alldemo.fortest.countdown.OnTimerListener;
 import com.zkq.alldemo.fortest.countdown.demo1.TimerUtils;
-import com.zkq.weapon.market.tools.ToolRegex;
 import com.zkq.weapon.market.tools.ToolString;
-import com.zkq.weapon.market.util.ZLog;
 
 import java.util.ArrayList;
 import java.util.Map;

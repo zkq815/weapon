@@ -1,10 +1,10 @@
 package com.zkq.alldemo.fortest.countdown.demo2;
 
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +15,15 @@ import com.zkq.alldemo.R;
 import com.zkq.alldemo.databinding.ActivityDemo2Binding;
 import com.zkq.alldemo.fortest.countdown.CountdownBean;
 import com.zkq.alldemo.fortest.countdown.OnTimerListener;
-import com.zkq.alldemo.fortest.countdown.demo1.TimerUtils;
 import com.zkq.weapon.base.BaseActivity;
 
 import java.util.ArrayList;
-
+/**
+ * @author zkq
+ * create:2019/5/28 12:58 AM
+ * email:zkq815@126.com
+ * desc:
+ */
 public class Demo2Activity extends BaseActivity {
 
     private ActivityDemo2Binding mBinding;

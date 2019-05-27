@@ -1,6 +1,6 @@
 package com.zkq.weapon.networkframe.scheduler;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import io.reactivex.ObservableTransformer;
 import io.reactivex.Scheduler;

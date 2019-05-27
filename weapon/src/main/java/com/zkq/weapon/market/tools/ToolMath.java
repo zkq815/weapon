@@ -1,6 +1,6 @@
 package com.zkq.weapon.market.tools;
 
-import android.support.annotation.IntRange;
+import androidx.annotation.IntRange;
 
 import java.math.BigDecimal;
 

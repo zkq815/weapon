@@ -1,7 +1,7 @@
 package com.zkq.weapon.market.glide.config;
 
-import android.support.annotation.NonNull;
-import android.support.v4.util.Pools;
+import androidx.annotation.NonNull;
+import androidx.core.util.Pools;
 
 /**
  * @author zkq

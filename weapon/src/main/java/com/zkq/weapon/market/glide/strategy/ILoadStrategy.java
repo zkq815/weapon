@@ -1,6 +1,6 @@
 package com.zkq.weapon.market.glide.strategy;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * @author zkq

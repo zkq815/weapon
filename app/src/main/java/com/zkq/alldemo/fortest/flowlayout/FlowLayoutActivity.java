@@ -1,6 +1,6 @@
 package com.zkq.alldemo.fortest.flowlayout;
 
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.widget.TextView;

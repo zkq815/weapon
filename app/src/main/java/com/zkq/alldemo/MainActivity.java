@@ -2,10 +2,10 @@ package com.zkq.alldemo;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +14,17 @@ import android.widget.TextView;
 
 import com.zkq.alldemo.databinding.ActivityMainBinding;
 import com.zkq.weapon.base.BaseActivity;
-import com.zkq.weapon.base.WebViewPluginActivity;
-import com.zkq.weapon.constants.WeaponConstants;
 import com.zkq.weapon.market.util.ZLog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
+/**
+ * @author zkq
+ * create:2019/5/28 12:54 AM
+ * email:zkq815@126.com
+ * desc:
+ */
 public class MainActivity extends BaseActivity {
     private ActivityMainBinding mBinding;
     private String path = "com.zkq.alldemo.fortest";

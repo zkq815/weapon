@@ -1,6 +1,6 @@
 package com.zkq.alldemo.fortest.scrollclash;
 
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;

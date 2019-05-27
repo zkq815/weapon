@@ -1,8 +1,7 @@
 package com.zkq.alldemo.fortest.rxjava_retrofit;
 
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.util.EventLog;
 
 import com.zkq.alldemo.R;
 import com.zkq.alldemo.databinding.ActivityRxjavaBinding;
@@ -10,9 +9,6 @@ import com.zkq.weapon.base.BaseActivity;
 import com.zkq.weapon.market.util.ZLog;
 import com.zkq.weapon.networkframe.netbase.RetrofitUtil;
 import com.zkq.weapon.entity.response.BaseResponse;
-import com.zkq.weapon.networkframe.response.ResponseTransformer;
-
-import org.greenrobot.eventbus.EventBus;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;

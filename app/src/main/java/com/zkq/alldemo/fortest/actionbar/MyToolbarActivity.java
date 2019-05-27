@@ -1,7 +1,7 @@
 package com.zkq.alldemo.fortest.actionbar;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.WindowManager;

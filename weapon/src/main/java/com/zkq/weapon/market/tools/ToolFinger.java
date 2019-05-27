@@ -2,7 +2,7 @@ package com.zkq.weapon.market.tools;
 
 import android.content.Context;
 import android.hardware.fingerprint.FingerprintManager;
-import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
+import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 
 /**
  * @author zkq

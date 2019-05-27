@@ -1,8 +1,8 @@
 package com.zkq.weapon.market.glide;
 
 import android.net.Uri;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 
 import com.zkq.weapon.market.glide.config.LoaderConfig;
 import com.zkq.weapon.market.glide.strategy.ICacheStrategy;

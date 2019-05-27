@@ -1,6 +1,6 @@
 package com.zkq.weapon.networkframe.listener;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.zkq.weapon.networkframe.exception.CustomException;
 

@@ -1,14 +1,10 @@
 package com.zkq.weapon.market.tools;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.graphics.Paint;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
-import android.text.TextUtils;
 import android.text.style.UnderlineSpan;
 import android.widget.TextView;
 
@@ -18,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.zkq.weapon.constants.WeaponConstants.CHINA_MOBILE_HEAD;
 import static com.zkq.weapon.constants.WeaponConstants.ID_CARD_FIRST;
 import static com.zkq.weapon.constants.WeaponConstants.ID_CARD_SECOND;
 

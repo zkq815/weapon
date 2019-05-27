@@ -1,6 +1,6 @@
 package com.zkq.weapon.market.glide.glideimpl;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.zkq.weapon.market.glide.config.BaseConfigFactory;
 
 /**

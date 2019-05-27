@@ -1,6 +1,6 @@
 package com.zkq.weapon.market.tools;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import java.text.DateFormat;
 import java.text.ParseException;
