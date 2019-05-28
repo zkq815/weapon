@@ -75,13 +75,23 @@ dependencies {
         exclude group: 'com.android.support'
     }
 
+
+    //Tangram
+    api "com.alibaba.android:tangram:$rootProject.ext.tangramVersion"
+    implementation 'com.alibaba.android:tangram:3.3.6@aar'
     // vLayout
     api ("com.alibaba.android:vlayout:${rootProject.ext.vlayoutVersion}") {
         transitive = true
         exclude(group: 'com.android.support')
     }
-    //Tangram
-    api "com.alibaba.android:tangram:$rootProject.ext.tangramVersion"
+    //virtualview
+    implementation ("com.alibaba.android:virtualview:$rootProject.ext.virtralviewVersion") {
+        transitive = true
+    }
+    //ultraviewpager
+    implementation ("com.alibaba.android:ultraviewpager:$rootProject.ext.ultraviewpagerVersion") {
+        transitive = true
+    }
 
     //Tencent MMKV 高性能key-value
     api "com.tencent:mmkv:$rootProject.ext.mmkvVersion"

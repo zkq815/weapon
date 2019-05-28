@@ -48,7 +48,7 @@ ext {
     picassoVersion = '2.5.2'
     picassoLoadVersion = '1.1.0'
     //响应式编程
-    rxjavaVersion = '2.2.3'
+    rxjavaVersion = '2.2.5'
     rxAndroidVersion = '2.1.0'
     //图片库
     glideVersion = '4.8.0'
@@ -56,8 +56,10 @@ ext {
     gsonVersion = '2.8.0'
     fastjsonVersoin = '1.2.51'
     //阿里七巧板 recyclerview布局优化
-    tangramVersion = '2.0.5@aar'
-    vlayoutVersion = '1.2.8@aar'
+    tangramVersion = '3.3.6@aar'
+    vlayoutVersion = '1.2.22@aar'
+    virtralviewVersion = '1.4.6@aar'
+    ultraviewpagerVersion = '1.0.7.8@aar'
     //阿里Arouter 路由解决方案
     arouterVersion = '1.3.1'
     arouterCompilerVersion = '1.1.3'
