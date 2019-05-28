@@ -33,30 +33,40 @@ ext {
     compileSdkVersion = 28
     buildToolsVersion = '28.0.3'
 
-    // App dependencies
+    //App dependencies
     supportLibraryVersion = '1.0.0-beta01'
     junitVersion = '4.12'
     constraintLayoutVersion = '1.1.3'
 
-    //再高版本的编译报错，应该是有冲突
-    leakcanaryVerison = '1.5.4'
     multidexVersion = '2.0.0'
     findBugsVersion = '3.0.2'
+    //内存检测 2.0版本后支持androidx
+    leakcanaryVerison = '2.0-alpha-2'
+    //网络库
     retrofitVersion = '2.2.0'
     okhttpVersion = '3.6.0'
     picassoVersion = '2.5.2'
     picassoLoadVersion = '1.1.0'
-    glideVersion = '4.8.0'
+    //响应式编程
     rxjavaVersion = '2.2.3'
     rxAndroidVersion = '2.1.0'
+    //图片库
+    glideVersion = '4.8.0'
+    //json解析
     gsonVersion = '2.8.0'
     fastjsonVersoin = '1.2.51'
+    //阿里七巧板 recyclerview布局优化
+    tangramVersion = '2.0.5@aar'
     vlayoutVersion = '1.2.8@aar'
+    //阿里Arouter 路由解决方案
     arouterVersion = '1.3.1'
     arouterCompilerVersion = '1.1.3'
+    //流式编程
     streamVersion = '1.2.1'
+    //消息事件总线
     eventbusVersion = '3.0.0'
-    tangramVersion = '2.0.5@aar'
+    //json动画加载
     lottieVersion = '2.7.0'
-    mmkvVersion = '1.0.10'
+    //腾讯key-value
+    mmkvVersion = '1.0.19'
 }

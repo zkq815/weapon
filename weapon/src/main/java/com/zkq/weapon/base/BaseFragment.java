@@ -3,10 +3,12 @@ package com.zkq.weapon.base;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,21 +41,21 @@ public class BaseFragment extends Fragment implements BaseActivity.INetChange {
 
     @Override
     public void onAttach(Context context) {
-            ZLog.i(this.getClass().toString(), "onAttach");
+        ZLog.i(this.getClass().toString(), "onAttach");
 
         super.onAttach(context);
     }
 
     @Override
     public void onDetach() {
-            ZLog.i(this.getClass().toString(), "onDetach");
+        ZLog.i(this.getClass().toString(), "onDetach");
 
         super.onDetach();
     }
 
     @Override
     public void onDestroyView() {
-            ZLog.i(this.getClass().toString(), "onDestroyView");
+        ZLog.i(this.getClass().toString(), "onDestroyView");
 
         super.onDestroyView();
     }

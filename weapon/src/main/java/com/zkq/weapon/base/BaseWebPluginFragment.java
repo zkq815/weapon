@@ -7,7 +7,9 @@ import android.net.http.SslError;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+
 import androidx.annotation.Nullable;
+
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;

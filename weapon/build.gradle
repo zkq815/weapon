@@ -97,7 +97,6 @@ dependencies {
 
     //内存监控
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${rootProject.ext.leakcanaryVerison}"
-    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${rootProject.ext.leakcanaryVerison}"
 
     //Optional, if you use support library fragments:加入后，无法下载资源，编译报错
     //debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:${rootProject.ext.leakcanaryVerison}"
