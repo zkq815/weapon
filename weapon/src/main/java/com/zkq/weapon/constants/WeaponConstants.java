@@ -54,4 +54,44 @@ public interface WeaponConstants {
      * */
     int ID_CARD_SECOND = 18;
 
+    /**********************************************************************
+     *                        Baseholder                                  *
+     **********************************************************************/
+    /**
+     * 自动循环viewpager，循环间隔时间为4秒
+     */
+    short VIEW_PAGER_AUTO_SCROLL_INTERVAL = 4 * 1000;
+    /**
+     * 首页底部导航栏Tab切换动画默认持续时间
+     */
+    int HOME_CONTAINER_NAVIGATION_BAR_ANIMATION_DURATION = 100;
+    /**
+     * 否
+     */
+    int NO = 0;
+    /**
+     * 是
+     */
+    int YES = 1;
+    /**
+     * 是
+     */
+    String YES_STR = "1";
+    /**
+     * 否
+     */
+    String NO_STR = "0";
+    /**
+     * 正确
+     */
+    int SUCCESS = 0;
+    /**
+     * 错误
+     */
+    int ERROR = 1;
+    /**
+     * 最后一页，没有更多数据的标识
+     */
+    int ISLASTPAGE = 1;
+
 }

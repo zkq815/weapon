@@ -20,12 +20,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         tools:replace="android:name">
+
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -65,7 +67,11 @@
         <activity
             android:name=".fortest.subscreen.SubScreenActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".fortest.lottieanimal.LottieAnimalActivity"
+        <activity
+            android:name=".fortest.lottieanimal.LottieAnimalActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.tangram.TangramTestActivity"
             android:screenOrientation="portrait"/>
     </application>
 

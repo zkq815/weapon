@@ -71,4 +71,6 @@ ext {
     lottieVersion = '2.7.0'
     //腾讯key-value
     mmkvVersion = '1.0.19'
+    //zxing
+    zxingVersion = '3.3.0'
 }

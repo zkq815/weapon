@@ -10,6 +10,7 @@
     <string name="loading_view_image">desc_loading view image</string>
     <!-- 空字符串 -->
     <string name="empty">""</string>
+    <string name="empty_tip">一片混沌，空空如也</string>
 
     <string name="loading_view_text">正在加载</string>
     <string name="near_shop_no_shop">该城市暂无门店信息</string>

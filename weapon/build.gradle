@@ -40,56 +40,55 @@ dependencies {
     api "androidx.annotation:annotation:${rootProject.ext.supportLibraryVersion}"
 
     //support
-    api "androidx.appcompat:appcompat:${rootProject.ext.supportLibraryVersion}"
-    api "androidx.recyclerview:recyclerview:${rootProject.ext.supportLibraryVersion}"
-    api "androidx.cardview:cardview:${rootProject.ext.supportLibraryVersion}"
-    api "androidx.multidex:multidex:${rootProject.ext.multidexVersion}"
+    api "androidx.appcompat:appcompat:$rootProject.ext.supportLibraryVersion"
+    api "androidx.recyclerview:recyclerview:$rootProject.ext.supportLibraryVersion"
+    api "androidx.cardview:cardview:$rootProject.ext.supportLibraryVersion"
+    api "androidx.multidex:multidex:$rootProject.ext.multidexVersion"
 
     // OKHttp
-    api "com.squareup.okhttp3:okhttp:${rootProject.ext.okhttpVersion}"
-    api "com.squareup.okhttp3:okhttp-urlconnection:${rootProject.ext.okhttpVersion}"
-    api "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpVersion}"
+    api "com.squareup.okhttp3:okhttp:$rootProject.ext.okhttpVersion"
+    api "com.squareup.okhttp3:okhttp-urlconnection:$rootProject.ext.okhttpVersion"
+    api "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpVersion"
 
     // Retrofit
-    api "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
-    api "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
-    api "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.retrofitVersion}"
+    api "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    api "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
+    api "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofitVersion"
 
     // RxJava
-    api "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxjavaVersion}"
-    api "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxAndroidVersion}"
+    api "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjavaVersion"
+    api "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxAndroidVersion"
 
     // GSon
-    api "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"
-    api "com.alibaba:fastjson:${rootProject.ext.fastjsonVersoin}"
+    api "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
+    api "com.alibaba:fastjson:$rootProject.ext.fastjsonVersoin"
 
     // eventbus
-    api "org.greenrobot:eventbus:${rootProject.ext.eventbusVersion}"
+    api "org.greenrobot:eventbus:$rootProject.ext.eventbusVersion"
 
     // image
-    api "com.squareup.picasso:picasso:${rootProject.ext.picassoVersion}"
-    api "com.jakewharton.picasso:picasso2-okhttp3-downloader:${rootProject.ext.picassoLoadVersion}"
+    api "com.squareup.picasso:picasso:$rootProject.ext.picassoVersion"
+    api "com.jakewharton.picasso:picasso2-okhttp3-downloader:$rootProject.ext.picassoLoadVersion"
 
     //去除glide中的support依赖包，防止与项目冲突
-    api("com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}") {
+    api("com.github.bumptech.glide:glide:$rootProject.ext.glideVersion") {
         exclude group: 'com.android.support'
     }
-
 
     //Tangram
     api "com.alibaba.android:tangram:$rootProject.ext.tangramVersion"
     implementation 'com.alibaba.android:tangram:3.3.6@aar'
     // vLayout
-    api ("com.alibaba.android:vlayout:${rootProject.ext.vlayoutVersion}") {
+    api ("com.alibaba.android:vlayout:$rootProject.ext.vlayoutVersion") {
         transitive = true
         exclude(group: 'com.android.support')
     }
     //virtualview
-    implementation ("com.alibaba.android:virtualview:$rootProject.ext.virtralviewVersion") {
+    api ("com.alibaba.android:virtualview:$rootProject.ext.virtralviewVersion") {
         transitive = true
     }
     //ultraviewpager
-    implementation ("com.alibaba.android:ultraviewpager:$rootProject.ext.ultraviewpagerVersion") {
+    api ("com.alibaba.android:ultraviewpager:$rootProject.ext.ultraviewpagerVersion") {
         transitive = true
     }
 
@@ -100,18 +99,21 @@ dependencies {
     api "com.airbnb.android:lottie:$rootProject.ext.lottieVersion"
 
     /* ARouter注解编译器 */
-    annotationProcessor "com.alibaba:arouter-compiler:${rootProject.ext.arouterCompilerVersion}"
-    api "com.alibaba:arouter-api:${rootProject.ext.arouterVersion}"
-    // lightweight stream
-    api "com.annimon:stream:${rootProject.ext.streamVersion}"
+    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.ext.arouterCompilerVersion"
+    api "com.alibaba:arouter-api:$rootProject.ext.arouterVersion"
 
+    // lightweight stream
+    api "com.annimon:stream:$rootProject.ext.streamVersion"
+
+    //zxing
+    api "com.google.zxing:core:$rootProject.ext.zxingVersion"
     //内存监控
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:${rootProject.ext.leakcanaryVerison}"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanaryVerison"
 
     //Optional, if you use support library fragments:加入后，无法下载资源，编译报错
     //debugImplementation "com.squareup.leakcanary:leakcanary-support-fragment:${rootProject.ext.leakcanaryVerison}"
 
     //找不到javax.annotation.concurrent.NotThreadSafe的类文件 bug，@ThreadSafe
-    api "com.google.code.findbugs:jsr305:${rootProject.ext.findBugsVersion}"
+    api "com.google.code.findbugs:jsr305:$rootProject.ext.findBugsVersion"
     api files('libs/commons-lang.jar')
 }

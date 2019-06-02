@@ -3,6 +3,9 @@ package com.zkq.weapon.application;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
+
+import com.tencent.mmkv.MMKV;
+
 import androidx.annotation.NonNull;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
@@ -31,6 +34,8 @@ public class BaseApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        //MMKV 存储方案
+        MMKV.initialize(this);
     }
 
     @NonNull

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- VLayout -->
+    <item name="m_base_key_delegate_adapter" type="id" />
+    <item name="m_base_key_adapter_wrapper" type="id" />
+
+    <!-- common -->
+    <item name="pbLoading" type="id"/>
+    <!--spm id-->
+    <item name="m_base_v_tag_spm_value" type="id"/>
+    <!-- View点击最大间隔时间 -->
+    <item name="m_base_click_max_interval" type="id"/>
+
+    <!-- menu ID -->
+    <item name="m_base_menu_shopping_bag" type="id" />
+
+    <!-- title -->
+    <item name="m_base_tb_title_container" type="id" />
+    <item name="m_base_rl_title_left" type="id" />
+    <item name="m_base_tv_title_left" type="id" />
+    <item name="m_base_tv_title_center" type="id" />
+
+    <!--status bar-->
+    <item name="m_base_status_bar" type="id" />
+    <!-- zxing 扫描 button ids -->
+    <item name="zxing_btn_test1" type="id"/>
+    <item name="zxing_btn_test2" type="id"/>
+    <item name="zxing_btn_test3" type="id"/>
+    <item name="zxing_btn_test4" type="id"/>
+    <item name="zxing_btn_test5" type="id"/>
+    <item name="zxing_btn_test6" type="id"/>
+    <item name="zxing_btn_test7" type="id"/>
+    <item name="zxing_btn_test8" type="id"/>
+</resources>

@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.tmall.wireless.tangram.TangramEngine;
 import com.zkq.weapon.constants.WeaponConstants;
 import com.zkq.weapon.market.tools.ToolAndroid;
 import com.zkq.weapon.market.tools.ToolNet;
@@ -44,7 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     static final int STATEBAR_HIDE = 0;
     static final int STATEBAR_TRANSPARENT = 1;
     static final int STATEBAR_SHOW = 2;
-
+    public TangramEngine mEngine;
     private NetReceiver mNetReceiver;
     private boolean mConnected;
 
@@ -132,6 +133,10 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        if(null != mEngine){
+            // 退出的时候销毁 engine
+            mEngine.destroy();
+        }
         mNetChangeListeners.clear();
         super.onDestroy();
     }

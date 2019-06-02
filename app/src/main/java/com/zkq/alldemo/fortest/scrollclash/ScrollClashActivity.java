@@ -31,7 +31,7 @@ public class ScrollClashActivity extends BaseActivity {
             dataList.add("content"+i);
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.main_item_viewholder,R.id.tv_activity,dataList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.main_item_viewholder,R.id.tv_one,dataList);
 
         mBinding.lv.setAdapter(adapter);
     }

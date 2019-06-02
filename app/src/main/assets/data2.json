@@ -1,0 +1,385 @@
+[
+
+  {//自动切换viewpager，给不同的banner设置不同的view
+    "type": "container-banner",
+    "items": [
+      {
+        "type": "TestCell",
+        "text": "轮播滚动View"
+      },
+      {
+        "type": "TestCell",
+        "text": "轮播滚动View"
+      },
+      {
+        "type": "TestCell",
+        "text": "轮播滚动View"
+      },
+      {
+        "type": "TestCell",
+        "text": "轮播滚动View"
+      }
+    ],
+    "style": {
+      "itemRatio": 1,
+      "pageRatio": 1,
+      "autoScroll": 3000,
+//      "specialInterval": {
+//        "0": 2000,
+//        "1": 1000
+//      },
+      "infinite": true,
+      //选中的下标图片
+      "indicatorImg1": "https://img.alicdn.com/tps/TB16i4qNXXXXXbBXFXXXXXXXXXX-32-4.png",
+      //未选中的下标图片
+      "indicatorImg2": "https://img.alicdn.com/tps/TB1XRNFNXXXXXXKXXXXXXXXXXXX-32-4.png",
+      "indicatorGravity": "center",
+      "indicatorPosition": "inside",
+      "indicatorGap": 5,
+      "indicatorMargin": 8,
+      "indicatorHeight": 2,
+//      "scrollMarginLeft": -50,
+//      "scrollMarginRight": -50,
+      "hGap": 10
+    }
+  },
+  {//单独一行，控制子item是单独一行
+    "type": "container-oneColumn",
+    "items": [
+      {
+        "type": "InterfaceCell",
+        "text": "接口方式自定义View",
+        "style": {
+          "height": 160,
+          "bgColor": "#cc4081",
+          "margin": [
+            10,
+            10,
+            10,
+            10
+          ]
+        }
+      },
+      {
+        "type": "InterfaceCell",
+        "text": "接口方式自定义View"
+      }
+    ],
+    "style": {
+      "height": 100,
+      "bgColor": "#FF4081",
+      "margin": [
+        10,
+        10,
+        10,
+        10
+      ]
+    }
+  },
+  {//吸顶，控制子item 滑动时吸顶
+    "type": "container-sticky",
+    "items": [
+      {
+        "type": "HolderCell",
+        "text": "吸顶View",
+        "style": {
+          "height": "20"
+        }
+      }
+    ],
+    "style": {
+      "offset": 2,
+      "sticky": "start",
+      "enableScroll": true,
+      "bgColor": "#00c3f5"
+    }
+  },
+  {//一行两列，控制子item是一行两列排列
+    "type": "container-twoColumn",
+    "items": [
+      {
+        "type": "AnnotationCell",
+        "text": "注解方式自定义View"
+      },
+      {
+        "type": "AnnotationCell",
+        "text": "注解方式自定义View"
+      },
+      {
+        "type": "AnnotationCell",
+        "text": "注解方式自定义View"
+      },
+      {
+        "type": "AnnotationCell",
+        "text": "注解方式自定义View"
+      }
+    ],
+    "style": {
+      "padding": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "vGap": 10,
+      "hGap": 10
+    }
+  },
+  {//一行三列，控制子item是一行三列排列
+    "type": "container-threeColumn",
+    "items": [
+      {
+        "type": "CustomCell",
+        "text": "自定义model",
+        "imageUrl": "https://gw.alicdn.com/tfs/TB1vqF.PpXXXXaRaXXXXXXXXXXX-110-72.png"
+      },
+      {
+        "type": "CustomCell",
+        "text": "自定义model",
+        "imageUrl": "https://gw.alicdn.com/tfs/TB1vqF.PpXXXXaRaXXXXXXXXXXX-110-72.png"
+      },
+      {
+        "type": "CustomCell",
+        "text": "自定义model",
+        "imageUrl": "https://gw.alicdn.com/tfs/TB1vqF.PpXXXXaRaXXXXXXXXXXX-110-72.png"
+      }
+    ],
+    "style": {
+      "cols": [
+        30,
+        40
+      ]
+    }
+  },
+  {//一行四列，控制子item是一行四列排列
+    "type": "container-fourColumn",
+    "items": [
+      {
+        "type": "NoBackground",
+        "text": "无背景自定义View"
+      },
+      {
+        "type": "NoBackground",
+        "text": "无背景自定义View"
+      },
+      {
+        "type": "NoBackground",
+        "text": "无背景自定义View"
+      },
+      {
+        "type": "NoBackground",
+        "text": "无背景自定义View"
+      }
+    ],
+    "style": {
+      "aspectRatio": "5.11",
+      "bgImgUrl": "https://gw.alicdn.com/tps/TB1dkjfOXXXXXb0aXXXXXXXXXXX-1125-220.png"
+    }
+  },
+  {//一行五列，控制子item是一行五列排列
+    "type": "container-fiveColumn",
+    "items": [
+      {
+        "type": "NoBackground",
+        "text": "无背景自定义View"
+      },
+      {
+        "type": "NoBackground",
+        "text": "无背景自定义View"
+      },
+      {
+        "type": "NoBackground",
+        "text": "无背景自定义View"
+      },
+      {
+        "type": "NoBackground",
+        "text": "无背景自定义View"
+      }
+    ],
+    "style": {
+      "bgColor": "#00ff00"
+    }
+  },
+  {//1+N，控制子item是排列 1+N
+    "type": "container-onePlusN",
+    "items": [
+      {
+        "type": "HolderCell",
+        "text": "自定义ViewHolder"
+      },
+      {
+        "type": "HolderCell",
+        "text": "自定义ViewHolder"
+      },
+      {
+        "type": "HolderCell",
+        "text": "自定义ViewHolder"
+      },
+      {
+        "type": "HolderCell",
+        "text": "自定义ViewHolder"
+      },
+      {
+        "type": "HolderCell",
+        "text": "自定义ViewHolder"
+      }
+    ],
+    "style": {
+      "rows": [
+        40
+      ]
+    }
+  },
+  {//
+    "type": "container-scrollFix",
+    "items": [
+      {
+        "type": "CustomCell",
+        "text": "滚动固定View",
+        "imageUrl": "https://gw.alicdn.com/tfs/TB1vqF.PpXXXXaRaXXXXXXXXXXX-110-72.png",
+        "style": {
+          "width": "120"
+        }
+      }
+    ],
+    "style": {
+      "x": 20,
+      "y": 20,
+      "showType": "showOnEnter"
+    }
+  },
+  {//浮动view
+    "type": "container-float",
+    "items": [
+      {
+        "type": "InterfaceCell",
+        "text": "浮动View",
+        "style": {
+          "width": "120"
+        }
+      }
+    ],
+    "style": {
+      "align": "bottom_left",
+      "x": 20,
+      "y": 20
+    }
+  },
+  {//固定的view
+    "type": "container-fix",
+    "items": [
+      {
+        "type": "AnnotationCell",
+        "text": "固定View",
+        "style": {
+          "width": "120"
+        }
+      }
+    ],
+    "style": {
+      "align": "top_right",
+      "x": 20,
+      "y": 20
+    }
+  },
+  {//横向滚动，view拼接
+    "type": "container-scroll",
+    "items": [
+      {
+        "type": "AnnotationCell",
+        "text": "横向滚动View"
+      },
+      {
+        "type": "AnnotationCell",
+        "text": "横向滚动View"
+      },
+      {
+        "type": "AnnotationCell",
+        "text": "横向滚动View"
+      },
+      {
+        "type": "AnnotationCell",
+        "text": "横向滚动View"
+      }
+    ],
+    "style": {
+      "pageWidth": 150,
+      "pageHeight": -1,
+      "hasIndicator": true,
+      "indicatorColor": "#FF0000",
+      "defaultIndicatorColor": "#666666"
+    }
+  },
+  {//瀑布流
+    "type": "container-waterfall",
+    "items": [
+      {
+        "type": "CustomCell",
+        "text": "瀑布流",
+        "imageUrl": "https://gw.alicdn.com/tfs/TB1vqF.PpXXXXaRaXXXXXXXXXXX-110-72.png"
+      },
+      {
+        "type": "CustomCell",
+        "text": "瀑布流",
+        "imageUrl": "https://gw.alicdn.com/tfs/TB1vqF.PpXXXXaRaXXXXXXXXXXX-110-72.png",
+        "style": {
+          "ratio": 1
+        }
+      },
+      {
+        "type": "CustomCell",
+        "text": "瀑布流",
+        "imageUrl": "https://gw.alicdn.com/tfs/TB1vqF.PpXXXXaRaXXXXXXXXXXX-110-72.png",
+        "style": {
+          "ratio": 1
+        }
+      },
+      {
+        "type": "CustomCell",
+        "text": "瀑布流",
+        "imageUrl": "https://gw.alicdn.com/tfs/TB1vqF.PpXXXXaRaXXXXXXXXXXX-110-72.png",
+        "style": {
+          "ratio": 1
+        }
+      }
+    ],
+    "style": {
+      "margin": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "vGap": 10,
+      "hGap": 10,
+      "bgColor": "#00c3f5",
+      "column": 2
+    }
+  },
+  {
+    "type": "container-oneColumn",
+    "items": [
+      {
+        "type": "VVTest",
+        "bgColor": "#FF0000",
+        "imageUrl": "https://gw.alicdn.com/tfs/TB1vqF.PpXXXXaRaXXXXXXXXXXX-110-72.png",
+        "text": "VirtualView测试1",
+        "action": "您点击了VirtualView1"
+      },
+      {
+        "type": "VVTest",
+        "bgColor": "yellow",
+        "imageUrl": "https://gw.alicdn.com/tfs/TB1vqF.PpXXXXaRaXXXXXXXXXXX-110-72.png",
+        "text": "VirtualView测试2",
+        "action": "您点击了VirtualView2"
+      },
+      {
+        "type": "VVTest",
+        "bgColor": "#00FF00",
+        "imageUrl": "https://gw.alicdn.com/tfs/TB1vqF.PpXXXXaRaXXXXXXXXXXX-110-72.png",
+        "text": "VirtualView测试3",
+        "action": "您点击了VirtualView3"
+      }
+    ]
+  }
+]

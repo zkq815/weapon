@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 手机输入UI标题、按钮文案-->
+    <declare-styleable name="RecyclerViewLoadMoreWithBottomView">
+        <attr name="res_bottomview" format="reference" />
+    </declare-styleable>
+</resources>

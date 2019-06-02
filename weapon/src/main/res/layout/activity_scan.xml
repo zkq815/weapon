@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".base.ScanActivity">
+
+    <com.zkq.weapon.market.zxing.view.QRCodeScannerView
+        android:id="@+id/scanner_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.zkq.weapon.market.zxing.view.QRCoverView
+        android:id="@+id/cover_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cornerColor="@color/color_outside_bg"
+        app:cornerLength="16dp"
+        app:cornerOutside="false"
+        app:cornerWidth="3dp"
+        app:laserColor="@color/color_laser"
+        app:laserVisible="true"
+        app:scanRectHeight="360dp"
+        app:scanRectWidth="360dp" />
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@id/zxing_btn_test1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="扫描框大小" />
+
+            <Button
+                android:id="@id/zxing_btn_test2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="切换摄像头" />
+
+            <Button
+                android:id="@id/zxing_btn_test3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="设置背景色" />
+
+            <Button
+                android:id="@id/zxing_btn_test4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="外边框" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@id/zxing_btn_test5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="隐藏扫描线"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@id/zxing_btn_test6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="显示扫描线"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@id/zxing_btn_test7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="停止扫描"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@id/zxing_btn_test8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="生成二维码 ->" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>

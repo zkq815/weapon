@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
+
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,7 +43,8 @@ public class MainActivity extends BaseActivity {
             , ".countdown.demo1.CountdownActivity"
             , ".countdown.demo2.Demo2Activity"
             , ".subscreen.SubScreenActivity"
-            , ".lottieanimal.LottieAnimalActivity"};
+            , ".lottieanimal.LottieAnimalActivity"
+            , ".tangram.TangramTestActivity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +59,7 @@ public class MainActivity extends BaseActivity {
     private void init() {
         rv = mBinding.rv;
         btnEventBus = mBinding.btnEvent;
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setLayoutManager(new GridLayoutManager(this,2));
         rv.setAdapter(new MainAdapter(this));
     }
 
@@ -71,6 +74,13 @@ public class MainActivity extends BaseActivity {
         ZLog.e("方法二");
         btnEventBus.setText(text);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
 
     class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         Context context;
@@ -93,17 +103,14 @@ public class MainActivity extends BaseActivity {
             if (holder instanceof ItemHolder) {
                 itemHolder = (ItemHolder) holder;
                 int length = info[position].split("\\.").length;
-                itemHolder.tvAcivityName.setText(info[position].split("\\.")[length-1]);
-                itemHolder.tvAcivityName.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            startActivity(new Intent(MainActivity.this
-                                    , Class.forName(path+info[position])));
+                itemHolder.tvActivityNameOne.setText(info[position].split("\\.")[length-1]);
+                itemHolder.tvActivityNameOne.setOnClickListener(v->{
+                    try {
+                        startActivity(new Intent(MainActivity.this
+                                , Class.forName(path+info[position])));
 
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
-                        }
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
                     }
                 });
             }
@@ -116,44 +123,15 @@ public class MainActivity extends BaseActivity {
     }
 
     class ItemHolder extends RecyclerView.ViewHolder {
-        TextView tvAcivityName;
+        TextView tvActivityNameOne;
+        TextView tvActivityNameTwo;
 
         ItemHolder(View view) {
             super(view);
-            tvAcivityName = (TextView) view.findViewById(R.id.tv_activity);
+            tvActivityNameOne = (TextView) view.findViewById(R.id.tv_one);
+            tvActivityNameTwo = (TextView) view.findViewById(R.id.tv_two);
         }
     }
 
-    private void testParcelable(){
 
-//        Parcel parcel = Parcel.obtain();
-//        Book book = new Book("abcsd","asdasdasd");
-//        book.writeToParcel(parcel, book.describeContents());
-//        parcel.setDataPosition(0);
-//        Book createdFromParcel = Book.CREATOR.createFromParcel(parcel);
-//        Log.e("zkq","****反序列化后==" + createdFromParcel.getTitle());
-//
-//
-//        Parcel parcelBean = Parcel.obtain();
-//        TestBean bean = new TestBean(parcelBean);
-//        bean.mPosition = 19;
-//        bean.writeToParcel(parcelBean,bean.describeContents());
-//        parcelBean.setDataPosition(0);
-//        TestBean now = TestBean.CREATOR.createFromParcel(parcelBean);
-//        Log.e("zkq","**** now === " + now.mPosition);
-//
-//        Parcel parcelBean1 = Parcel.obtain();
-//        TestBean1 bean1 = new TestBean1(parcelBean1,null);
-//        bean1.mPosition = 22;
-//        bean1.writeToParcel(parcelBean1,bean1.describeContents());
-//        parcelBean1.setDataPosition(0);
-//        TestBean1 now1 = TestBean1.CREATOR.createFromParcel(parcelBean1);
-//        Log.e("zkq","**** now1 === " + now1.mPosition);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
 }
