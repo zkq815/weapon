@@ -15,6 +15,12 @@
         <activity android:name=".base.WebViewPluginActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".base.ScanActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".base.ThanksActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 

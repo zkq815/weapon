@@ -1,6 +1,5 @@
 package com.zkq.alldemo.fortest.flowlayout;
 
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.widget.TextView;
@@ -8,6 +7,8 @@ import android.widget.TextView;
 import com.zkq.alldemo.R;
 import com.zkq.alldemo.databinding.ActivityFlowLayoutBinding;
 import com.zkq.weapon.base.BaseActivity;
+
+import androidx.databinding.DataBindingUtil;
 
 /**
  * @author zkq
@@ -23,7 +24,7 @@ public class FlowLayoutActivity extends BaseActivity {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_flow_layout);
 
         for (int i = 0; i < 30; i++) {
-            TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.main_item_viewholder,mBinding.flowlayout,false);
+            TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.simple_item_viewholder,mBinding.flowlayout,false);
             textView.setText("eh"+i);
             textView.setBackgroundColor(getResources().getColor(R.color.red_alpha_0));
             textView.setId(i);
@@ -32,7 +33,7 @@ public class FlowLayoutActivity extends BaseActivity {
 
 
         for (int i = 0; i < 30; i++) {
-            TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.main_item_viewholder,mBinding.weaponfl,false);
+            TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.simple_item_viewholder,mBinding.weaponfl,false);
             textView.setText("eh"+i);
             textView.setBackgroundColor(getResources().getColor(R.color.red_alpha_0));
             textView.setId(i);

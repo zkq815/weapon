@@ -6,17 +6,18 @@ import android.app.Application;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import androidx.annotation.NonNull;
 
 import com.zkq.alldemo.BuildConfig;
 import com.zkq.weapon.application.BaseApplication;
-//import com.zkq.weapon.market.util.ImgUtil;
 
+import androidx.annotation.NonNull;
 import okhttp3.OkHttpClient;
 
 /**
  * @author zkq
- * on 2018/2/24.
+ * create:2018/2/24 3:32 PM
+ * email:zkq815@126.com
+ * desc: 应用的基础Application
  */
 public class MyApplication extends BaseApplication {
     @SuppressLint("StaticFieldLeak")

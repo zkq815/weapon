@@ -14,7 +14,7 @@ import androidx.multidex.MultiDexApplication;
  * @author zkq
  * time: 2018/11/15:20:54
  * email: zkq815@126.com
- * desc:
+ * desc: 基类Application
  */
 public class BaseApplication extends MultiDexApplication {
     @SuppressLint("StaticFieldLeak")
@@ -28,6 +28,7 @@ public class BaseApplication extends MultiDexApplication {
 
     public BaseApplication() {
         super();
+        instance = this;
         this.application = this;
     }
 

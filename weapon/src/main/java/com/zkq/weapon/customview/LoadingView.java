@@ -3,10 +3,6 @@ package com.zkq.weapon.customview;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zkq.weapon.R;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 
 /**
  * @author zkq
@@ -28,12 +29,10 @@ public class LoadingView extends FrameLayout {
         /**
          *
          * */
-        LOADING_FAIL(R.string.loading_view_loading_fail, R.drawable.loading_view_loading_fail, true),
-        NETWORK_ERROR(R.string.loading_view_network_error, R.drawable.loading_view_network_error, true),
-        NO_NETWORK(R.string.loading_view_no_network, R.drawable.loading_view_no_network, true),
-        NO_SHOP_NEAR(R.string.near_shop_no_shop,R.drawable.no_shop_near,true),
-        NO_PERMISSION(R.string.near_shop_no_permission,R.drawable.loading_view_no_network,true),
-        CUSTOM(R.string.empty, R.drawable.loading_view_loading_fail, true);
+        LOADING_FAIL(R.string.weapon_loading_view_loading_fail, R.drawable.loading_view_loading_fail, true),
+        NETWORK_ERROR(R.string.weapon_loading_view_network_error, R.drawable.loading_view_network_error, true),
+        NO_NETWORK(R.string.weapon_loading_view_no_network, R.drawable.loading_view_no_network, true),
+        CUSTOM(R.string.weapon_empty, R.drawable.loading_view_loading_fail, true);
 
         @StringRes
         private final int infoRes;

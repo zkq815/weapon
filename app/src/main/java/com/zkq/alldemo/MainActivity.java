@@ -2,12 +2,7 @@ package com.zkq.alldemo;
 
 import android.content.Context;
 import android.content.Intent;
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +11,16 @@ import android.widget.TextView;
 
 import com.zkq.alldemo.databinding.ActivityMainBinding;
 import com.zkq.weapon.base.BaseActivity;
+import com.zkq.weapon.base.ThanksActivity;
 import com.zkq.weapon.market.util.ZLog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 /**
  * @author zkq
  * create:2019/5/28 12:54 AM
@@ -59,6 +59,10 @@ public class MainActivity extends BaseActivity {
     private void init() {
         rv = mBinding.rv;
         btnEventBus = mBinding.btnEvent;
+        btnEventBus.setOnClickListener(v->{
+            startActivity(new Intent(MainActivity.this, ThanksActivity.class));
+//            ZToast.show("弹窗测试");
+        });
         rv.setLayoutManager(new GridLayoutManager(this,2));
         rv.setAdapter(new MainAdapter(this));
     }
@@ -93,7 +97,7 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new ItemHolder(layoutInflater.inflate(R.layout.main_item_viewholder, parent, false));
+            return new ItemHolder(layoutInflater.inflate(R.layout.simple_item_viewholder, parent, false));
         }
 
         @Override
@@ -103,8 +107,8 @@ public class MainActivity extends BaseActivity {
             if (holder instanceof ItemHolder) {
                 itemHolder = (ItemHolder) holder;
                 int length = info[position].split("\\.").length;
-                itemHolder.tvActivityNameOne.setText(info[position].split("\\.")[length-1]);
-                itemHolder.tvActivityNameOne.setOnClickListener(v->{
+                itemHolder.tvActivityName.setText(info[position].split("\\.")[length-1]);
+                itemHolder.tvActivityName.setOnClickListener(v->{
                     try {
                         startActivity(new Intent(MainActivity.this
                                 , Class.forName(path+info[position])));
@@ -123,13 +127,11 @@ public class MainActivity extends BaseActivity {
     }
 
     class ItemHolder extends RecyclerView.ViewHolder {
-        TextView tvActivityNameOne;
-        TextView tvActivityNameTwo;
+        TextView tvActivityName;
 
         ItemHolder(View view) {
             super(view);
-            tvActivityNameOne = (TextView) view.findViewById(R.id.tv_one);
-            tvActivityNameTwo = (TextView) view.findViewById(R.id.tv_two);
+            tvActivityName = (TextView) view.findViewById(R.id.tv_show);
         }
     }
 

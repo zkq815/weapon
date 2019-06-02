@@ -1,6 +1,5 @@
 package com.zkq.alldemo.fortest.scrollclash;
 
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,6 +10,8 @@ import com.zkq.alldemo.databinding.ActivityScrollClashBinding;
 import com.zkq.weapon.base.BaseActivity;
 
 import java.util.ArrayList;
+
+import androidx.databinding.DataBindingUtil;
 
 /**
  * @author zkq
@@ -31,7 +32,7 @@ public class ScrollClashActivity extends BaseActivity {
             dataList.add("content"+i);
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.main_item_viewholder,R.id.tv_one,dataList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.simple_item_viewholder,R.id.tv_show,dataList);
 
         mBinding.lv.setAdapter(adapter);
     }
