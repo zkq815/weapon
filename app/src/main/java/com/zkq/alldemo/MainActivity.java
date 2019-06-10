@@ -11,7 +11,8 @@ import android.widget.TextView;
 
 import com.zkq.alldemo.databinding.ActivityMainBinding;
 import com.zkq.weapon.base.BaseActivity;
-import com.zkq.weapon.base.ThanksActivity;
+import com.zkq.weapon.base.WebViewPluginActivity;
+import com.zkq.weapon.constants.WeaponConstants;
 import com.zkq.weapon.market.util.ZLog;
 
 import org.greenrobot.eventbus.EventBus;
@@ -58,10 +59,12 @@ public class MainActivity extends BaseActivity {
 
     private void init() {
         rv = mBinding.rv;
-        btnEventBus = mBinding.btnEvent;
+        btnEventBus = mBinding.btnStory;
         btnEventBus.setOnClickListener(v->{
-            startActivity(new Intent(MainActivity.this, ThanksActivity.class));
-//            ZToast.show("弹窗测试");
+            Intent intent = new Intent(MainActivity.this, WebViewPluginActivity.class);
+            intent.putExtra(WeaponConstants.WEB_URL,WeaponConstants.NORMAL_TO_GOD_URL);
+            intent.putExtra(WeaponConstants.WEB_TITLE,WeaponConstants.NORMAL_TO_GOD_TITLE);
+            startActivity(intent);
         });
         rv.setLayoutManager(new GridLayoutManager(this,2));
         rv.setAdapter(new MainAdapter(this));

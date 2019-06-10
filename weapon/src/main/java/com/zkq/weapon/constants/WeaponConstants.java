@@ -8,6 +8,11 @@ package com.zkq.weapon.constants;
  */
 public interface WeaponConstants {
 
+    String NORMAL_TO_GOD_URL = "https://m.biquke.com/bq/0/990/";
+    String NORMAL_TO_GOD_TITLE = "凡人修仙传仙界篇";
+
+
+
     /**********************************************************************
      *                          String                                    *
      **********************************************************************/

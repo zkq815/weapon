@@ -12,9 +12,10 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_event"
+            android:id="@+id/btn_story"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="a story"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"

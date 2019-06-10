@@ -7,9 +7,6 @@ import android.net.http.SslError;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-
-import androidx.annotation.Nullable;
-
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,12 +22,14 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
+import com.zkq.weapon.R;
 import com.zkq.weapon.customview.LoadingView;
 import com.zkq.weapon.market.toast.ZToast;
 import com.zkq.weapon.market.util.ZLog;
-import com.zkq.weapon.R;
 
 import java.lang.ref.WeakReference;
+
+import androidx.annotation.Nullable;
 
 /**
  * @author zkq
@@ -154,6 +153,7 @@ public abstract class BaseWebPluginFragment extends BaseFragment {
                 super.onPageFinished(view, url);
                 setTitle(view.getTitle());
                 mLoadingLayout.success();
+                ZLog.e(url);
             }
 
             /**
@@ -193,6 +193,13 @@ public abstract class BaseWebPluginFragment extends BaseFragment {
                     return true;
                 }
 
+                //凡人网站弹窗拦截
+                if(url.contains("39f.8ca4y3t66")
+                        || url.contains("mob10.qhdshuidi")
+                        || url.contains("mob28.lmengwei")){
+                    return true;
+
+                }
                 return false;
             }
 
