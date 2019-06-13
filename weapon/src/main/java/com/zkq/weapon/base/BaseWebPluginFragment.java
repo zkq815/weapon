@@ -196,7 +196,9 @@ public abstract class BaseWebPluginFragment extends BaseFragment {
                 //凡人网站弹窗拦截
                 if(url.contains("39f.8ca4y3t66")
                         || url.contains("mob10.qhdshuidi")
-                        || url.contains("mob28.lmengwei")){
+                        || url.contains("mob28.lmengwei")
+                        || url.contains("werewolf.mobi")
+                        || url.contains("qp.y453")){
                     return true;
 
                 }
