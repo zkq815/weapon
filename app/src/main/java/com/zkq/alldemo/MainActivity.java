@@ -9,19 +9,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.zkq.alldemo.databinding.ActivityMainBinding;
 import com.zkq.weapon.base.BaseActivity;
-import com.zkq.weapon.base.WebViewPluginActivity;
-import com.zkq.weapon.constants.WeaponConstants;
+import com.zkq.weapon.base.ScanActivity;
 import com.zkq.weapon.market.util.ZLog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * @author zkq
  * create:2019/5/28 12:54 AM
@@ -29,10 +29,12 @@ import androidx.recyclerview.widget.RecyclerView;
  * desc:
  */
 public class MainActivity extends BaseActivity {
-    private ActivityMainBinding mBinding;
+//    private ActivityMainBinding mBinding;
     private String path = "com.zkq.alldemo.fortest";
-    private RecyclerView rv;
-    private Button btnEventBus;
+    @BindView(R.id.rv)
+    RecyclerView rv;
+    @BindView(R.id.btn_story)
+    Button btnEventBus;
     String[] info = {".colorprogresswithspeed.ColorProgressActivity"
             , ".okhttp.OKHttpActivity", ".dialog.DialogTestActivity"
             , ".flowlayout.FlowLayoutActivity"
@@ -45,28 +47,30 @@ public class MainActivity extends BaseActivity {
             , ".countdown.demo2.Demo2Activity"
             , ".subscreen.SubScreenActivity"
             , ".lottieanimal.LottieAnimalActivity"
-            , ".tangram.TangramTestActivity"};
+            , ".tangram.TangramTestActivity"
+            , ".ijkplayer.VideoMediaActivity"
+            , ".gsvideo.GSVideoActivity"
+            , ".gsvideo.gsdemo.gsyvideoplayer.GsMainActivity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
         isShowBack(false);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         init();
     }
 
     private void init() {
-        rv = mBinding.rv;
-        btnEventBus = mBinding.btnStory;
         btnEventBus.setOnClickListener(v->{
-            Intent intent = new Intent(MainActivity.this, WebViewPluginActivity.class);
-            intent.putExtra(WeaponConstants.WEB_URL,WeaponConstants.NORMAL_TO_GOD_URL);
-            intent.putExtra(WeaponConstants.WEB_TITLE,WeaponConstants.NORMAL_TO_GOD_TITLE);
+//            Intent intent = new Intent(MainActivity.this, WebViewPluginActivity.class);
+//            intent.putExtra(WeaponConstants.WEB_URL,WeaponConstants.NORMAL_TO_GOD_URL);
+//            intent.putExtra(WeaponConstants.WEB_TITLE,WeaponConstants.NORMAL_TO_GOD_TITLE);
+            Intent intent = new Intent(MainActivity.this, ScanActivity.class);
             startActivity(intent);
         });
-        rv.setLayoutManager(new GridLayoutManager(this,2));
+        rv.setLayoutManager(new GridLayoutManager(this,1));
         rv.setAdapter(new MainAdapter(this));
     }
 

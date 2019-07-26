@@ -10,6 +10,8 @@ buildscript {
         classpath 'com.android.tools.build:gradle:3.3.0'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
 
@@ -73,4 +75,17 @@ ext {
     mmkvVersion = '1.0.19'
     //zxing
     zxingVersion = '3.3.0'
+    //哔哩哔哩视频框架
+    ijkplayerVersion = '0.8.8'
+    //GSYVideoPlayer
+    GSYVideoPlayerVersion = '6.0.3'
+    //butterKnife
+    butterKnifeVersion = '10.1.0'
+    //permissionsdispatcher = '4.3.0'
+    permissionsVersion = '4.3.0'
+    //MD desgins
+    materialVersion = '1.0.0'
+    //弹幕
+    danmuVersion = '0.9.25'
+    danmuSOVersion = '0.9.21'
 }

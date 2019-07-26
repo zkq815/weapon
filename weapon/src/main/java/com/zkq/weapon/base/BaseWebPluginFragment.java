@@ -30,6 +30,7 @@ import com.zkq.weapon.market.util.ZLog;
 import java.lang.ref.WeakReference;
 
 import androidx.annotation.Nullable;
+import butterknife.ButterKnife;
 
 /**
  * @author zkq
@@ -57,6 +58,7 @@ public abstract class BaseWebPluginFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_plugin_web, container, false);
+        ButterKnife.bind(this, root);
         setupView(root);
         return root;
     }

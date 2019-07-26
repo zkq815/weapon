@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -34,6 +34,10 @@ android {
         enabled true
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -59,6 +63,7 @@ dependencies {
     api "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
     api "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
     api "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofitVersion"
+    api "com.squareup.retrofit2:converter-scalars:$rootProject.ext.retrofitVersion"
 
     // RxJava
     api "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjavaVersion"
@@ -74,6 +79,11 @@ dependencies {
     // image
     api "com.squareup.picasso:picasso:$rootProject.ext.picassoVersion"
     api "com.jakewharton.picasso:picasso2-okhttp3-downloader:$rootProject.ext.picassoLoadVersion"
+
+    //ButterKnife
+    api "com.jakewharton:butterknife:$rootProject.ext.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterKnifeVersion"
+//    classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
 
     //去除glide中的support依赖包，防止与项目冲突
     api("com.github.bumptech.glide:glide:$rootProject.ext.glideVersion") {
@@ -112,6 +122,21 @@ dependencies {
 
     //zxing
     api "com.google.zxing:core:$rootProject.ext.zxingVersion"
+
+    //ijkplayer
+    api "com.shuyu:GSYVideoPlayer:$rootProject.ext.GSYVideoPlayerVersion"
+
+    api ("org.permissionsdispatcher:permissionsdispatcher:$rootProject.ext.permissionsVersion") {
+        // if you don't use android.app.Fragment you can exclude support for them
+        exclude module: "support-v13"
+    }
+    api "com.google.android.material:material:$rootProject.ext.materialVersion"
+    api "com.github.ctiao:DanmakuFlameMaster:$rootProject.ext.danmuVersion"
+    api "com.github.ctiao:ndkbitmap-armv7a:$rootProject.ext.danmuSOVersion"
+    api "com.github.ctiao:ndkbitmap-armv5:$rootProject.ext.danmuSOVersion"
+    api "com.github.ctiao:ndkbitmap-x86:$rootProject.ext.danmuSOVersion"
+
+    annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:$rootProject.ext.permissionsVersion"
     //内存监控
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanaryVerison"
 

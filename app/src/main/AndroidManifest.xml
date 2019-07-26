@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- sd卡写入权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 相机权限 -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 指纹识别权限 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- 唤醒锁权限 -->
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
     <application
@@ -72,7 +73,191 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".fortest.tangram.TangramTestActivity"
+            android:screenOrientation="portrait" />
+        <!-- <activity -->
+        <!-- android:name=".fortest.ijkplayer.SimpleMediaActivity" -->
+        <!-- android:screenOrientation="portrait"/> -->
+        <!--GSVideo -->
+        <activity
+            android:name=".fortest.gsvideo.GSVideoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.GsMainActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.PlayActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.ListVideoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.ListVideo2Activity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.DetailPlayer"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.RecyclerView2Activity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.DetailListPlayer"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.WebDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.RecyclerViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.DanmkuVideoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.FragmentVideoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.DetailMoreTypeActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.InputUrlDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.PlayEmptyControlActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.DetailControlActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.DetailFilterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.PlayPickActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.AutoPlayRecyclerViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.ScrollingActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_scrolling"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.WindowActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.EmptyActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.utils.floatUtil.FloatActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.DetailADPlayer"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.DetailADPlayer2"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.ListMultiVideoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.ListADVideoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+
+
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.ListADVideoActivity2"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.exo.DetailExoListPlayer"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.simple.SimplePlayer"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Theme.AppCompat.Full"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.simple.SimpleDetailActivityMode1"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.simple.SimpleDetailActivityMode2"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.simple.SimpleListVideoActivityMode1"
+            android:theme="@style/Theme.AppCompat.Translucent"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.simple.SimpleListVideoActivityMode2"
+            android:theme="@style/Theme.AppCompat.Translucent"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.simple.SimpleActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.switchplay.SwitchListVideoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Theme.AppCompat.Transitions"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.switchplay.SwitchDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Theme.AppCompat.Transitions"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".fortest.gsvideo.gsdemo.gsyvideoplayer.RecyclerView3Activity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Theme.AppCompat.Transitions"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
     </application>
 
 </manifest>

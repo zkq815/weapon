@@ -9,11 +9,6 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,18 +16,24 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.tmall.wireless.tangram.TangramEngine;
+import com.zkq.weapon.R;
 import com.zkq.weapon.constants.WeaponConstants;
 import com.zkq.weapon.market.tools.ToolAndroid;
 import com.zkq.weapon.market.tools.ToolNet;
 import com.zkq.weapon.market.tools.ToolString;
 import com.zkq.weapon.market.util.ZLog;
-import com.zkq.weapon.R;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 /**
  * @author zkq
@@ -52,6 +53,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        ButterKnife.bind(this);
         setStatusBarDark();
         setStateBar(2, R.color.blue_beika);
         showActionBar(true, true,"");

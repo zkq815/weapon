@@ -10,6 +10,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Region;
 import android.graphics.Shader;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
@@ -144,7 +145,11 @@ public class QRCoverView extends View {
             mPath.reset();
             canvas.clipPath(mPath);
             mPath.addRect(viewFinderRect, Path.Direction.CW);
-            canvas.clipPath(mPath, Region.Op.REPLACE);
+            if(Build.VERSION.SDK_INT >= 26){
+                canvas.clipPath(mPath);
+            }else {
+                canvas.clipPath(mPath, Region.Op.REPLACE);
+            }
             //渐变色的扫描线（白色->透明）
             LinearGradient linearGradient = new LinearGradient(0, laserStartH - laserChangeBounds, 0, laserStartH, new int[]{Color.TRANSPARENT, laserColor}, null, Shader.TileMode.CLAMP);
             //给扫描线Paint设置着色器并绘制

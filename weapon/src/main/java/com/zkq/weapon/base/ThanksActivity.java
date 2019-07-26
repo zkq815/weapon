@@ -8,12 +8,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.zkq.weapon.R;
-import com.zkq.weapon.databinding.ActivityThanksBinding;
+import com.zkq.weapon.R2;
 import com.zkq.weapon.market.toast.ZToast;
 
-import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * @author zkq
@@ -22,8 +23,9 @@ import androidx.recyclerview.widget.RecyclerView;
  * desc:
  */
 public class ThanksActivity extends BaseActivity {
-    private ActivityThanksBinding mBinding;
-    private RecyclerView rv;
+//    private ActivityThanksBinding mBinding;
+    @BindView(R2.id.rv)
+    RecyclerView rv;
     String[] info = {
             "感谢每天努力的自己，每天进步一点点"
             ,"感谢老婆、家人给予的支持！"
@@ -53,13 +55,14 @@ public class ThanksActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_thanks);
+        setContentView(R.layout.activity_thanks);
+        ButterKnife.bind(this);
         getSupportActionBar().setTitle(getString(R.string.weapon_thanks_for_open));
         init();
     }
 
     private void init() {
-        rv = mBinding.rv;
+//        rv = mBinding.rv;
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(new MainAdapter(this));
     }

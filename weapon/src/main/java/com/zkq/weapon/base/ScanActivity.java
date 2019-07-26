@@ -7,18 +7,21 @@ import android.graphics.Color;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+
+import com.zkq.weapon.R;
+import com.zkq.weapon.R2;
+import com.zkq.weapon.market.zxing.view.QRCodeScannerView;
+import com.zkq.weapon.market.zxing.view.QRCoverView;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
-import android.util.Log;
-import android.view.View;
-import android.view.WindowManager;
-
-import com.zkq.weapon.R;
-import com.zkq.weapon.market.zxing.view.QRCodeScannerView;
-import com.zkq.weapon.market.zxing.view.QRCoverView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * @author zkq
@@ -34,11 +37,14 @@ public class ScanActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "ScanActivity";
 
     private final int PERMISSION_REQUEST_CAMERA = 0;
+    @BindView(R2.id.zxing_btn_test1)
+    Button btnOne;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
+        ButterKnife.bind(this);
         initView();
         hideActionBar();
     }
@@ -53,7 +59,7 @@ public class ScanActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void initView() {
-        findViewById(R.id.zxing_btn_test1).setOnClickListener(this);
+        btnOne.setOnClickListener(this);
         findViewById(R.id.zxing_btn_test2).setOnClickListener(this);
         findViewById(R.id.zxing_btn_test3).setOnClickListener(this);
         findViewById(R.id.zxing_btn_test4).setOnClickListener(this);

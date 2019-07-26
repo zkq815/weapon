@@ -3,18 +3,17 @@ package com.zkq.weapon.base;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.zkq.weapon.market.mmkv.MmkvUtils;
 import com.zkq.weapon.market.util.ZLog;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import butterknife.ButterKnife;
 
 /**
  * @author zkq
@@ -23,11 +22,10 @@ import com.zkq.weapon.market.util.ZLog;
  * desc: Fragment基类
  */
 public class BaseFragment extends Fragment implements BaseActivity.INetChange {
-
+    private View baseView;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getActivity() instanceof BaseActivity) {
             ((BaseActivity) getActivity()).addNetChangeListener(this);
         }
@@ -36,8 +34,9 @@ public class BaseFragment extends Fragment implements BaseActivity.INetChange {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        return super.onCreateView(inflater, container, savedInstanceState);
+        baseView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, baseView);
+        return baseView;
     }
 
     @Override
