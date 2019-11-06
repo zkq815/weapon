@@ -16,8 +16,148 @@
             android:id="@+id/btn_okhttp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
             android:text="okHttp请求"
             android:visibility="visible" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp"
+            app:layout_constraintTop_toBottomOf="@+id/btn_okhttp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_200"/>
+        <LinearLayout
+            app:layout_constraintTop_toBottomOf="@+id/vp"
+            android:layout_width="match_parent"
+            android:layout_height="295dp">
+        <ScrollView
+            android:id="@+id/sv_all"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d_295"
+            android:fillViewport="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="405dp"
+                android:background="@color/transparent"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_hushen_a"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d_45"
+                    android:text="沪深A股"
+                    android:textSize="@dimen/s_16"
+                    android:gravity="center"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"/>
+
+                <TextView
+                    android:id="@+id/tv_hushi_a"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d_45"
+                    android:text="沪市A股"
+                    android:textSize="@dimen/s_16"
+                    android:gravity="center"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_shenshi_a"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d_45"
+                    android:text="深市A股"
+                    android:textSize="@dimen/s_16"
+                    android:gravity="center"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    />
+                <RelativeLayout
+                    android:id="@+id/rl_kcb"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/tv_kcb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/d_45"
+                        android:text="科创板"
+                        android:textSize="@dimen/s_16"
+                        android:gravity="center"
+                        android:layout_centerInParent="true"
+                        android:background="@color/transparent"/>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_cyb"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d_45"
+                    android:text="创业板"
+                    android:textSize="@dimen/s_16"
+                    android:gravity="center"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_zxb"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d_45"
+                    android:text="中小板"
+                    android:textSize="@dimen/s_16"
+                    android:gravity="center"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_sz50"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d_45"
+                    android:text="上证50"
+                    android:textSize="@dimen/s_16"
+                    android:gravity="center"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_hushen300"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d_45"
+                    android:text="沪深300"
+                    android:textSize="@dimen/s_16"
+                    android:gravity="center"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_zz500"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/d_45"
+                    android:text="中证500"
+                    android:textSize="@dimen/s_16"
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+
+        </ScrollView>
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

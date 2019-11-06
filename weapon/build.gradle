@@ -136,6 +136,8 @@ dependencies {
     api "com.github.ctiao:ndkbitmap-armv5:$rootProject.ext.danmuSOVersion"
     api "com.github.ctiao:ndkbitmap-x86:$rootProject.ext.danmuSOVersion"
 
+    //手势缩放
+    api "com.github.GeniusLiu:GestureViewBinder:$rootProject.ext.gestureViewBinderVersion"
     annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:$rootProject.ext.permissionsVersion"
     //内存监控
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanaryVerison"

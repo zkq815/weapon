@@ -9,6 +9,7 @@ import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 import com.zkq.alldemo.R;
+import com.zkq.weapon.market.glide.ImageLoader;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,7 +36,10 @@ public class SimplePlayer extends AppCompatActivity {
         //增加封面
         ImageView imageView = new ImageView(this);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageView.setImageResource(R.drawable.xxx1);
+//        imageView.setImageResource(R.drawable.xxx1);
+        ImageLoader.getInstance()
+                .load("https://sscf.oss-cn-hangzhou.aliyuncs.com/videoCover/2019-08-30/5d68fb003048fff29f2a2474.jpg")
+                .into(imageView);
         videoPlayer.setThumbImageView(imageView);
         //增加title
         videoPlayer.getTitleTextView().setVisibility(View.VISIBLE);
@@ -59,7 +63,7 @@ public class SimplePlayer extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        videoPlayer.startPlayLogic();
+//        videoPlayer.startPlayLogic();
     }
 
 

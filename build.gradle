@@ -88,4 +88,6 @@ ext {
     //弹幕
     danmuVersion = '0.9.25'
     danmuSOVersion = '0.9.21'
+    //view缩放
+    gestureViewBinderVersion = '1.0.1'
 }

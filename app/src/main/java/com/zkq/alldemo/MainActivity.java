@@ -10,7 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.zkq.weapon.base.BaseActivity;
-import com.zkq.weapon.base.ScanActivity;
+import com.zkq.weapon.base.WebViewPluginActivity;
+import com.zkq.weapon.constants.WeaponConstants;
 import com.zkq.weapon.market.util.ZLog;
 
 import org.greenrobot.eventbus.EventBus;
@@ -29,14 +30,14 @@ import butterknife.ButterKnife;
  * desc:
  */
 public class MainActivity extends BaseActivity {
-//    private ActivityMainBinding mBinding;
     private String path = "com.zkq.alldemo.fortest";
     @BindView(R.id.rv)
     RecyclerView rv;
     @BindView(R.id.btn_story)
     Button btnEventBus;
     String[] info = {".colorprogresswithspeed.ColorProgressActivity"
-            , ".okhttp.OKHttpActivity", ".dialog.DialogTestActivity"
+            , ".okhttp.OKHttpActivity"
+            , ".dialog.DialogTestActivity"
             , ".flowlayout.FlowLayoutActivity"
             , ".actionbar.MyToolbarActivity"
             , ".scaleanimation.ScaleAnimationActivity"
@@ -50,7 +51,13 @@ public class MainActivity extends BaseActivity {
             , ".tangram.TangramTestActivity"
             , ".ijkplayer.VideoMediaActivity"
             , ".gsvideo.GSVideoActivity"
-            , ".gsvideo.gsdemo.gsyvideoplayer.GsMainActivity"};
+            , ".gsvideo.gsdemo.gsyvideoplayer.GsMainActivity"
+            , "com.zkq.weapon.base.ScanActivity"
+            , ".recyclertoviewpager.RecyclerToViewPagerActivity"
+            , ".recyclertoviewpager.RecyclerToViewPagerDemoActivity"
+            , ".gestureviewbinder.GestureViewBinderActivity"
+            , ".textureview.TestTextureViewActivity"
+            , ".drawerLayout.DrawerLayoutActivity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +71,12 @@ public class MainActivity extends BaseActivity {
 
     private void init() {
         btnEventBus.setOnClickListener(v->{
-//            Intent intent = new Intent(MainActivity.this, WebViewPluginActivity.class);
-//            intent.putExtra(WeaponConstants.WEB_URL,WeaponConstants.NORMAL_TO_GOD_URL);
-//            intent.putExtra(WeaponConstants.WEB_TITLE,WeaponConstants.NORMAL_TO_GOD_TITLE);
-            Intent intent = new Intent(MainActivity.this, ScanActivity.class);
+            Intent intent = new Intent(MainActivity.this, WebViewPluginActivity.class);
+            intent.putExtra(WeaponConstants.WEB_URL,WeaponConstants.NORMAL_TO_GOD_URL);
+            intent.putExtra(WeaponConstants.WEB_TITLE,WeaponConstants.NORMAL_TO_GOD_TITLE);
             startActivity(intent);
         });
-        rv.setLayoutManager(new GridLayoutManager(this,1));
+        rv.setLayoutManager(new GridLayoutManager(this,2));
         rv.setAdapter(new MainAdapter(this));
     }
 
