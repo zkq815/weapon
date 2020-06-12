@@ -3,14 +3,15 @@ package com.zkq.weapon.base;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.zkq.weapon.customview.LoadingView;
 import com.zkq.weapon.constants.WeaponConstants;
+import com.zkq.weapon.customview.LoadingView;
 import com.zkq.weapon.market.tools.ToolNet;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * @author zkq

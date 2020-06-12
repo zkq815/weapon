@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
  * @author zkq
  * create:2019/5/28 12:54 AM
  * email:zkq815@126.com
- * desc:
+ * desc: demo首页
  */
 public class MainActivity extends BaseActivity {
     private String path = "com.zkq.alldemo.fortest";
@@ -75,6 +75,7 @@ public class MainActivity extends BaseActivity {
         btnEventBus.setOnClickListener(v->{
             Intent intent = new Intent(MainActivity.this, WebViewPluginActivity.class);
             intent.putExtra(WeaponConstants.WEB_URL,WeaponConstants.NORMAL_TO_GOD_URL);
+//            intent.putExtra(WeaponConstants.WEB_URL,"file:///android_asset/default.html");
             intent.putExtra(WeaponConstants.WEB_TITLE,WeaponConstants.NORMAL_TO_GOD_TITLE);
             startActivity(intent);
         });
