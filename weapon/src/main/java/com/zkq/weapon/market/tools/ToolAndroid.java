@@ -405,4 +405,19 @@ public interface ToolAndroid {
         return null;
     }
 
+    /**
+     * 是否安装
+     * @param context
+     * @param packageName
+     * @return
+     */
+    static boolean isInstalled(@NonNull final Context context, String packageName) {
+        try {
+            context.getPackageManager().getPackageInfo(packageName, 0);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }
