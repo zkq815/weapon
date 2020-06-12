@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Looper;
 import android.os.Process;
 import android.text.TextUtils;
+
 import com.zkq.weapon.application.BaseApplication;
 
 import java.util.List;
@@ -20,10 +21,10 @@ import java.util.UUID;
 import androidx.annotation.NonNull;
 
 /**
- * desc: app相关工具类 <br/>
- * time: 2015-2-14 下午1:31:01 <br/>
- * author: 居廉 <br/>
- * since V 3.0.8 <br/>
+ * @author zkq
+ * create:2020/6/12 5:27 PM
+ * email:zkq815@126.com
+ * desc: app工具类
  */
 public interface ToolApp {
 
@@ -262,4 +263,66 @@ public interface ToolApp {
         System.exit(0);
     }
 
+    static void killAllOtherProcess(final Context context) {
+        final List<ActivityManager.RunningAppProcessInfo> appProcessList = getProcessInfoList(context);
+
+        if (appProcessList == null) {
+            return;
+        }
+
+        for (ActivityManager.RunningAppProcessInfo ai : appProcessList) {
+            if (ai.uid == android.os.Process.myUid() && ai.pid != android.os.Process.myPid()) {
+                android.os.Process.killProcess(ai.pid);
+            }
+        }
+
+    }
+
+    static void killAllProcess(Context context) {
+        killAllOtherProcess(context);
+
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
+    static List<ActivityManager.RunningAppProcessInfo> getProcessInfoList(final Context context) {
+        final ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        if (am == null) {
+            return null;
+        }
+
+        return am.getRunningAppProcesses();
+    }
+
+    static ActivityManager.RunningAppProcessInfo getProcessInfo(final Context context) {
+        final List<ActivityManager.RunningAppProcessInfo> appProcessList = getProcessInfoList(context);
+
+        if (null != appProcessList) {
+            for (ActivityManager.RunningAppProcessInfo ai : appProcessList) {
+                if (ai.pid == android.os.Process.myPid()) {
+                    return ai;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    static String getProcessName(final Context context) {
+        final ActivityManager.RunningAppProcessInfo info = getProcessInfo(context);
+        if (null == info) {
+            return null;
+        }
+
+        return info.processName;
+    }
+
+    static boolean isMainProcess(final Context context) {
+        final ActivityManager.RunningAppProcessInfo info = getProcessInfo(context);
+        return null != info && info.processName.equals(context.getPackageName());
+    }
+
+    static boolean isUpdateProcess(final Context context) {
+        final ActivityManager.RunningAppProcessInfo info = getProcessInfo(context);
+        return null != info && info.processName.endsWith(":update");
+    }
 }

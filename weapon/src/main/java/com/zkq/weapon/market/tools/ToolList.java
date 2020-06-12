@@ -1,8 +1,10 @@
 package com.zkq.weapon.market.tools;
 
-import androidx.annotation.Nullable;
-
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+
+import androidx.annotation.Nullable;
 
 /**
  * @author zkq
@@ -64,6 +66,18 @@ public interface ToolList {
         if (isNotEmpty(sourceList)) {
             sourceList.clear();
         }
+    }
+
+    static boolean hasData(Collection<?> data) {
+        return data != null && data.size() > 0;
+    }
+
+    static boolean noData(Collection<?> data) {
+        return data == null || data.size() == 0;
+    }
+
+    static boolean noData(HashMap<String, List<Integer>> data) {
+        return data == null || data.size() == 0;
     }
 
 }

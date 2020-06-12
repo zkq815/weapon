@@ -95,20 +95,6 @@ public interface ToolAndroid {
     }
 
     /**
-     * 获取当前版本号
-     */
-    static String getVersion(Activity activity) {
-        try {
-            PackageManager manager = activity.getPackageManager();
-            PackageInfo info = manager.getPackageInfo(activity.getPackageName(), 0);
-            return info.versionName;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "";
-        }
-    }
-
-    /**
      * 从资源文件id获取像素值
      *
      * @param context context
@@ -117,37 +103,6 @@ public interface ToolAndroid {
      */
     static int getDimension(@NonNull Context context, @DimenRes int id) {
         return (int) context.getResources().getDimension(id);
-    }
-
-    /**
-     * 获取手机的屏幕宽度
-     */
-    static int getScreenWidth(Activity activity) {
-        int screenWidth;
-        WindowManager windowManager = activity.getWindowManager();
-        Display display = windowManager.getDefaultDisplay();
-        screenWidth = display.getWidth();
-        return screenWidth;
-    }
-
-    /**
-     * 获取手机的屏幕宽度
-     */
-    static int getScreenHeight(Activity activity) {
-        int screenHeight;
-        WindowManager windowManager = activity.getWindowManager();
-        Display display = windowManager.getDefaultDisplay();
-        screenHeight = display.getHeight();
-
-        return screenHeight;
-    }
-
-    /**
-     * 获取手机的屏幕宽度
-     */
-    static int getPhoneWidth(Context context) {
-        DisplayMetrics dm = context.getApplicationContext().getResources().getDisplayMetrics();
-        return dm.widthPixels;
     }
 
     /**
@@ -193,28 +148,6 @@ public interface ToolAndroid {
             return null;
         }
         return activeInfo;
-    }
-
-    static long getVersion(Context ctx) {
-        try {
-            return getPackageManager(ctx).getPackageInfo(ctx.getPackageName(),
-                    0).getLongVersionCode();
-
-        } catch (Exception ignored) {
-
-        }
-        return -1;
-    }
-
-    static String getVersionName(Context ctx) {
-        try {
-            return getPackageManager(ctx).getPackageInfo(ctx.getPackageName(),
-                    0).versionName;
-
-        } catch (Exception ignored) {
-
-        }
-        return null;
     }
 
     static String getBrand() {
@@ -358,21 +291,6 @@ public interface ToolAndroid {
     }
 
     /**
-     * 获取虚拟按键的高度
-     */
-    static int getNavigationBarHeight(Context context) {
-        int result = 0;
-        if (hasNavBar(context)) {
-            Resources res = context.getResources();
-            int resourceId = res.getIdentifier("navigation_bar_height", "dimen", "android");
-            if (resourceId > 0) {
-                result = res.getDimensionPixelSize(resourceId);
-            }
-        }
-        return result;
-    }
-
-    /**
      * 检查是否存在虚拟按键栏
      *
      * @param context 上下文
@@ -415,20 +333,6 @@ public interface ToolAndroid {
             }
         }
         return sNavBarOverride;
-    }
-
-    /**
-     * 获取状态栏高度
-     */
-    static int getStateBarHeight(Context context) {
-        int statusBarHeight1 = -1;
-        //获取status_bar_height资源的ID
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            //根据资源ID获取响应的尺寸值
-            statusBarHeight1 = context.getResources().getDimensionPixelSize(resourceId);
-        }
-        return statusBarHeight1;
     }
 
     /**
@@ -476,18 +380,29 @@ public interface ToolAndroid {
     }
 
     /**
-     * 获取手机的屏幕高度
-     */
-    static int getScreenHeight(Context context) {
-        DisplayMetrics dm = context.getApplicationContext().getResources().getDisplayMetrics();
-        return dm.heightPixels;
-    }
-
-    /**
      * 隐藏软键盘
      */
     static void hideSoftKeyboard(Activity activity) {
         ((InputMethodManager) activity.getBaseContext().getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    /**
+     * 获取手机号码
+     * @param context
+     * @return
+     */
+    static String getPhoneNumber(Context context) {
+        TelephonyManager phoneManager = (TelephonyManager) context
+                .getSystemService(Context.TELEPHONY_SERVICE);
+
+        if (phoneManager != null) {
+            String ret = phoneManager.getLine1Number();
+            if (ret != null && ret.length() > 0) {
+                return ret;
+            }
+        }
+
+        return null;
     }
 
 }

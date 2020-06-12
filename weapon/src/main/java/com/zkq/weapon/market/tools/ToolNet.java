@@ -1,5 +1,6 @@
 package com.zkq.weapon.market.tools;
 
+import android.Manifest.permission;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -7,16 +8,16 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.net.NetworkInfo.State;
 import android.telephony.TelephonyManager;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import android.net.NetworkInfo.State;
-import android.Manifest.permission;
 import java.util.Collections;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * @author zkq
@@ -193,7 +194,7 @@ public interface ToolNet {
     /**
      * get Network Class.
      */
-    public static int getNetworkClass(Context context) {
+    static int getNetworkClass(Context context) {
         if (isWIFI(context)) {
             return NETWORK_CLASS_WIFI;
         }
@@ -233,7 +234,7 @@ public interface ToolNet {
         }
     }
 
-    public static boolean is3G4GWiFi(Context context){
+    static boolean is3G4GWiFi(Context context){
         if(getNetworkClass(context)>=2){
             return true;
         }else{
@@ -258,19 +259,6 @@ public interface ToolNet {
         return false;
     }
 
-    static String getPhoneNumber(Context context) {
-        TelephonyManager phoneManager = (TelephonyManager) context
-                .getSystemService(Context.TELEPHONY_SERVICE);
-
-        if (phoneManager != null) {
-            String ret = phoneManager.getLine1Number();
-            if (ret != null && ret.length() > 0) {
-                return ret;
-            }
-        }
-
-        return null;
-    }
     /**
      * Convert byte array to hex string
      */

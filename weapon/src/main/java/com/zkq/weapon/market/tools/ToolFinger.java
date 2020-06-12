@@ -2,6 +2,9 @@ package com.zkq.weapon.market.tools;
 
 import android.content.Context;
 import android.hardware.fingerprint.FingerprintManager;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 
 /**
@@ -12,6 +15,7 @@ import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
  */
 public interface ToolFinger {
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     static FingerprintManager getFingerprintManager(Context context) {
         FingerprintManager fingerprintManager = null;
         try {

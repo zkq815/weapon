@@ -3,20 +3,28 @@ package com.zkq.weapon.market.tools;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.os.Build;
 import android.view.Display;
 import android.view.Surface;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+
+import com.zkq.weapon.market.util.ZLog;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * @author zkq
@@ -25,7 +33,6 @@ import android.widget.ImageView;
  * desc: 屏幕工具类
  */
 public interface ToolScreen {
-
     /**
      * 获取屏幕密度
      *
@@ -156,5 +163,34 @@ public interface ToolScreen {
      */
     static void setPortrait(@NonNull final Activity activity) {
         activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
+
+    /**
+     * 获取状态栏高度
+     */
+    static int getStateBarHeight(Context context) {
+        int statusBarHeight1 = -1;
+        //获取status_bar_height资源的ID
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            //根据资源ID获取响应的尺寸值
+            statusBarHeight1 = context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return statusBarHeight1;
+    }
+
+    /**
+     * 获取虚拟按键的高度
+     */
+    static int getNavigationBarHeight(Context context) {
+        int result = 0;
+        if (ToolAndroid.hasNavBar(context)) {
+            Resources res = context.getResources();
+            int resourceId = res.getIdentifier("navigation_bar_height", "dimen", "android");
+            if (resourceId > 0) {
+                result = res.getDimensionPixelSize(resourceId);
+            }
+        }
+        return result;
     }
 }

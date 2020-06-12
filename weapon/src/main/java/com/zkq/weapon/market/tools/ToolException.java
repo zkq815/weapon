@@ -10,14 +10,14 @@ import java.io.Writer;
 import androidx.annotation.NonNull;
 
 /**
+ * @author zkq
+ * create:2020/6/12 5:29 PM
+ * email:zkq815@126.com
  * desc: 异常工具类。此类目的：<br/>
  * 1，规范异常处理。<br/>
  * 2，收集错误日志信息。<br/>
  * 3，在开发期抛出任何可能的异常，便于开发者定位问题。<br/>
  * 4，在正式版本中，会禁止任何异常抛出，减少crash率。<br/>
- * time: 2015-3-13 下午4:55:11 <br/>
- * author: Logan <br/>
- * since V 3.2.0 <br/>
  */
 public interface ToolException {
 
