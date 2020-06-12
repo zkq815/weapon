@@ -1,17 +1,29 @@
 package com.zkq.alldemo.fortest.scaleanimation;
 
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
+import android.widget.ImageView;
 
 import com.zkq.alldemo.R;
-import com.zkq.alldemo.databinding.ActivityScaleAnimationBinding;
 import com.zkq.weapon.base.BaseActivity;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ScaleAnimationActivity extends BaseActivity {
-    private ActivityScaleAnimationBinding mBinding;
+
+    @BindView(R.id.cl_all)
+    ConstraintLayout clAll;
+
+    @BindView(R.id.image1)
+    ImageView image1;
+
+    @BindView(R.id.image2)
+    ImageView image2;
+
     private ScaleAnimation sato0 = new ScaleAnimation(1,0,1,1,
             Animation.RELATIVE_TO_PARENT,0.5f,Animation.RELATIVE_TO_PARENT,0.5f);
 
@@ -20,15 +32,16 @@ public class ScaleAnimationActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this,R.layout.activity_scale_animation);
+        setContentView(R.layout.activity_scale_animation);
+        ButterKnife.bind(this);
         initView();
-        mBinding.clAll.setOnClickListener(new View.OnClickListener() {
+        clAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mBinding.image1.getVisibility() == View.VISIBLE){
-                    mBinding.image1.startAnimation(sato0);
+                if (image1.getVisibility() == View.VISIBLE){
+                    image1.startAnimation(sato0);
                 }else{
-                    mBinding.image2.startAnimation(sato0);
+                    image2.startAnimation(sato0);
                 }
             }
         });
@@ -48,14 +61,14 @@ public class ScaleAnimationActivity extends BaseActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
 
-                if (mBinding.image1.getVisibility() == View.VISIBLE){
-                    mBinding.image1.setAnimation(null);
+                if (image1.getVisibility() == View.VISIBLE){
+                    image1.setAnimation(null);
                     showImage2();
-                    mBinding.image2.startAnimation(sato1);
+                    image2.startAnimation(sato1);
                 }else{
-                    mBinding.image2.setAnimation(null);
+                    image2.setAnimation(null);
                     showImage1();
-                    mBinding.image1.startAnimation(sato1);
+                    image1.startAnimation(sato1);
                 }
             }
 
@@ -68,14 +81,12 @@ public class ScaleAnimationActivity extends BaseActivity {
 
 
     private void showImage1(){
-
-        mBinding.image1.setVisibility(View.VISIBLE);
-        mBinding.image2.setVisibility(View.GONE);
+        image1.setVisibility(View.VISIBLE);
+        image2.setVisibility(View.GONE);
     }
     private void showImage2(){
-
-        mBinding.image1.setVisibility(View.GONE);
-        mBinding.image2.setVisibility(View.VISIBLE);
+        image1.setVisibility(View.GONE);
+        image2.setVisibility(View.VISIBLE);
     }
 
 }

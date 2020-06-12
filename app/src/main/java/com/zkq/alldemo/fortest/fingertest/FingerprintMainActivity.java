@@ -11,6 +11,9 @@ import android.widget.Toast;
 import com.zkq.alldemo.R;
 import com.zkq.weapon.base.BaseActivity;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * @author zkq
  * create:2018/12/12 3:44 PM
@@ -19,19 +22,23 @@ import com.zkq.weapon.base.BaseActivity;
  */
 public class FingerprintMainActivity extends BaseActivity implements View.OnClickListener {
 
+    @BindView(R.id.fingerprint_guide)
+    ImageView mFingerGuideImg;
+    @BindView(R.id.fingerprint_guide_tip)
+    TextView mFingerGuideTxt;
+
     private FingerprintCore mFingerprintCore;
     private KeyguardLockScreenManager mKeyguardLockScreenManager;
     private Toast mToast;
-    private ImageView mFingerGuideImg;
-    private TextView mFingerGuideTxt;
+
     private CheckPopupWindow popupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fingerprint_main);
+        ButterKnife.bind(this);
         popupWindow = new CheckPopupWindow(this);
-        initViews();
         initViewListeners();
         initFingerprintCore();
     }
@@ -40,11 +47,6 @@ public class FingerprintMainActivity extends BaseActivity implements View.OnClic
         mFingerprintCore = new FingerprintCore(this);
         mFingerprintCore.setFingerprintManager(mResultListener);
         mKeyguardLockScreenManager = new KeyguardLockScreenManager(this);
-    }
-
-    private void initViews() {
-        mFingerGuideImg = (ImageView) findViewById(R.id.fingerprint_guide);
-        mFingerGuideTxt = (TextView) findViewById(R.id.fingerprint_guide_tip);
     }
 
     private void initViewListeners() {

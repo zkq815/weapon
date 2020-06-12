@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/git-weapon.iml" filepath="$PROJECT_DIR$/git-weapon.iml" />
-      <module fileurl="file://$PROJECT_DIR$/weapon/weapon-weapon.iml" filepath="$PROJECT_DIR$/weapon/weapon-weapon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="weapon/app" />
+      <module fileurl="file://$PROJECT_DIR$/git-weapon.iml" filepath="$PROJECT_DIR$/git-weapon.iml" group="weapon" />
+      <module fileurl="file://$PROJECT_DIR$/weapon/weapon-weapon.iml" filepath="$PROJECT_DIR$/weapon/weapon-weapon.iml" group="weapon/weapon" />
     </modules>
   </component>
 </project>

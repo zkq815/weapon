@@ -1,15 +1,16 @@
 package com.zkq.alldemo.fortest.rxjava_retrofit;
 
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.widget.Button;
 
 import com.zkq.alldemo.R;
-import com.zkq.alldemo.databinding.ActivityRxjavaBinding;
 import com.zkq.weapon.base.BaseActivity;
+import com.zkq.weapon.entity.response.BaseResponse;
 import com.zkq.weapon.market.util.ZLog;
 import com.zkq.weapon.networkframe.netbase.RetrofitUtil;
-import com.zkq.weapon.entity.response.BaseResponse;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -29,16 +30,22 @@ import retrofit2.Callback;
  */
 public class RxjavaActivity extends BaseActivity {
 
-    private ActivityRxjavaBinding mBinding;
+    @BindView(R.id.btn_rx_get)
+    Button btnRxGet;
+    @BindView(R.id.btn_rx_get_test)
+    Button btnRxGetTest;
+    @BindView(R.id.btn_rx_post_test)
+    Button btnRxPostTest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        EventBus.getDefault().register(this);
-        mBinding = DataBindingUtil.setContentView(this,R.layout.activity_rxjava);
-        mBinding.btnRxGet.setOnClickListener(v-> rxTest());
-        mBinding.btnRxGetTest.setOnClickListener(v -> rxgetList());
-        mBinding.btnRxPostTest.setOnClickListener(v-> rxPost());
-//        mBinding.btnRxPostTest.setOnClickListener(v-> {
+        setContentView(R.layout.activity_rxjava);
+        ButterKnife.bind(this);
+        btnRxGet.setOnClickListener(v-> rxTest());
+        btnRxGetTest.setOnClickListener(v -> rxgetList());
+        btnRxPostTest.setOnClickListener(v-> rxPost());
+//        btnRxPostTest.setOnClickListener(v-> {
 //            EventBus.getDefault().post("EventBus你好啊");
 //        });
 

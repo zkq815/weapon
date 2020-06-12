@@ -1,7 +1,6 @@
 package com.zkq.alldemo.fortest.dialog;
 
 import android.app.Dialog;
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -9,20 +8,25 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.zkq.alldemo.R;
-import com.zkq.alldemo.databinding.ActivityDialogTestBinding;
 import com.zkq.weapon.base.BaseActivity;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class DialogTestActivity extends BaseActivity implements View.OnClickListener{
-    private ActivityDialogTestBinding mBinding;
+    @BindView(R.id.tv_dialog)
+    TextView tvDialog;
     Dialog dialog = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this,R.layout.activity_dialog_test);
+        setContentView(R.layout.activity_dialog_test);
+        ButterKnife.bind(this);
         initDialog();
-        mBinding.tvDialog.setOnClickListener(new View.OnClickListener() {
+        tvDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.show();

@@ -1,58 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <data>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zkq="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zkq.alldemo.fortest.actionbar.MyToolbarActivity">
 
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:zkq="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RadioGroup
+        android:id="@+id/rg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.zkq.alldemo.fortest.actionbar.ActionBarDemoActivity">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
 
-        <com.zkq.alldemo.customview.MyTextView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:visibility="visible"
-            android:layout_marginTop="200dp"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:text="weweewrwerqwerqerwqewrqerwqewrqwerwerwer" />
+    </RadioGroup>
 
-        <com.zkq.alldemo.customview.MyBlingTextView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:visibility="visible"
-            android:layout_marginTop="100dp"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:text="1234564564654654654654564654654654"/>
+    <com.zkq.alldemo.customview.MyBlingTextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        android:text="1234564564654654654654564654654654"
+        android:visibility="visible" />
 
-        <com.zkq.alldemo.customview.MyToolBar
-            android:visibility="visible"
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            zkq:mytitleTextSize="16sp"
-            zkq:mytitle="我的天啊"
-            zkq:mytitleTextColor="#ff4727"
-            zkq:leftTextColor="#ff1574"
-            zkq:leftText="返回"
-            zkq:leftBackground="#ff6270"
-            zkq:rightText="右侧"
-            zkq:rightBackground="#ff7000"
-            zkq:rightTextColor="#ff9019"/>
+    <com.zkq.alldemo.customview.MyTextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="200dp"
+        android:text="weweewrwerqwerqerwqewrqerwqewrqwerwerwer"
+        android:visibility="visible" />
 
-        <RadioGroup
-            android:id="@+id/rg"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <com.zkq.alldemo.customview.MyToolBar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:visibility="visible"
+        zkq:leftBackground="#ff6270"
+        zkq:leftText="返回"
+        zkq:leftTextColor="#ff1574"
+        zkq:mytitle="我的天啊"
+        zkq:mytitleTextColor="#ff4727"
+        zkq:mytitleTextSize="16sp"
+        zkq:rightBackground="#ff7000"
+        zkq:rightText="右侧"
+        zkq:rightTextColor="#ff9019" />
 
-        </RadioGroup>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 

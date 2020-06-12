@@ -10,6 +10,7 @@ import com.zkq.alldemo.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import butterknife.ButterKnife;
 
 /**
  * @author zkq
@@ -23,6 +24,7 @@ public class TestFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.test_fragment, container, false);
+        ButterKnife.bind(view);
         return view;
     }
 }

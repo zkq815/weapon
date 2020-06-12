@@ -2,13 +2,15 @@ package com.zkq.alldemo.fortest.flowlayout;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zkq.alldemo.R;
-import com.zkq.alldemo.databinding.ActivityFlowLayoutBinding;
 import com.zkq.weapon.base.BaseActivity;
+import com.zkq.weapon.customview.FlowLayout;
 
-import androidx.databinding.DataBindingUtil;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * @author zkq
@@ -17,27 +19,36 @@ import androidx.databinding.DataBindingUtil;
  * desc:
  */
 public class FlowLayoutActivity extends BaseActivity {
-    private ActivityFlowLayoutBinding mBinding;
+    @BindView(R.id.flowlayout)
+    FlowLayout flowlayout;
+
+    @BindView(R.id.weaponfl)
+    FlowLayout weaponfl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_flow_layout);
+        setContentView(R.layout.activity_flow_layout);
+        ButterKnife.bind(this);
 
         for (int i = 0; i < 30; i++) {
-            TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.simple_item_viewholder,mBinding.flowlayout,false);
+            LinearLayout linearLayout = (LinearLayout)LayoutInflater.from(this)
+                    .inflate(R.layout.simple_item_viewholder,flowlayout,false);
+            TextView textView = linearLayout.findViewById(R.id.tv_show);
             textView.setText("eh"+i);
             textView.setBackgroundColor(getResources().getColor(R.color.red_alpha_0));
             textView.setId(i);
-            mBinding.flowlayout.addView(textView,i);
+            flowlayout.addView(textView,i);
         }
 
 
         for (int i = 0; i < 30; i++) {
-            TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.simple_item_viewholder,mBinding.weaponfl,false);
+            LinearLayout linearLayout = (LinearLayout) LayoutInflater.from(this)
+                    .inflate(R.layout.simple_item_viewholder,weaponfl,false);
+            TextView textView = linearLayout.findViewById(R.id.tv_show);
             textView.setText("eh"+i);
             textView.setBackgroundColor(getResources().getColor(R.color.red_alpha_0));
             textView.setId(i);
-            mBinding.weaponfl.addView(textView,i);
+            weaponfl.addView(textView,i);
 
         }
     }

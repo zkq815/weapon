@@ -1,22 +1,17 @@
 package com.zkq.alldemo.fortest.tangram;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 import com.tmall.wireless.tangram.TangramBuilder;
-import com.tmall.wireless.tangram.TangramEngine;
 import com.tmall.wireless.tangram.dataparser.concrete.Card;
 import com.tmall.wireless.tangram.structure.viewcreator.ViewHolderCreator;
 import com.tmall.wireless.tangram.support.async.AsyncLoader;
 import com.tmall.wireless.tangram.support.async.AsyncPageLoader;
 import com.tmall.wireless.tangram.support.async.CardLoadSupport;
-import com.tmall.wireless.tangram.util.IInnerImageSetter;
 import com.tmall.wireless.vaf.framework.VafContext;
 import com.tmall.wireless.vaf.virtualview.Helper.ImageLoader;
 import com.tmall.wireless.vaf.virtualview.event.EventData;
@@ -24,7 +19,6 @@ import com.tmall.wireless.vaf.virtualview.event.EventManager;
 import com.tmall.wireless.vaf.virtualview.event.IEventProcessor;
 import com.tmall.wireless.vaf.virtualview.view.image.ImageBase;
 import com.zkq.alldemo.R;
-import com.zkq.alldemo.databinding.ActivityTangramTestBinding;
 import com.zkq.alldemo.fortest.tangram.view.CustomAnnotationView;
 import com.zkq.alldemo.fortest.tangram.view.CustomCell;
 import com.zkq.alldemo.fortest.tangram.view.CustomCellView;
@@ -36,10 +30,7 @@ import com.zkq.alldemo.fortest.tangram.view.CustomViewHolder;
 import com.zkq.alldemo.fortest.tangram.view.NoBackgroundView;
 import com.zkq.alldemo.fortest.tangram.view.TestCell;
 import com.zkq.alldemo.fortest.tangram.view.TestCellView;
-import com.zkq.alldemo.fortest.tangram.view.TestViewHolder;
 import com.zkq.weapon.base.BaseActivity;
-import com.zkq.weapon.basehodler.view.SlideShowInsideEdtionView;
-import com.zkq.weapon.basehodler.view.TestView;
 import com.zkq.weapon.market.tangram.TangramUtils;
 import com.zkq.weapon.market.tools.ToolJson;
 
@@ -47,9 +38,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * @author zkq
@@ -58,13 +49,13 @@ import androidx.recyclerview.widget.RecyclerView;
  * desc:
  */
 public class TangramTestActivity extends BaseActivity {
-    private ActivityTangramTestBinding mBinding;
-    private RecyclerView rvList;
+    @BindView(R.id.rv_list)
+    RecyclerView rvList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_tangram_test);
-        rvList = mBinding.rvList;
+        setContentView(R.layout.activity_tangram_test);
+        ButterKnife.bind(this);
         initTangram();
     }
 

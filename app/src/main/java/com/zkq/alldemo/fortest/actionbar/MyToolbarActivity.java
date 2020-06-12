@@ -1,7 +1,6 @@
 package com.zkq.alldemo.fortest.actionbar;
 
 import android.content.Context;
-import androidx.databinding.DataBindingUtil;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -9,9 +8,13 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.zkq.alldemo.R;
-import com.zkq.alldemo.databinding.ActivityActionBarDemoBinding;
+import com.zkq.alldemo.customview.MyToolBar;
 import com.zkq.weapon.base.BaseActivity;
 import com.zkq.weapon.customview.RadioButtonTimeTab;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * @author zkq
  * create:2018/12/11 3:54 PM
@@ -19,14 +22,19 @@ import com.zkq.weapon.customview.RadioButtonTimeTab;
  * desc: 测试ToolBar
  */
 public class MyToolbarActivity extends BaseActivity {
-    private ActivityActionBarDemoBinding mBinding;
-    private RadioGroup radioGroup;
+
+    @BindView(R.id.toolbar)
+    MyToolBar toolbar;
+    @BindView(R.id.rg)
+    RadioGroup radioGroup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this,R.layout.activity_action_bar_demo);
+        setContentView(R.layout.activity_action_bar_demo);
+        ButterKnife.bind(this);
         radioGroup = (RadioGroup) findViewById(R.id.rg);
-        mBinding.toolbar.setOnTopbarClickListener(new TopbarClickLinstener() {
+        toolbar.setOnTopbarClickListener(new TopbarClickLinstener() {
             @Override
             public void leftClick() {
                 Toast.makeText(getBaseContext(), "左侧", Toast.LENGTH_SHORT).show();
@@ -41,7 +49,7 @@ public class MyToolbarActivity extends BaseActivity {
     }
 
 
-    private void initRadioButton(){
+    private void initRadioButton() {
 
         radioGroup.removeAllViews();
         Point point = new Point();
@@ -64,6 +72,5 @@ public class MyToolbarActivity extends BaseActivity {
         });
 
     }
-
 
 }

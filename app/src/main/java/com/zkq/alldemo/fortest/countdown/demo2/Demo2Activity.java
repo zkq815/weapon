@@ -1,10 +1,7 @@
 package com.zkq.alldemo.fortest.countdown.demo2;
 
-import androidx.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +9,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.zkq.alldemo.R;
-import com.zkq.alldemo.databinding.ActivityDemo2Binding;
 import com.zkq.alldemo.fortest.countdown.CountdownBean;
 import com.zkq.alldemo.fortest.countdown.OnTimerListener;
 import com.zkq.weapon.base.BaseActivity;
 
 import java.util.ArrayList;
+
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 /**
  * @author zkq
  * create:2019/5/28 12:58 AM
@@ -26,43 +26,52 @@ import java.util.ArrayList;
  */
 public class Demo2Activity extends BaseActivity {
 
-    private ActivityDemo2Binding mBinding;
-    private RecyclerView rvList;
+    @BindView(R.id.rv)
+    RecyclerView rvList;
+    @BindView(R.id.v_countdown)
+    CustomCountDown vCountdown;
+
+    @BindView(R.id.btn_pause)
+    Button btnPause;
+    @BindView(R.id.btn_goon)
+    Button btnGoon;
+
     private ArrayList<CountdownBean> dataList;
     private String[] color = {"#5900ffff","#9370DB","#7B68EE"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this,R.layout.activity_demo2);
-//        mBinding.rv.setLayoutManager(new LinearLayoutManager(this));
-//        mBinding.rv.setAdapter(new Adapter(getDataList()));
+        setContentView(R.layout.activity_demo2);
+        ButterKnife.bind(this);
+//        rv.setLayoutManager(new LinearLayoutManager(this));
+//        rv.setAdapter(new Adapter(getDataList()));
 //        TimerViewUtils.getInstance()
-//                .getCustomCountDown(mBinding.vCountdown,getBean2(),listener)
+//                .getCustomCountDown(vCountdown,getBean2(),listener)
 //                .start();
-        mBinding.vCountdown.setCountdownBean(getBean2()).setOnTimerListener(listener).start();
-        mBinding.vCountdown.setTextColor("#ffffff")
+        vCountdown.setCountdownBean(getBean2()).setOnTimerListener(listener).start();
+        vCountdown.setTextColor("#ffffff")
                 .setRad(0);
-        mBinding.btnPause.setOnClickListener(v->mBinding.vCountdown.pause());
-        mBinding.btnGoon.setOnClickListener(v->mBinding.vCountdown.goon());
+        btnPause.setOnClickListener(v->vCountdown.pause());
+        btnGoon.setOnClickListener(v->vCountdown.goon());
 //        //年、日、时、分、秒、毫秒 分割符:
 //        TimerUtils.getInstance()
-//                .getTimerWithBean(mBinding.tv1, 50000, getBean1(),listener)
+//                .getTimerWithBean(tv1, 50000, getBean1(),listener)
 //                .startTimer();
 //        //年、日、时、分、秒、毫秒，分割符 单位
 //        TimerUtils.getInstance()
-//                .getTimerWithBean(mBinding.tv2, 50000, getBean2(),listener)
+//                .getTimerWithBean(tv2, 50000, getBean2(),listener)
 //                .startTimer();
 //        //时、分、秒、毫秒，分割符 单位
 //        TimerUtils.getInstance()
-//                .getTimerWithBean(mBinding.tv3, 50000, getBean3(),listener)
+//                .getTimerWithBean(tv3, 50000, getBean3(),listener)
 //                .startTimer();
 //        //时、分、秒，分割符 单位
 //        TimerUtils.getInstance()
-//                .getTimerWithBean(mBinding.tv4, 50000, getBean4(),listener)
+//                .getTimerWithBean(tv4, 50000, getBean4(),listener)
 //                .startTimer();
 //        //日、分、秒、毫秒，分割符 单位
 //        TimerUtils.getInstance()
-//                .getTimerWithBean(mBinding.tv5, 50000, getBean5(),listener)
+//                .getTimerWithBean(tv5, 50000, getBean5(),listener)
 //                .startTimer();
     }
 

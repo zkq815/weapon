@@ -23,7 +23,6 @@ import butterknife.ButterKnife;
  * desc:
  */
 public class ThanksActivity extends BaseActivity {
-//    private ActivityThanksBinding mBinding;
     @BindView(R2.id.rv)
     RecyclerView rv;
     String[] info = {
@@ -62,7 +61,6 @@ public class ThanksActivity extends BaseActivity {
     }
 
     private void init() {
-//        rv = mBinding.rv;
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(new MainAdapter(this));
     }

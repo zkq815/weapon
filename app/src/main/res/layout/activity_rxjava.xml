@@ -1,39 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <data>
-    </data>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.zkq.alldemo.fortest.rxjava_retrofit.RxjavaActivity">
 
-        <Button
-            android:id="@+id/btn_rx_get"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="rx"/>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zkq.alldemo.fortest.rxjava_retrofit.RxjavaActivity">
 
-        <Button
-            android:id="@+id/btn_rx_get_test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_rx_get"
-            app:layout_constraintLeft_toRightOf="@+id/btn_rx_get"
-            android:text="rx_get"/>
+    <Button
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/btn_rx_get"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="rx" />
 
-        <Button
-            android:id="@+id/btn_rx_post_test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBaseline_toBaselineOf="@+id/btn_rx_get_test"
-            app:layout_constraintLeft_toRightOf="@+id/btn_rx_get_test"
-            android:text="rx_post"/>
+    <Button
+        android:id="@+id/btn_rx_get_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="rx_get"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_rx_get"
+        app:layout_constraintLeft_toRightOf="@+id/btn_rx_get" />
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btn_rx_post_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="rx_post"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_rx_get_test"
+        app:layout_constraintLeft_toRightOf="@+id/btn_rx_get_test" />
 
 
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 

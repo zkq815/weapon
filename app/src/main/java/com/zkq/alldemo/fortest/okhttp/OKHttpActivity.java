@@ -3,9 +3,9 @@ package com.zkq.alldemo.fortest.okhttp;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.zkq.alldemo.R;
-import com.zkq.alldemo.databinding.ActivityOkhttpBinding;
 import com.zkq.weapon.base.BaseActivity;
 import com.zkq.weapon.market.util.ZLog;
 
@@ -13,9 +13,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -27,14 +28,16 @@ import okhttp3.Response;
  * desc: 测试OKhttp
  */
 public class OKHttpActivity extends BaseActivity {
-    private ActivityOkhttpBinding mBinding;
-    private ViewPager viewPager;
+    @BindView(R.id.btn_okhttp)
+    Button btnOkhttp;
+    @BindView(R.id.vp)
+    ViewPager viewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this,R.layout.activity_okhttp);
-        viewPager = findViewById(R.id.vp);
-        mBinding.btnOkhttp.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_okhttp);
+        ButterKnife.bind(this);
+        btnOkhttp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 okGet();

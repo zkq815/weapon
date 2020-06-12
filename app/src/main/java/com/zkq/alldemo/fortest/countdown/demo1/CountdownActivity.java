@@ -1,14 +1,16 @@
 package com.zkq.alldemo.fortest.countdown.demo1;
 
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.zkq.alldemo.R;
-import com.zkq.alldemo.databinding.ActivityCountdownBinding;
 import com.zkq.alldemo.fortest.countdown.CountdownBean;
 import com.zkq.alldemo.fortest.countdown.OnTimerListener;
 import com.zkq.weapon.base.BaseActivity;
 import com.zkq.weapon.market.util.ZLog;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * @author zkq
@@ -17,77 +19,105 @@ import com.zkq.weapon.market.util.ZLog;
  * desc: 倒计时展示
  */
 public class CountdownActivity extends BaseActivity {
-    private ActivityCountdownBinding mBinding;
+
+    @BindView(R.id.tv1)
+    TextView tv1;
+    @BindView(R.id.tv2)
+    TextView tv2;
+    @BindView(R.id.tv3)
+    TextView tv3;
+    @BindView(R.id.tv4)
+    TextView tv4;
+    @BindView(R.id.tv5)
+    TextView tv5;
+    @BindView(R.id.tv6)
+    TextView tv6;
+    @BindView(R.id.tv7)
+    TextView tv7;
+    @BindView(R.id.tv8)
+    TextView tv8;
+    @BindView(R.id.tv9)
+    TextView tv9;
+    @BindView(R.id.tv10)
+    TextView tv10;
+    @BindView(R.id.tv11)
+    TextView tv11;
+    @BindView(R.id.tv12)
+    TextView tv12;
+    @BindView(R.id.tv13)
+    TextView tv13;
+
     int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this,R.layout.activity_countdown);
+        setContentView(R.layout.activity_countdown);
+        ButterKnife.bind(this);
         //年、日、时、分、秒、毫秒 分割符:
         TimerUtils.getInstance()
-                .getTimerWithBean(mBinding.tv1, 50000, getBean1(),listener)
+                .getTimerWithBean(tv1, 50000, getBean1(),listener)
                 .startTimer();
         //年、日、时、分、秒、毫秒，分割符 单位
         TimerUtils.getInstance()
-                .getTimerWithBean(mBinding.tv2, 50000, getBean2(),listener)
+                .getTimerWithBean(tv2, 50000, getBean2(),listener)
                 .startTimer();
         //时、分、秒、毫秒，分割符 单位
         TimerUtils.getInstance()
-                .getTimerWithBean(mBinding.tv3, 50000, getBean3(),listener)
+                .getTimerWithBean(tv3, 50000, getBean3(),listener)
                 .startTimer();
         //时、分、秒，分割符 单位
         TimerUtils.getInstance()
-                .getTimerWithBean(mBinding.tv4, 50000, getBean4(),listener)
+                .getTimerWithBean(tv4, 50000, getBean4(),listener)
                 .startTimer();
         //日、分、秒、毫秒，分割符 单位
         TimerUtils.getInstance()
-                .getTimerWithBean(mBinding.tv5, 50000, getBean5(),listener)
+                .getTimerWithBean(tv5, 50000, getBean5(),listener)
                 .startTimer();
 
         TimerUtils.getInstance()
-                .getTimerWithBean(mBinding.tv6, 50000, getBean6(),listener)
+                .getTimerWithBean(tv6, 50000, getBean6(),listener)
                 .startTimer();
 
         TimerUtils.getInstance()
-                .getTimerWithBean(mBinding.tv7, 50000, getBean7(),listener)
+                .getTimerWithBean(tv7, 50000, getBean7(),listener)
                 .startTimer();
 
         TimerUtils.getInstance()
-                .getTimerWithBean(mBinding.tv8, 50000, getBean8(),listener)
+                .getTimerWithBean(tv8, 50000, getBean8(),listener)
                 .startTimer();
 
         TimerUtils.getInstance()
-                .getTimerWithBean(mBinding.tv9, 50000, getBean9(),listener)
+                .getTimerWithBean(tv9, 50000, getBean9(),listener)
                 .startTimer();
 
         TimerUtils.getInstance()
-                .getTimerWithBean(mBinding.tv10, 50000, getBean10(),listener)
+                .getTimerWithBean(tv10, 50000, getBean10(),listener)
                 .startTimer();
 
         TimerUtils.getInstance()
-                .getTimerWithBean(mBinding.tv11, 50000, getBean11(),listener)
+                .getTimerWithBean(tv11, 50000, getBean11(),listener)
                 .startTimer();
 
         TimerUtils.getInstance()
-                .getTimerWithBean(mBinding.tv12, 50000, getBean12(),listener)
+                .getTimerWithBean(tv12, 50000, getBean12(),listener)
                 .startTimer();
 
         TimerUtils.getInstance()
-                .getTimerWithBean(mBinding.tv13, 50000, getBean13(),listener)
+                .getTimerWithBean(tv13, 50000, getBean13(),listener)
                 .startTimer();
 
 
-        mBinding.tv13.setOnClickListener(v-> {
+        tv13.setOnClickListener(v-> {
             i++;
             ZLog.e("i==="+i%4);
             if(i%4==1){
-                TimerUtils.getInstance().cancelById(String.valueOf(mBinding.tv13.getId()));
+                TimerUtils.getInstance().cancelById(String.valueOf(tv13.getId()));
             }else if(i%4==2){
-                TimerUtils.getInstance().reStartCountDownById(String.valueOf(mBinding.tv13.getId()));
+                TimerUtils.getInstance().reStartCountDownById(String.valueOf(tv13.getId()));
             }else if(i%4==3){
-                TimerUtils.getInstance().cancelById(String.valueOf(mBinding.tv13.getId()));
+                TimerUtils.getInstance().cancelById(String.valueOf(tv13.getId()));
             }else{
-                TimerUtils.getInstance().continueCountDownById(String.valueOf(mBinding.tv13.getId()));
+                TimerUtils.getInstance().continueCountDownById(String.valueOf(tv13.getId()));
             } });
     }
 
@@ -329,19 +359,19 @@ public class CountdownActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        TimerUtils.getInstance().cancelById(String.valueOf(mBinding.tv1.getId()));
-        TimerUtils.getInstance().cancelById(String.valueOf(mBinding.tv2.getId()));
-        TimerUtils.getInstance().cancelById(String.valueOf(mBinding.tv3.getId()));
-        TimerUtils.getInstance().cancelById(String.valueOf(mBinding.tv4.getId()));
-        TimerUtils.getInstance().cancelById(String.valueOf(mBinding.tv5.getId()));
-        TimerUtils.getInstance().cancelById(String.valueOf(mBinding.tv6.getId()));
-        TimerUtils.getInstance().cancelById(String.valueOf(mBinding.tv7.getId()));
-        TimerUtils.getInstance().cancelById(String.valueOf(mBinding.tv8.getId()));
-        TimerUtils.getInstance().cancelById(String.valueOf(mBinding.tv9.getId()));
-        TimerUtils.getInstance().cancelById(String.valueOf(mBinding.tv10.getId()));
-        TimerUtils.getInstance().cancelById(String.valueOf(mBinding.tv11.getId()));
-        TimerUtils.getInstance().cancelById(String.valueOf(mBinding.tv12.getId()));
-        TimerUtils.getInstance().cancelById(String.valueOf(mBinding.tv13.getId()));
+        TimerUtils.getInstance().cancelById(String.valueOf(tv1.getId()));
+        TimerUtils.getInstance().cancelById(String.valueOf(tv2.getId()));
+        TimerUtils.getInstance().cancelById(String.valueOf(tv3.getId()));
+        TimerUtils.getInstance().cancelById(String.valueOf(tv4.getId()));
+        TimerUtils.getInstance().cancelById(String.valueOf(tv5.getId()));
+        TimerUtils.getInstance().cancelById(String.valueOf(tv6.getId()));
+        TimerUtils.getInstance().cancelById(String.valueOf(tv7.getId()));
+        TimerUtils.getInstance().cancelById(String.valueOf(tv8.getId()));
+        TimerUtils.getInstance().cancelById(String.valueOf(tv9.getId()));
+        TimerUtils.getInstance().cancelById(String.valueOf(tv10.getId()));
+        TimerUtils.getInstance().cancelById(String.valueOf(tv11.getId()));
+        TimerUtils.getInstance().cancelById(String.valueOf(tv12.getId()));
+        TimerUtils.getInstance().cancelById(String.valueOf(tv13.getId()));
     }
 
 }

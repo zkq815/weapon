@@ -33,7 +33,7 @@ public class MainActivity extends BaseActivity {
     private String path = "com.zkq.alldemo.fortest";
     @BindView(R.id.rv)
     RecyclerView rv;
-    @BindView(R.id.btn_story)
+    @BindView(R.id.btn_story_one)
     Button btnEventBus;
     String[] info = {".colorprogresswithspeed.ColorProgressActivity"
             , ".okhttp.OKHttpActivity"
@@ -57,7 +57,9 @@ public class MainActivity extends BaseActivity {
             , ".recyclertoviewpager.RecyclerToViewPagerDemoActivity"
             , ".gestureviewbinder.GestureViewBinderActivity"
             , ".textureview.TestTextureViewActivity"
-            , ".drawerLayout.DrawerLayoutActivity"};
+            , ".drawerLayout.DrawerLayoutActivity"
+            , ".levelview.LevelViewActivity"
+            , ".horirecycler.HoriRecyclerActivity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

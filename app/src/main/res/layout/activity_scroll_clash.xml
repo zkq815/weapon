@@ -1,40 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <data>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zkq.alldemo.fortest.scrollclash.ScrollClashActivity">
 
-    </data>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.zkq.alldemo.fortest.scrollclash.ScrollClashActivity">
+        android:layout_height="match_parent">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="800dp"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <ListView
+                android:id="@+id/lv"
                 android:layout_width="match_parent"
-                android:layout_height="800dp"
-                android:orientation="vertical">
+                android:layout_height="800dp">
 
-                <View
-                    android:visibility="visible"
-                    android:id="@+id/v_head"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:background="@color/red_bg"/>
-                <ListView
-                    android:id="@+id/lv"
-                    android:layout_width="match_parent"
-                    android:layout_height="800dp">
+            </ListView>
 
-                </ListView>
+            <View
+                android:id="@+id/v_head"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/red_bg"
+                android:visibility="visible" />
 
 
-            </LinearLayout>
-        </ScrollView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -9,8 +9,10 @@
     <TextView
         android:id="@+id/tv_show"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:textColor="@color/blue_beika"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:padding="10dp"/>
 
 </LinearLayout>
