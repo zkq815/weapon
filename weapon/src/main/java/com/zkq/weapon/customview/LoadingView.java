@@ -29,9 +29,9 @@ public class LoadingView extends FrameLayout {
         /**
          *
          * */
-        LOADING_FAIL(R.string.weapon_loading_view_loading_fail, R.drawable.loading_view_loading_fail, true),
-        NETWORK_ERROR(R.string.weapon_loading_view_network_error, R.drawable.loading_view_network_error, true),
-        NO_NETWORK(R.string.weapon_loading_view_no_network, R.drawable.loading_view_no_network, true),
+        LOADING_FAIL(R.string.loading_view_loading_fail, R.drawable.loading_view_loading_fail, true),
+        NETWORK_ERROR(R.string.loading_view_network_error, R.drawable.loading_view_network_error, true),
+        NO_NETWORK(R.string.loading_view_no_network, R.drawable.loading_view_no_network, true),
         CUSTOM(R.string.weapon_empty, R.drawable.loading_view_loading_fail, true);
 
         @StringRes
