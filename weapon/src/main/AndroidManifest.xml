@@ -8,7 +8,6 @@
     <application
         android:name=".application.BaseApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/WeaponAppTheme">
 
