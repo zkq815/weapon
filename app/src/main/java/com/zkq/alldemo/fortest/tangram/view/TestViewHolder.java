@@ -27,20 +27,15 @@ package com.zkq.alldemo.fortest.tangram.view;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.tmall.wireless.tangram.structure.viewcreator.ViewHolderCreator;
-import com.zkq.alldemo.R;
 import com.zkq.weapon.basehodler.adapter.AdapterPagerSlideInside;
 import com.zkq.weapon.basehodler.datamodel.EdtionImageDataModel;
-import com.zkq.weapon.basehodler.module.BaseNativeEdtionModule;
 import com.zkq.weapon.basehodler.module.SlideShowEdtionModule;
-import com.zkq.weapon.basehodler.operation.BaseEdtionOperationModel;
 import com.zkq.weapon.basehodler.view.SlideShowInsideEdtionView;
-import com.zkq.weapon.market.tools.ToolAndroid;
+import com.zkq.weapon.market.tools.ToolScreen;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by SunQiang
@@ -72,7 +67,7 @@ public class TestViewHolder extends ViewHolderCreator.ViewHolder {
 
     private void show() {
         ViewGroup.LayoutParams containerLp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
-                , ToolAndroid.getPhoneWidth(mEdtionView.getContext()));
+                , ToolScreen.getScreenWidth(mEdtionView.getContext()));
         mEdtionView.setLayoutParams(containerLp);
     }
 

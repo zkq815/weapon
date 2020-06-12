@@ -10,7 +10,7 @@ import com.zkq.weapon.basehodler.datamodel.EdtionImageDataModel;
 import com.zkq.weapon.basehodler.module.BaseEdtionModuleView;
 import com.zkq.weapon.basehodler.module.SlideShowEdtionModule;
 import com.zkq.weapon.basehodler.operation.BaseEdtionOperationModel;
-import com.zkq.weapon.market.tools.ToolAndroid;
+import com.zkq.weapon.market.tools.ToolScreen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class TestView extends BaseEdtionModuleView {
 
     private void show() {
         ViewGroup.LayoutParams containerLp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
-                , ToolAndroid.getPhoneWidth(mEdtionView.getContext()));
+                , ToolScreen.getScreenWidth(mEdtionView.getContext()));
         mEdtionView.setLayoutParams(containerLp);
     }
 
