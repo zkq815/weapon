@@ -67,6 +67,7 @@ public class ScanActivity extends BaseActivity implements View.OnClickListener {
         findViewById(R.id.zxing_btn_test6).setOnClickListener(this);
         findViewById(R.id.zxing_btn_test7).setOnClickListener(this);
         findViewById(R.id.zxing_btn_test8).setOnClickListener(this);
+        findViewById(R.id.zxing_btn_test9).setOnClickListener(this);
 
         mScannerView = (QRCodeScannerView) findViewById(R.id.scanner_view);
         mCoverView = (QRCoverView) findViewById(R.id.cover_view);
@@ -176,6 +177,8 @@ public class ScanActivity extends BaseActivity implements View.OnClickListener {
             mCoverView.setShowLaser(false);
         } else if (i == R.id.zxing_btn_test8) {
             //startActivity(new Intent(this, SecondActivity.class));
+        } else  if(i == R.id.zxing_btn_test9){
+//            mScannerView.get
         }
     }
 }

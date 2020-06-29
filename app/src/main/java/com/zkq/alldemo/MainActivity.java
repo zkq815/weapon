@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.zkq.weapon.base.BaseActivity;
+import com.zkq.weapon.base.CameraActivity;
+import com.zkq.weapon.base.ScanActivity;
 import com.zkq.weapon.base.WebViewPluginActivity;
 import com.zkq.weapon.constants.WeaponConstants;
 import com.zkq.weapon.market.util.ZLog;
@@ -53,6 +55,7 @@ public class MainActivity extends BaseActivity {
             , ".gsvideo.GSVideoActivity"
             , ".gsvideo.gsdemo.gsyvideoplayer.GsMainActivity"
             , "com.zkq.weapon.base.ScanActivity"
+            , "com.zkq.weapon.base.CameraActivity"
             , ".recyclertoviewpager.RecyclerToViewPagerActivity"
             , ".recyclertoviewpager.RecyclerToViewPagerDemoActivity"
             , ".gestureviewbinder.GestureViewBinderActivity"
@@ -74,8 +77,8 @@ public class MainActivity extends BaseActivity {
     private void init() {
         btnEventBus.setOnClickListener(v->{
             Intent intent = new Intent(MainActivity.this, WebViewPluginActivity.class);
-            intent.putExtra(WeaponConstants.WEB_URL,WeaponConstants.NORMAL_TO_GOD_URL);
-//            intent.putExtra(WeaponConstants.WEB_URL,"file:///android_asset/default.html");
+//            intent.putExtra(WeaponConstants.WEB_URL,WeaponConstants.NORMAL_TO_GOD_URL);
+            intent.putExtra(WeaponConstants.WEB_URL,"file:///android_asset/test.html");
             intent.putExtra(WeaponConstants.WEB_TITLE,WeaponConstants.NORMAL_TO_GOD_TITLE);
             startActivity(intent);
         });
@@ -126,9 +129,16 @@ public class MainActivity extends BaseActivity {
                 itemHolder.tvActivityName.setText(info[position].split("\\.")[length-1]);
                 itemHolder.tvActivityName.setOnClickListener(v->{
                     try {
-                        startActivity(new Intent(MainActivity.this
-                                , Class.forName(path+info[position])));
-
+                        if(info[position].contains("com.zkq.weapon.base.ScanActivity")){
+                            startActivity(new Intent(MainActivity.this
+                                    , ScanActivity.class));
+                        }else if(info[position].contains("com.zkq.weapon.base.CameraActivity")){
+                            startActivity(new Intent(MainActivity.this
+                                    , CameraActivity.class));
+                        }else{
+                            startActivity(new Intent(MainActivity.this
+                                    , Class.forName(path+info[position])));
+                        }
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                     }

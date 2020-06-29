@@ -1,32 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.zkq.weapon">
-    <permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--通用权限-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
-
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name=".application.BaseApplication"
         android:allowBackup="true"
         android:supportsRtl="true"
-        tools:ignore="LockedOrientationActivity"
-        android:theme="@style/WeaponAppTheme">
-
-        <activity android:name=".base.WebViewPluginActivity"
-            android:screenOrientation="portrait"/>
-
+        android:theme="@style/WeaponAppTheme"
+        tools:ignore="LockedOrientationActivity">
+        <activity android:name=".base.CameraActivity"></activity>
+        <activity
+            android:name=".base.WebViewPluginActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".base.ScanActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".base.ThanksActivity"
-            android:screenOrientation="portrait"/>
-    </application>
+            android:screenOrientation="portrait" />
+    </application> <!-- 通用权限 -->
+    <permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

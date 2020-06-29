@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img id="oldSign"/>
+    <input type="file" id="imgselect"/>
+  
+</body>
+<script src="http://sscf.oss-cn-hangzhou.aliyuncs.com/beacon/a101/script/lib/zepto.min.js?t=1592219535"></script>
+<script type="text/javascript">
+$("#imgselect").on('input',function(){
+    var that = this;
+        var formData = new FormData();
+        //获取file内容
+        console.log($(this))
+        var files =$(this)[0].files[0];
+        console.log(files)
+        formData.append("file", files);
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(files);
+        //异步加载
+        fileReader.onload = function (event) {
+            $("#oldSign").attr("src", event.target.result);
+        }
+})
+  
+</script>
+</html>

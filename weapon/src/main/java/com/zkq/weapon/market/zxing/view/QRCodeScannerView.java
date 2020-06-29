@@ -3,9 +3,14 @@ package com.zkq.weapon.market.zxing.view;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.ImageFormat;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.graphics.PointF;
+import android.graphics.Rect;
+import android.graphics.YuvImage;
 import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.util.AttributeSet;
@@ -27,6 +32,7 @@ import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
 import com.zkq.weapon.market.zxing.zxing.CameraManager;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.Map;
@@ -34,7 +40,7 @@ import java.util.Map;
 import static android.hardware.Camera.getCameraInfo;
 
 public class QRCodeScannerView extends SurfaceView
-        implements SurfaceHolder.Callback, Camera.PreviewCallback {
+        implements SurfaceHolder.Callback, Camera.PreviewCallback , Camera.AutoFocusCallback{
 
     private static final String TAG = QRCodeScannerView.class.getName();
 
@@ -267,6 +273,36 @@ public class QRCodeScannerView extends SurfaceView
         mCameraManager.setDisplayOrientation(getCameraDisplayOrientation());
 
         mCameraManager.startPreview();
+        Camera camera = mCameraManager.getOpenCamera().getCamera();
+        camera.setOneShotPreviewCallback(new Camera.PreviewCallback() {
+            @Override
+            public void onPreviewFrame(byte[] data, Camera camera) {
+                Log.e("zkq","获取图片了");
+                if(data != null) {
+                    Camera.Size previewSize = camera.getParameters().getPreviewSize();
+                    Log.e("zkq: " , previewSize.height +"," + previewSize.width);
+                    YuvImage yuvImage = new YuvImage(data, ImageFormat.NV21, previewSize.width, previewSize.height, null);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    yuvImage.compressToJpeg(new Rect(0, 0, previewSize.width, previewSize.height), 80, baos);
+                    byte[] jdata = baos.toByteArray();
+                    Bitmap tmpBitmap = BitmapFactory.decodeByteArray( jdata, 0, jdata.length);
+                    if(tmpBitmap!=null) {
+//                        mRvcBitmap = Bitmap.createScaledBitmap(tmpBitmap, 800, 480, false);
+//                        if(!mRvcBitmap.equals(tmpBitmap)) {
+//                            tmpBitmap.recycle();
+//                            tmpBitmap = null;
+//                        }
+                        Log.e("zkq","get the frame bitmap");
+
+                        camera.startPreview();
+                    } else {
+                        Log.e("zkq","tmpBitmap is null" + camera.getParameters().getPictureFormat());
+                    }
+                } else {
+                    Log.e("zkq","data is null, jpge");
+                }
+            }
+        });
     }
 
     @Override
@@ -351,6 +387,11 @@ public class QRCodeScannerView extends SurfaceView
             result = (info.orientation - degrees + 360) % 360;
         }
         return result;
+    }
+
+    @Override
+    public void onAutoFocus(boolean success, Camera camera) {
+        Log.e("zkq","onAutoFocus");
     }
 
     private static class DecodeFrameTask extends AsyncTask<byte[], Void, Result> {
@@ -495,5 +536,7 @@ public class QRCodeScannerView extends SurfaceView
             surfaceChanged(getHolder(), 0, 0, 0);
         }
     }
+
+
 
 }

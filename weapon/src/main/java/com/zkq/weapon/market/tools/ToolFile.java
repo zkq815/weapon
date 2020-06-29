@@ -470,7 +470,7 @@ public interface ToolFile {
     }
 
     /**
-     * 保存bitmap图片（ 单独一张） 到相机
+     * 保存bitmap图片（单独一张） 到相机
      */
     static void saveBitmap(Activity activity, Bitmap bitmap) {
 

@@ -106,6 +106,13 @@
                 android:layout_weight="2"
                 android:text="生成二维码 ->" />
 
+            <Button
+                android:id="@+id/zxing_btn_test9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="获取图片 ->" />
+
         </LinearLayout>
 
     </LinearLayout>

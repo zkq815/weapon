@@ -1,7 +1,6 @@
 package com.zkq.weapon.market.tools;
 
 import android.graphics.Paint;
-import androidx.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -13,6 +12,10 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import androidx.annotation.Nullable;
 
 import static com.zkq.weapon.constants.WeaponConstants.ID_CARD_FIRST;
 import static com.zkq.weapon.constants.WeaponConstants.ID_CARD_SECOND;
@@ -701,6 +704,21 @@ public interface ToolString {
             result.delete(result.length() - 1, result.length());
             return result.toString();
         }
+    }
+
+    /**
+     * 判断是否包含中文
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isContainChinese(String str) {
+        Pattern p = Pattern.compile("[\u4e00-\u9fa5]");
+        Matcher m = p.matcher(str);
+        if (m.find()) {
+            return true;
+        }
+        return false;
     }
 
 }
