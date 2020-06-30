@@ -1,6 +1,7 @@
 [
 
-  {//自动切换viewpager，给不同的banner设置不同的view
+  {
+    //自动切换viewpager，给不同的banner设置不同的view
     "type": "container-banner",
     "items": [
       {
@@ -24,10 +25,6 @@
       "itemRatio": 1,
       "pageRatio": 1,
       "autoScroll": 3000,
-//      "specialInterval": {
-//        "0": 2000,
-//        "1": 1000
-//      },
       "infinite": true,
       //选中的下标图片
       "indicatorImg1": "https://img.alicdn.com/tps/TB16i4qNXXXXXbBXFXXXXXXXXXX-32-4.png",
@@ -38,8 +35,6 @@
       "indicatorGap": 5,
       "indicatorMargin": 8,
       "indicatorHeight": 2,
-//      "scrollMarginLeft": -50,
-//      "scrollMarginRight": -50,
       "hGap": 10
     }
   },

@@ -27,10 +27,10 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
-    <!--<style name="dialogstyle" parent="android:Animation">-->
-        <!--<item name="@android:windowEnterAnimation">@anim/dialog_enter</item>-->
-        <!--<item name="@android:windowExitAnimation">@anim/dialog_exit</item>-->
-    <!--</style>-->
+<!--    <style name="dialogstyle" parent="android:Animation">-->
+<!--        <item name="@android:windowEnterAnimation">@anim/dialog_enter</item>-->
+<!--        <item name="@android:windowExitAnimation">@anim/dialog_exit</item>-->
+<!--    </style>-->
 
     <!--扫描框-->
     <declare-styleable name="ViewfinderView">

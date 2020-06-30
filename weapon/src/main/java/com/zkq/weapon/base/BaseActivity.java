@@ -18,6 +18,7 @@ import android.view.WindowManager;
 import com.tmall.wireless.tangram.TangramEngine;
 import com.zkq.weapon.R;
 import com.zkq.weapon.constants.WeaponConstants;
+import com.zkq.weapon.market.tools.ToolActivity;
 import com.zkq.weapon.market.tools.ToolAndroid;
 import com.zkq.weapon.market.tools.ToolNet;
 import com.zkq.weapon.market.tools.ToolString;
@@ -109,6 +110,10 @@ public abstract class BaseActivity extends AppCompatActivity {
                 break;
         }
 
+    }
+
+    protected boolean isActivityForeground(){
+        return ToolActivity.isForeground(this);
     }
 
     @Override
