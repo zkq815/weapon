@@ -30,8 +30,9 @@ android {
             buildConfigField "boolean", "LOG_DEBUG", "true"//是否输出LOG信息
         }
         release {
-//            minifyEnabled true//开启混淆
+            minifyEnabled true//开启混淆
             zipAlignEnabled true//压缩优化
+//            shrinkResources true//移除无效资源
             signingConfig signingConfigs.weapon//签名文件相关信息
             buildConfigField "boolean", "LOG_DEBUG", "false"//是否输出LOG信息
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
